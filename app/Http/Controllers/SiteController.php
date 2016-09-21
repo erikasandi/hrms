@@ -2,17 +2,31 @@
 
 namespace App\Http\Controllers;
 
+use App\Service\DataMessage;
 use App\Service\DatatableGenerator;
 use App\Http\Requests\SiteStoreRequest;
 use App\Models\Site;
+use App\Service\Site as SiteService;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
 class SiteController extends Controller
 {
+    use DataMessage;
 
+    protected $siteService;
     protected $baseUrl = 'site';
+
+    /**
+     * SiteController constructor.
+     * @param $siteService
+     */
+    public function __construct(SiteService $siteService)
+    {
+        $this->siteService = $siteService;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -30,12 +44,7 @@ class SiteController extends Controller
      */
     public function anyData()
     {
-        $users = $this->getSites();
-        $actions = $this->actionParameters();
-
-        return (new DatatableGenerator($users))
-            ->addActions($actions)
-            ->generate();
+        return $this->siteService->datatableData();
     }
 
     /**
@@ -56,9 +65,10 @@ class SiteController extends Controller
      */
     public function store(SiteStoreRequest $request)
     {
-        if ($this->createSite($request->except(['_token'])) ) {
-            return redirect('site')->with(['message' => 'Data has been saved.']);
-        }
+        $this->siteService->createSite($request->except(['_token']));
+
+        return redirect('site')->with($this->getMessage('store'));
+
     }
 
 
@@ -70,7 +80,7 @@ class SiteController extends Controller
      */
     public function edit($id)
     {
-        $data['site'] = Site::find($id);
+        $data['site'] = $this->siteService->getSiteById($id);
         return view('sites.edit', $data);
     }
 
@@ -83,12 +93,9 @@ class SiteController extends Controller
      */
     public function update(SiteStoreRequest $request, $id)
     {
-        $site = Site::find($id);
-        $site->name = $request->input('name');
-        $site->description = $request->input('description');
-        $site->save();
+        $this->siteService->update($id, $request->except(['_token']));
 
-        return redirect('site')->with(['message' => 'Data has been updated.']);
+        return redirect('site')->with($this->getMessage('update'));
     }
 
     /**
@@ -97,51 +104,11 @@ class SiteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, $id)
+    public function destroy($id)
     {
-        Site::find($id)->delete();
+        $this->siteService->destroy($id);
 
-        return redirect('site')->with(['message' => 'Data has been deleted.']);
+        return redirect('site')->with($this->getMessage('delete'));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    private function actionParameters()
-    {
-        $actions = [
-            'edit'  => [
-                'title'     => 'Edit',
-                'link'      => $this->baseUrl . '/%s' . '/edit',
-                'class'     => 'btn btn-xs btn-default',
-                'icon'      => 'fa fa-edit'
-            ],
-            'delete' => [
-                'title'     => 'Delete',
-                'link'      => $this->baseUrl . '/%s' . '/delete',
-                'class'     => 'btn btn-xs btn-default btn-delete',
-                'icon'      => 'fa fa-times',
-            ]
-        ];
-
-        return $actions;
-    }
-
-    private function getSites()
-    {
-        return Site::all();
-    }
-
-    private function createSite($input)
-    {
-        return Site::create($input);
-    }
 }

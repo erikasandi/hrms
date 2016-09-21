@@ -2,7 +2,6 @@
 
 namespace App\Service;
 
-
 use App\Models\AssetCondition as AssetConditionModel;
 
 class AssetCondition

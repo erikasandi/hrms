@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserUpdate;
+use App\Service\DataMessage;
 use App\Service\DatatableParameters;
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -13,9 +14,8 @@ use App\Service\DatatableGenerator;
 
 class UserController extends Controller
 {
-    use DatatableParameters;
+    use DataMessage;
 
-    protected $baseUrl = 'user';
     protected $userService;
 
     /**
@@ -39,18 +39,7 @@ class UserController extends Controller
      */
     public function anyData()
     {
-        $users = $this->getUsers();
-        $actions = $this->actionParameters(['edit','detail','delete']);
-
-        return (new DatatableGenerator($users))
-            ->addActions($actions)
-            ->addColumn('site', function($user) {
-                return $this->getSites($user);
-            })
-            ->addColumn('role', function($user) {
-                return $this->getRoles($user);
-            })
-            ->generate();
+        return $this->userService->datatableData();
     }
 
     /**
@@ -75,7 +64,7 @@ class UserController extends Controller
     {
         $this->userService->store($request->except('_token'));
 
-        return redirect('user')->with(['message' => 'Data has been saved.']);
+        return redirect('user')->with($this->getMessage('store'));
     }
 
     /**
@@ -102,30 +91,14 @@ class UserController extends Controller
     {
         $this->userService->update($id, $request->only(['name', 'email', 'sites', 'roles']));
 
-        return redirect('user')->with(['message' => 'Data has been updated.']);
+        return redirect('user')->with($this->getMessage('update'));
     }
 
     public function destroy($id)
     {
         $this->userService->destroy($id);
 
-        return redirect('user')->with(['message' => 'Data has been deleted.']);
+        return redirect('user')->with($this->getMessage('delete'));
     }
 
-    private function getUsers()
-    {
-        return $this->userService->getList();
-    }
-
-    private function getSites($user)
-    {
-        $sites = $user->sites;
-        return array_pluck($sites, 'name');
-    }
-
-    private function getRoles($user)
-    {
-        $roles = $user->roles;
-        return array_pluck($roles, 'name');
-    }
 }

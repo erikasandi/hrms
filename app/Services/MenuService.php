@@ -8,8 +8,10 @@ use App\Models\Menu;
 
 class MenuService
 {
+    use DatatableParameters;
 
     protected $form;
+    protected $baseUrl = 'menu';
 
     /**
      * MenuService constructor.
@@ -90,6 +92,16 @@ class MenuService
     public function destroy($id)
     {
         return Menu::destroy($id);
+    }
+
+    public function datatableData()
+    {
+        $menus = $this->getMenus();
+        $actions = $this->actionParameters(['edit','delete']);
+
+        return (new DatatableGenerator($menus))
+            ->addActions($actions)
+            ->generate();
     }
 
 }

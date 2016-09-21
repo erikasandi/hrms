@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\MenuStore;
 use App\Http\Requests\MenuUpdate;
-use App\Service\DatatableGenerator;
-use App\Service\DatatableParameters;
+use App\Service\DataMessage;
 use App\Service\MenuService;
 use App\Service\Permission as PermissionService;
 use Illuminate\Http\Request;
@@ -14,7 +13,7 @@ use App\Http\Requests;
 
 class MenuController extends Controller
 {
-    use DatatableParameters;
+    use DataMessage;
 
     protected $menuService;
     protected $baseUrl = 'menu';
@@ -47,12 +46,7 @@ class MenuController extends Controller
      */
     public function anyData()
     {
-        $menus = $this->getMenus();
-        $actions = $this->actionParameters(['edit','delete']);
-
-        return (new DatatableGenerator($menus))
-            ->addActions($actions)
-            ->generate();
+        return $this->menuService->datatableData();
     }
 
     /**
@@ -77,7 +71,7 @@ class MenuController extends Controller
     {
         $this->menuService->store($request->except(['_token']));
 
-        return redirect('menu')->with(['message' => 'Data has been saved.']);
+        return redirect('menu')->with($this->getMessage('store'));
     }
 
     /**
@@ -107,7 +101,7 @@ class MenuController extends Controller
     {
         $this->menuService->update($id, $request->except(['_token']));
 
-        return redirect('menu')->with(['message' => 'Data has been updated.']);
+        return redirect('menu')->with($this->getMessage('update'));
     }
 
     /**
@@ -120,22 +114,7 @@ class MenuController extends Controller
     {
         $this->menuService->destroy($id);
 
-        return redirect('menu')->with(['message' => 'Data has been deleted.']);
+        return redirect('menu')->with($this->getMessage('delete'));
     }
 
-    private function getMenus()
-    {
-        return $this->menuService->getMenus();
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 }

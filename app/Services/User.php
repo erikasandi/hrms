@@ -7,8 +7,11 @@ use App\Models\User as UserModel;
 
 class User
 {
+    use DatatableParameters;
+
     private $site;
     private $role;
+    protected $baseUrl = 'user';
 
     /**
      * User constructor.
@@ -79,6 +82,34 @@ class User
     public function getList()
     {
         return UserModel::all(['id', 'name', 'email']);
+    }
+
+    public function datatableData()
+    {
+        $users = $this->getList();
+        $actions = $this->actionParameters(['edit','delete']);
+
+        return (new DatatableGenerator($users))
+            ->addActions($actions)
+            ->addColumn('site', function($user) {
+                return $this->getSites($user);
+            })
+            ->addColumn('role', function($user) {
+                return $this->getRoles($user);
+            })
+            ->generate();
+    }
+
+    private function getSites($user)
+    {
+        $sites = $user->sites;
+        return array_pluck($sites, 'name');
+    }
+
+    private function getRoles($user)
+    {
+        $roles = $user->roles;
+        return array_pluck($roles, 'name');
     }
 
 }

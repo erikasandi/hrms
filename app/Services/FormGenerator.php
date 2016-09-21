@@ -24,8 +24,12 @@ class FormGenerator
         $selectedValue = ( isset($selected) ? $selected : '' );
 
         if ( isset($id) ) {
-            foreach ($datas as $data) {
-                $items[$data->$id] = $data->$value;
+            if (! $datas->isEmpty()) {
+                foreach ($datas as $data) {
+                    $items[$data->$id] = $data->$value;
+                }
+            } else {
+                $items = ['0' => '----'];
             }
         } else {
             $items = $datas;
