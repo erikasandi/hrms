@@ -76,6 +76,9 @@ Route::group(['middleware' => ['auth', 'menu']], function () {
     Route::get( '/asset-location/{id}/edit', 'AssetLocationController@edit' );
     Route::post( '/asset-location/{id}/update', 'AssetLocationController@update' );
     Route::get( '/asset-location/{id}/delete', 'AssetLocationController@destroy' );
+
+    Route::get('/asset/add', 'AssetController@create');
+    Route::get('/asset/asset-type-form/{formId}', 'AssetController@assetTypeForm');
 });
 
 

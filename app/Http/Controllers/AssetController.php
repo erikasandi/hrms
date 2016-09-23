@@ -2,43 +2,42 @@
 
 namespace App\Http\Controllers;
 
+use App\Service\Asset;
 use App\Service\DatatableGenerator;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Symfony\Component\HttpFoundation\Response;
 
 class AssetController extends Controller
 {
-
-    public function index()
-    {
-        return view('assets.list');
-    }
+    protected $assetService;
 
     /**
-     * Process datatables ajax request.
-     *
-     * @return \Illuminate\Http\JsonResponse
+     * AssetController constructor.
+     * @param $assetTypeService
      */
-    public function anyData()
+    public function __construct(Asset $assetService)
     {
-        $users = $this->getAssets();
-        $actions = $this->actionParameters(['edit','detail','delete']);
-
-        return (new DatatableGenerator($users))
-            ->addActions($actions)
-            ->addColumn('site', function($user) {
-                return $this->getSites($user);
-            })
-            ->addColumn('role', function($user) {
-                return $this->getRoles($user);
-            })
-            ->generate();
+        $this->assetService = $assetService;
     }
 
-    private function getAssets()
+    public function create()
     {
-        return '';
+        $data['location'] = $this->assetService->location()->locationSelect('location_id', null, false);
+        $data['assetType'] = $this->assetService->assetType()->assetTypeSelect('asset_type_id');
+        $data['assetFormUrl'] = url('/asset/asset-type-form/');
+
+        return view('assets.add', $data);
+    }
+
+    public function assetTypeForm($assetType)
+    {
+        $data['assetType'] = $assetType;
+        $data['assetFormUrl'] = url('/asset/asset-type-form/');
+        $data['performance'] = $this->assetService->assetPerformance()->assetPerformanceSelect('asset_performance_id');
+        $data['condition'] = $this->assetService->assetCondition()->assetConditionSelect('asset_condition_id');
+        echo \View::make('assets.asset-type-form', $data)->render();
     }
 
 }

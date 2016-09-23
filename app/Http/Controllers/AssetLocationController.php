@@ -50,7 +50,7 @@ class AssetLocationController extends Controller
      */
     public function create()
     {
-        $data['parent'] = $this->locationService->parentSelect('parent_id');
+        $data['parent'] = $this->locationService->locationSelect('parent_id');
         return view('assets.locations.add', $data);
     }
 
@@ -77,7 +77,7 @@ class AssetLocationController extends Controller
     {
         $location = $this->locationService->getConditionById($id);
         $data['location'] = $location;
-        $data['parent'] = $this->locationService->parentSelect('parent_id', $location->parent_id);
+        $data['parent'] = $this->locationService->locationSelect('parent_id', $location->parent_id);
 
         return view('assets.locations.edit', $data);
     }

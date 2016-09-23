@@ -48,4 +48,18 @@ class AssetPerformance
     {
         return AssetPerformanceModel::all();
     }
+
+    public function assetPerformanceSelect($name, $defaultValue = null)
+    {
+        $form = new FormGenerator();
+        $assetTypes = $this->getPerformances();
+        $fields = [
+            'id' => 'id',
+            'value' => 'name'
+        ];
+        if (!is_null($defaultValue)) {
+            $fields['selected'] = $defaultValue;
+        }
+        return $form->dbSelect($assetTypes, $name, $fields, ['class' => 'form-control', 'id' => 'asset-performance']);
+    }
 }

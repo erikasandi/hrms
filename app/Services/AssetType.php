@@ -53,4 +53,18 @@ class AssetType
     {
         return AssetTypeModel::destroy($id);
     }
+
+    public function assetTypeSelect($name, $defaultValue = null)
+    {
+        $form = new FormGenerator();
+        $assetTypes = $this->getAssetTypes();
+        $fields = [
+            'id' => 'id',
+            'value' => 'name'
+        ];
+        if (!is_null($defaultValue)) {
+            $fields['selected'] = $defaultValue;
+        }
+        return $form->dbSelect($assetTypes, $name, $fields, ['class' => 'form-control', 'id' => 'asset-type']);
+    }
 }

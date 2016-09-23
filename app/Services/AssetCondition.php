@@ -50,4 +50,18 @@ class AssetCondition
             ->addActions($actions)
             ->generate();
     }
+
+    public function assetConditionSelect($name, $defaultValue = null)
+    {
+        $form = new FormGenerator();
+        $assetTypes = $this->getConditions();
+        $fields = [
+            'id' => 'id',
+            'value' => 'name'
+        ];
+        if (!is_null($defaultValue)) {
+            $fields['selected'] = $defaultValue;
+        }
+        return $form->dbSelect($assetTypes, $name, $fields, ['class' => 'form-control', 'id' => 'asset-condition']);
+    }
 }

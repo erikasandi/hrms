@@ -51,7 +51,7 @@ class Location
         return LocationModel::all(['id', 'name', 'description']);
     }
 
-    public function parentSelect($name, $selected = '')
+    public function locationSelect($name, $selected = '', $withBlank = true)
     {
         $form = new FormGenerator();
         $data = $this->getLocations();
@@ -59,7 +59,7 @@ class Location
             'id' => 'id',
             'value' => 'name',
             'selected' => $selected,
-            'withBlank' => true,
+            'withBlank' => $withBlank,
         ];
         return $form->dbSelect($data, $name, $fields, ['class' => 'form-control']);
     }
