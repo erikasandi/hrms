@@ -10,17 +10,17 @@ class Asset extends Model
 
     public function detail()
     {
-        return $this->belongsTo(AssetDetail::class);
+        return $this->hasOne(AssetDetail::class);
     }
 
     public function assetType()
     {
-        return $this->hasOne(AssetType::class);
+        return $this->belongsTo(AssetType::class);
     }
 
     public function location()
     {
-        return $this->hasOne(Location::class);
+        return $this->belongsTo(Location::class);
     }
 
 }

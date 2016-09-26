@@ -18,7 +18,12 @@ $('#asset-type').on('change', function() {
         {
             console.log(data);
             $('#form-detail').empty().html(data);
+            $('.date-picker').datepicker({
+                orientation: "left",
+                autoclose: true
+            });
             App.unblockUI('#form-detail');
+
             //$('#ajax-loading').hide();
             //$("#projects").empty().html(data.html);
         })

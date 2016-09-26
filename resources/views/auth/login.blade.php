@@ -23,7 +23,7 @@
 
     <!-- BEGIN THEME GLOBAL STYLES -->
     <link href="{!! asset('metronic/assets/global/css/components-rounded.min.css') !!}" rel="stylesheet" id="style_components" type="text/css" />
-    <link href="{!! asset('metronic/assets/global/css/plugins.min.css') !!}'" rel="stylesheet" type="text/css" />
+    <link href="{!! asset('metronic/assets/global/css/plugins.min.css') !!}" rel="stylesheet" type="text/css" />
     <!-- END THEME GLOBAL STYLES -->
     <!-- BEGIN PAGE LEVEL STYLES -->
     <link href="{!! asset('metronic/assets/pages/css/login-3.min.css') !!}" rel="stylesheet" type="text/css" />
@@ -134,7 +134,7 @@
 <script src="{!! asset('metronic/assets/global/scripts/app.min.js') !!}" type="text/javascript"></script>
 <!-- END THEME GLOBAL SCRIPTS -->
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
-<script src="{!! asset('metronic/assets/pages/scripts/login.js') !!}" type="text/javascript"></script>
+<script src="{!! asset('metronic/assets/pages/scripts/login.min.js') !!}" type="text/javascript"></script>
 <!-- END PAGE LEVEL SCRIPTS -->
 <!-- BEGIN THEME LAYOUT SCRIPTS -->
 <!-- END THEME LAYOUT SCRIPTS -->

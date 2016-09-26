@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AssetStore;
 use App\Service\Asset;
+use App\Service\DataMessage;
 use App\Service\DatatableGenerator;
 use Illuminate\Http\Request;
 
@@ -11,6 +13,8 @@ use Symfony\Component\HttpFoundation\Response;
 
 class AssetController extends Controller
 {
+    use DataMessage;
+
     protected $assetService;
 
     /**
@@ -22,13 +26,46 @@ class AssetController extends Controller
         $this->assetService = $assetService;
     }
 
+    public function index()
+    {
+        $data = [];
+        return view('assets.list', $data);
+    }
+
+    public function anyData()
+    {
+        return $this->assetService->datatableData();
+    }
+
     public function create()
     {
-        $data['location'] = $this->assetService->location()->locationSelect('location_id', null, false);
+        $data['location'] = $this->assetService->location()->locationNestedSelect('location_id', null, false);
         $data['assetType'] = $this->assetService->assetType()->assetTypeSelect('asset_type_id');
         $data['assetFormUrl'] = url('/asset/asset-type-form/');
 
         return view('assets.add', $data);
+    }
+
+    public function store(AssetStore $request)
+    {
+        $this->assetService->store($request->except(['_token']));
+
+        return redirect('/asset')->with($this->getMessage('store'));
+    }
+
+    public function detail()
+    {
+        return 'detail';
+    }
+
+    public function edit(Request $request, $id)
+    {
+        return 'edit';
+    }
+
+    public function destroy($id)
+    {
+        return redirect('/asset')->with(['message' => 'Delete button is executed.']);
     }
 
     public function assetTypeForm($assetType)

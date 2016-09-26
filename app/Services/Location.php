@@ -48,7 +48,7 @@ class Location
 
     private function getLocations()
     {
-        return LocationModel::all(['id', 'name', 'description']);
+        return LocationModel::all(['id', 'name', 'description', 'parent_id']);
     }
 
     public function locationSelect($name, $selected = '', $withBlank = true)
@@ -62,5 +62,18 @@ class Location
             'withBlank' => $withBlank,
         ];
         return $form->dbSelect($data, $name, $fields, ['class' => 'form-control']);
+    }
+
+    public function locationNestedSelect($name, $selected = '', $withBlank = true)
+    {
+        $form = new FormGenerator();
+        $data = $this->getLocations();
+        $fields = [
+            'id' => 'id',
+            'value' => 'name',
+            'selected' => $selected,
+            'withBlank' => $withBlank,
+        ];
+        return $form->nestedDbSelect($data, $name, $fields, ['class' => 'form-control']);
     }
 }

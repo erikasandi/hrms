@@ -11,8 +11,12 @@
                     <input type="text" name="serial_number" class="form-control">
                 </div>
                 <div class="form-group ">
-                    <label>Install Date</label>
-                    <input type="text" name="install_date" class="form-control">
+                    <label>Condition</label>
+                    {!! $condition !!}
+                </div>
+                <div class="form-group ">
+                    <label>Condition Details</label>
+                    <textarea class="form-control" name="condition_detail"></textarea>
                 </div>
             </div>
             <div class="col-lg-6">
@@ -21,12 +25,16 @@
                     <textarea class="form-control" name="function"></textarea>
                 </div>
                 <div class="form-group ">
-                    <label>Condition</label>
-                    {!! $condition !!}
+                    <label>Install Date</label>
+                    <input type="text" name="install_date" class="form-control date-picker">
                 </div>
                 <div class="form-group ">
                     <label>Performance</label>
                     {!! $performance !!}
+                </div>
+                <div class="form-group ">
+                    <label>Performance Details</label>
+                    <textarea class="form-control" name="performance_detail"></textarea>
                 </div>
             </div>
         </div>
@@ -60,7 +68,7 @@
                 </div>
                 <div class="form-group ">
                     <label>Construction Date</label>
-                    <input type="text" name="construction_date" class="form-control">
+                    <input type="text" name="construction_date" class="form-control date-picker">
                 </div>
             </div>
             <div class="col-lg-6">

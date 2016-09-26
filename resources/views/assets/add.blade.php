@@ -1,6 +1,7 @@
 @extends('layouts.metronic.asset')
 
 @section('page-level-styles')
+    <link href="{!! asset('metronic/assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet" type="text/css" />') !!}">
 @endsection
 
 @section('content')
@@ -24,7 +25,7 @@
                         </div>
                     </div>
                     <div class="portlet-body">
-                        <form role="form" method="post" action="{!! url('asset-type/save') !!}" >
+                        <form role="form" method="post" action="{!! url('asset/save') !!}" >
                             {{ csrf_field() }}
                             <div class="form-body">
                                 <div class="row">
@@ -85,6 +86,8 @@
 
 @section('page-level-plugins')
     <script src="{!! asset('metronic/assets/global/plugins/jquery.blockui.min.js') !!}" type="text/javascript"></script>
+    <script src="{!! asset('metronic/assets/global/plugins/moment.min.js') !!}" type="text/javascript"></script>
+    <script src="{!! asset('metronic/assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js') !!}" type="text/javascript"></script>
 @endsection
 
 @section('page-level-scripts')
