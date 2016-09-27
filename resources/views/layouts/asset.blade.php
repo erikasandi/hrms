@@ -4,7 +4,7 @@
 <head>
     <!-- meta -->
     <meta charset="utf-8">
-    <meta name="description" content="Flat, Clean, Responsive, application admin template built with bootstrap 3">
+    <meta name="description" content="Acuatico Internal Application">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
     <!-- /meta -->
 
