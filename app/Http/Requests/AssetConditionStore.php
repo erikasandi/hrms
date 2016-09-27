@@ -24,7 +24,15 @@ class AssetConditionStore extends FormRequest
     public function rules()
     {
         return [
-            'name'  => 'required'
+            'name'  => 'required',
+            'site_id' => 'not_in:0'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'site_id.not_in' => 'You are in <strong>"All Sites"</strong> mode. Please choose the site first.'
         ];
     }
 }

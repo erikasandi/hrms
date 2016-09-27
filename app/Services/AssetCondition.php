@@ -10,14 +10,14 @@ class AssetCondition
 
     protected $baseUrl = 'asset-condition';
 
-    public function getConditions()
-    {
-        return AssetConditionModel::all();
-    }
-
     public function getConditionById($id)
     {
-        return AssetConditionModel::find($id);
+        $siteId = session('gSite');
+        $query = AssetConditionModel::where('id', '=', $id);
+        $query = ( $siteId != '0' ) ? $query->where('site_id', $siteId) : $query ;
+
+        return $query->get()->first();
+        //return AssetConditionModel::find($id);
     }
 
     public function store(array $inputs)
@@ -63,5 +63,16 @@ class AssetCondition
             $fields['selected'] = $defaultValue;
         }
         return $form->dbSelect($assetTypes, $name, $fields, ['class' => 'form-control', 'id' => 'asset-condition']);
+    }
+
+    private function getConditions()
+    {
+        $siteId = session('gSite');
+
+        $query = AssetConditionModel::where('id', '<>', 0);
+        $query = ( $siteId != '0' ) ? $query->where('site_id', $siteId) : $query ;
+
+        return $query->get();
+        // return AssetConditionModel::all();
     }
 }

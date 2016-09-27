@@ -26,12 +26,22 @@
                     <div class="portlet-body">
                         <form role="form" method="post" action="{!! url('asset-performance/' . $performance->id . '/update') !!}" >
                             {{ csrf_field() }}
+                            <input type="hidden" name="site_id" value="{!! session('gSite') !!}">
                             <div class="form-body">
                                 <div class="row">
+                                    @if ($errors->has('site_id'))
+                                        <div class="alert alert-danger alert-dismissable col-lg-12">
+                                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+                                            <strong>Error!</strong> {!! $errors->first('site_id') !!}
+                                        </div>
+                                    @endif
                                     <div class="col-lg-6">
-                                        <div class="form-group">
+                                        <div class="form-group @if ($errors->has('name')) has-error @endif">
                                             <label>Condition</label>
                                             <input type="text" name="name" class="form-control" placeholder="Condition" value="{!! $performance->name !!}" autofocus>
+                                            @if ($errors->has('name'))
+                                                <span class="help-block">{!! $errors->first('name') !!}</span>
+                                            @endif
                                         </div>
                                         <div class="form-group">
                                             <label>Description</label>

@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AssetLocationStore;
 use App\Service\DataMessage;
 use App\Service\Location;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\Log;
 
 class AssetLocationController extends Controller
 {
@@ -57,10 +59,10 @@ class AssetLocationController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param AssetLocationStore $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AssetLocationStore $request)
     {
         $this->locationService->store($request->except(['_token']));
 
@@ -75,7 +77,7 @@ class AssetLocationController extends Controller
      */
     public function edit($id)
     {
-        $location = $this->locationService->getConditionById($id);
+        $location = $this->locationService->getLocationById($id);
         $data['location'] = $location;
         $data['parent'] = $this->locationService->locationSelect('parent_id', $location->parent_id);
 
@@ -85,11 +87,11 @@ class AssetLocationController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param AssetLocationStore $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(AssetLocationStore $request, $id)
     {
         $this->locationService->update($id, $request->except(['_token']));
 

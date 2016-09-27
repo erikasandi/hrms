@@ -83,11 +83,11 @@ class AssetConditionController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param AssetConditionStore $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(AssetConditionStore $request, $id)
     {
         $this->conditionService->update($id, $request->except(['_token']));
 

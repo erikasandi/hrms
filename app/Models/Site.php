@@ -17,4 +17,19 @@ class Site extends Model
             'user_has_sites'
         );
     }
+
+    public function location()
+    {
+        return $this->hasOne(Location::class);
+    }
+
+    public function assetType()
+    {
+        return $this->hasOne(AssetType::class);
+    }
+
+    public function asset()
+    {
+        return $this->hasOne(Asset::class);
+    }
 }

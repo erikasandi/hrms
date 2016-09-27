@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AssetPerformanceStore;
 use App\Service\AssetPerformance;
 use App\Service\DataMessage;
 use Illuminate\Http\Request;
@@ -56,10 +57,10 @@ class AssetPerformanceController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param AssetPerformanceStore $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AssetPerformanceStore $request)
     {
         $this->performanceService->store($request->except(['_token']));
 
@@ -82,11 +83,11 @@ class AssetPerformanceController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param AssetPerformanceStore $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(AssetPerformanceStore $request, $id)
     {
         $this->performanceService->update($id, $request->except(['_token']));
 

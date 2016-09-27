@@ -13,7 +13,11 @@ class AssetPerformance
 
     public function getPerformanceById($id)
     {
-        return AssetPerformanceModel::find($id);
+        $siteId = session('gSite');
+        $query = AssetPerformanceModel::where('id', '=', $id);
+        $query = ( $siteId != '0' ) ? $query->where('site_id', $siteId) : $query ;
+
+        return $query->get()->first();
     }
 
     public function store(array $inputs)
@@ -44,11 +48,6 @@ class AssetPerformance
             ->generate();
     }
 
-    private function getPerformances()
-    {
-        return AssetPerformanceModel::all();
-    }
-
     public function assetPerformanceSelect($name, $defaultValue = null)
     {
         $form = new FormGenerator();
@@ -61,5 +60,14 @@ class AssetPerformance
             $fields['selected'] = $defaultValue;
         }
         return $form->dbSelect($assetTypes, $name, $fields, ['class' => 'form-control', 'id' => 'asset-performance']);
+    }
+
+    private function getPerformances()
+    {
+        $siteId = session('gSite');
+        $query = AssetPerformanceModel::where('id', '<>', 0);
+        $query = ( $siteId != '0' ) ? $query->where('site_id', $siteId) : $query ;
+
+        return $query->get();
     }
 }

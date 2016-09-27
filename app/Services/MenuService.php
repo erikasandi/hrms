@@ -38,6 +38,7 @@ class MenuService
             ->select('menus.*')
             ->orderBy('parent_id', 'asc')
             ->orderBy('order', 'asc')
+            ->distinct()
             ->get();
         return $menus;
     }

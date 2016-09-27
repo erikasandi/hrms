@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Location extends Model
 {
     public $timestamps = false;
-    public $fillable = ['name', 'description', 'parent_id', 'image_path'];
+    public $fillable = ['name', 'description', 'parent_id', 'image_path', 'site_id'];
 
     public function children()
     {
@@ -22,5 +22,10 @@ class Location extends Model
     public function asset()
     {
         return $this->hasOne(Asset::class);
+    }
+
+    public function site()
+    {
+        return $this->belongsTo(Site::class);
     }
 }

@@ -21,9 +21,13 @@ class Location
             ->generate();
     }
 
-    public function getConditionById($id)
+    public function getLocationById($id)
     {
-        return LocationModel::find($id);
+        $siteId = session('gSite');
+        $query = LocationModel::where('id', '=', $id);
+        $query = ( $siteId != '0' ) ? $query->where('site_id', $siteId) : $query ;
+
+        return $query->get()->first();
     }
 
     public function store(array $inputs)
@@ -44,11 +48,6 @@ class Location
     public function destroy($id)
     {
         return LocationModel::destroy($id);
-    }
-
-    private function getLocations()
-    {
-        return LocationModel::all(['id', 'name', 'description', 'parent_id']);
     }
 
     public function locationSelect($name, $selected = '', $withBlank = true)
@@ -75,5 +74,14 @@ class Location
             'withBlank' => $withBlank,
         ];
         return $form->nestedDbSelect($data, $name, $fields, ['class' => 'form-control']);
+    }
+
+    private function getLocations()
+    {
+        $siteId = session('gSite');
+        $query = LocationModel::where('id', '<>', 0);
+        $query = ( $siteId != '0' ) ? $query->where('site_id', $siteId) : $query ;
+
+        return $query->get();
     }
 }

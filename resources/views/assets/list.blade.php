@@ -20,7 +20,7 @@
                                 <span class="caption-subject bold uppercase"> Asset Type List</span>
                             </div>
                             <div class="actions">
-                                <a class="btn btn-xs sbold green" href="{!! url('asset-type/add') !!}">
+                                <a class="btn btn-xs sbold green" href="{!! url('asset/add') !!}">
                                     <i class="fa fa-plus"></i> Add New
                                 </a>
                             </div>
@@ -73,7 +73,7 @@
                     { data: 'name', name: 'name' },
                     { data: 'type', name: 'type' },
                     { data: 'location', name: 'location' },
-                    { data: 'action', name: 'action', orderable: false, searchable: false, "width": "160px" }
+                    { data: 'action', name: 'action', orderable: false, searchable: false, "width": "180px" }
                 ]
             });
         });

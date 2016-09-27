@@ -53,9 +53,9 @@ class AssetController extends Controller
         return redirect('/asset')->with($this->getMessage('store'));
     }
 
-    public function detail()
+    public function detail($assetId)
     {
-        return 'detail';
+
     }
 
     public function edit(Request $request, $id)

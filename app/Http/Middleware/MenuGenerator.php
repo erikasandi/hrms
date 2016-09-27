@@ -32,6 +32,7 @@ class MenuGenerator
     {
         $menu = $this->generator->generateMenu($request);
         View::share('menu', $menu);
+
         return $next($request);
     }
 }

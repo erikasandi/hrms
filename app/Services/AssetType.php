@@ -23,14 +23,6 @@ class AssetType
             ->generate();
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Collection|static[]
-     */
-    private function getAssetTypes()
-    {
-        return AssetTypeModel::all();
-    }
-
     public function store(array $inputs)
     {
         return AssetTypeModel::create($inputs);
@@ -38,7 +30,12 @@ class AssetType
 
     public function getAssetTypeById($id)
     {
-        return AssetTypeModel::find($id);
+        $siteId = session('gSite');
+        $query = AssetTypeModel::where('id', '=', $id);
+        $query = ( $siteId != '0' ) ? $query->where('site_id', $siteId) : $query ;
+        // return AssetTypeModel::find($id);
+
+        return $query->get()->first();
     }
 
     public function update($id, array $inputs)
@@ -66,5 +63,18 @@ class AssetType
             $fields['selected'] = $defaultValue;
         }
         return $form->dbSelect($assetTypes, $name, $fields, ['class' => 'form-control', 'id' => 'asset-type']);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Collection|static[]
+     */
+    private function getAssetTypes()
+    {
+        $siteId = session('gSite');
+
+        $query = AssetTypeModel::where('id', '<>', 0);
+        $query = ( $siteId != '0' ) ? $query->where('site_id', $siteId) : $query ;
+
+        return $query->get();
     }
 }
