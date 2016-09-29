@@ -26,6 +26,12 @@
                             </div>
                         </div>
                         <div class="portlet-body">
+                            @if ($errors->has('site-not-found'))
+                                <div class="alert alert-danger alert-dismissable col-lg-12">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+                                    <strong>Error!</strong> {!! $errors->first('asset-not-found') !!}
+                                </div>
+                            @endif
                             @if (session('message'))
                                 <div class="alert alert-info alert-dismissable">
                                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>

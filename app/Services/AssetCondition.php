@@ -12,12 +12,11 @@ class AssetCondition
 
     public function getConditionById($id)
     {
-        $siteId = session('gSite');
-        $query = AssetConditionModel::where('id', '=', $id);
-        $query = ( $siteId != '0' ) ? $query->where('site_id', $siteId) : $query ;
+        if (! $this->checkIfDataExistsOnThisSite($id)) {
+            return false;
+        }
 
-        return $query->get()->first();
-        //return AssetConditionModel::find($id);
+        return AssetConditionModel::find($id);
     }
 
     public function store(array $inputs)
@@ -35,6 +34,10 @@ class AssetCondition
 
     public function destroy($id)
     {
+        if (! $this->checkIfDataExistsOnThisSite($id)) {
+            return false;
+        }
+
         return AssetConditionModel::destroy($id);
     }
 
@@ -74,5 +77,15 @@ class AssetCondition
 
         return $query->get();
         // return AssetConditionModel::all();
+    }
+
+    private function checkIfDataExistsOnThisSite($id)
+    {
+        $siteId = session('gSite');
+        $query = AssetConditionModel::where('id', $id)->where('site_id', $siteId);
+        if ($query->count() > 0) {
+            return true;
+        }
+        return false;
     }
 }

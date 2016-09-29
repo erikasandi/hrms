@@ -75,8 +75,12 @@ class AssetTypeController extends Controller
      */
     public function edit($id)
     {
-        $data['assetType'] = $this->assetTypeService->getAssetTypeById($id);
+        $assetType = $this->assetTypeService->getAssetTypeById($id);
+        if (! $assetType) {
+            return redirect('/asset-type')->withErrors($this->getMessage('siteNotFound'));
+        }
 
+        $data['assetType'] = $assetType;
         return view('assets.types.edit', $data);
     }
 
@@ -102,8 +106,11 @@ class AssetTypeController extends Controller
      */
     public function destroy($id)
     {
-        $this->assetTypeService->destroy($id);
+        $destroy = $this->assetTypeService->destroy($id);
+        if ($destroy) {
+            return redirect('asset-type')->with($this->getMessage('delete'));
+        }
 
-        return redirect('asset-type')->with($this->getMessage('delete'));
+        return redirect('/asset-type')->withErrors($this->getMessage('siteNotFound'));
     }
 }

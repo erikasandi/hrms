@@ -25,7 +25,15 @@ class AssetStore extends FormRequest
     {
         return [
             'name'  => 'required',
-            'code'  => 'required|unique:assets,code'
+            'code'  => 'required|unique:assets,code',
+            'site_id' => 'not_in:0'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'site_id.not_in' => 'You are in <strong>"All Sites"</strong> mode. Please choose the site first.'
         ];
     }
 }

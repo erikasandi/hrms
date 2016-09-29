@@ -101,4 +101,74 @@ class UserController extends Controller
         return redirect('user')->with($this->getMessage('delete'));
     }
 
+    public function profile($id)
+    {
+        if (! $this->userService->isCurrentUser($id)) {
+            return redirect('dashboard')->withErrors(['There is a problem with your account.']);
+        }
+        $user = $this->userService->getUserById($id);
+        $data['user'] = $user;
+
+        return view('profiles.index', $data);
+    }
+
+    public function editProfile($id)
+    {
+        if (! $this->userService->isCurrentUser($id)) {
+            return redirect('dashboard')->withErrors(['There is a problem with your account.']);
+        }
+        $user = $this->userService->getUserById($id);
+//        var_dump($user->userDetail); exit;
+        $data['user'] = $user;
+
+        return view('profiles.edit', $data);
+    }
+
+    public function updateProfile(Request $request, $id)
+    {
+        if (! $this->userService->isCurrentUser($id)) {
+            return redirect('dashboard')->withErrors(['There is a problem with your account.']);
+        }
+
+        $this->userService->updateProfile($id, $request->except(['_token']));
+
+        return redirect('user-profile/' . $id)->with($this->getMessage('update'));
+    }
+
+    public function updateAvatar(Request $request, $id)
+    {
+        if (! $this->userService->isCurrentUser($id)) {
+            return redirect('dashboard')->withErrors(['There is a problem with your account.']);
+        }
+
+        if ($this->userService->updateAvatar($id, $request)) {
+            return redirect('user-profile/' . $id)->with($this->getMessage('update'));
+        }
+
+        return redirect('user-profile/' . $id . '/edit#change_avatar')
+            ->with(['message' => 'There are some problems with your data.'])
+            ->withInput();
+    }
+
+    /**
+     * @param Request $request
+     * @param $id
+     * @return $this|\Illuminate\Http\RedirectResponse
+     */
+    public function updatePassword(Request $request, $id)
+    {
+        if (! $this->userService->isCurrentUser($id)) {
+            return redirect('dashboard')->withErrors(['There is a problem with your account.']);
+        }
+
+        if ($this->userService->updatePassword($id, $request->except(['_token'])) ) {
+            return redirect('user-profile/' . $id)->with($this->getMessage('update'));
+        }
+
+        return redirect('user-profile/' . $id . '/edit#change_password')
+            ->with(['message' => 'There are some problems with your data.'])
+            ->withInput();
+
+    }
+
 }

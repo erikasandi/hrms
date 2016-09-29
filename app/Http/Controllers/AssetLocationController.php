@@ -78,6 +78,10 @@ class AssetLocationController extends Controller
     public function edit($id)
     {
         $location = $this->locationService->getLocationById($id);
+        if (! $location) {
+            return redirect('asset-location')->withErrors($this->getMessage('siteNotFound'));
+        }
+
         $data['location'] = $location;
         $data['parent'] = $this->locationService->locationSelect('parent_id', $location->parent_id);
 
@@ -106,8 +110,11 @@ class AssetLocationController extends Controller
      */
     public function destroy($id)
     {
-        $this->locationService->destroy($id);
+        $destroy = $this->locationService->destroy($id);
+        if ($destroy) {
+            return redirect('asset-location')->with($this->getMessage('delete'));
+        }
 
-        return redirect('asset-location')->with($this->getMessage('delete'));
+        return redirect('asset-location')->withErrors($this->getMessage('siteNotFound'));
     }
 }

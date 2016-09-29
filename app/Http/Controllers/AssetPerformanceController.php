@@ -75,7 +75,12 @@ class AssetPerformanceController extends Controller
      */
     public function edit($id)
     {
-        $data['performance'] = $this->performanceService->getPerformanceById($id);
+        $performance = $this->performanceService->getPerformanceById($id);
+        if (! $performance) {
+            return redirect('asset-performance')->withErrors($this->getMessage('siteNotFound'));
+        }
+
+        $data['performance'] = $performance;
 
         return view('assets.performances.edit', $data);
     }
@@ -102,8 +107,10 @@ class AssetPerformanceController extends Controller
      */
     public function destroy($id)
     {
-        $this->performanceService->destroy($id);
+        if ($this->performanceService->destroy($id)) {
+            return redirect('asset-performance')->with($this->getMessage('delete'));
+        }
 
-        return redirect('asset-performance')->with($this->getMessage('delete'));
+        return redirect('asset-performance')->withErrors($this->getMessage('siteNotFound'));
     }
 }

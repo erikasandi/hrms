@@ -27,8 +27,15 @@
                     <div class="portlet-body">
                         <form role="form" method="post" action="{!! url('asset/save') !!}" >
                             {{ csrf_field() }}
+                            <input type="hidden" name="site_id" value="{!! session('gSite') !!}">
                             <div class="form-body">
                                 <div class="row">
+                                    @if ($errors->has('site_id'))
+                                        <div class="alert alert-danger alert-dismissable col-lg-12">
+                                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+                                            <strong>Error!</strong> {!! $errors->first('site_id') !!}
+                                        </div>
+                                    @endif
                                     <div class="col-lg-6">
                                         <div class="form-group  @if ($errors->has('name')) has-error @endif">
                                             <label>Name</label>

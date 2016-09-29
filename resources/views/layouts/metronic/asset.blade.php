@@ -20,14 +20,18 @@
     <link href="{!! asset('metronic/assets/global/plugins/bootstrap/css/bootstrap.min.css') !!}" rel="stylesheet" type="text/css" />
     <link href="{!! asset('metronic/assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css') !!}" rel="stylesheet" type="text/css" />
     <!-- END GLOBAL MANDATORY STYLES -->
-    <!-- BEGIN PAGE LEVEL STYLES -->
-    @section('page-level-styles')
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    @section('page-level-style-plugins')
     @show
     <!-- END PAGE LEVEL PLUGINS -->
     <!-- BEGIN THEME GLOBAL STYLES -->
     <link href="{!! asset('metronic/assets/global/css/components-rounded.min.css') !!}" rel="stylesheet" id="style_components" type="text/css" />
     <link href="{!! asset('metronic/assets/global/css/plugins.css') !!}" rel="stylesheet" type="text/css" />
     <!-- END THEME GLOBAL STYLES -->
+    <!-- BEGIN PAGE LEVEL STYLES -->
+    @section('page-level-styles')
+    @show
+    <!-- END PAGE LEVEL STYLES -->
     <!-- BEGIN THEME LAYOUT STYLES -->
     <link href="{!! asset('metronic/assets/layouts/layout/css/layout.css') !!}" rel="stylesheet" type="text/css" />
     <link href="{!! asset('metronic/assets/layouts/layout/css/themes/darkblue.min.css') !!}" rel="stylesheet" type="text/css" id="style_color" />
@@ -36,7 +40,7 @@
     <link rel="shortcut icon" href="favicon.ico" /> </head>
 <!-- END HEAD -->
 
-<body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
+<body class="page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid page-content-white">
 <div class="page-wrapper">
     @include('layouts.metronic.header')
 

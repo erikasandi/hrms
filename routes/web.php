@@ -29,6 +29,12 @@ Route::group(['middleware' => ['auth', 'menu', 'site']], function () {
     Route::get( '/user/{id}/delete', 'UserController@destroy' );
     Route::post( '/user/{id}/update', 'UserController@update' );
 
+    Route::get('/user-profile/{id}', 'UserController@profile');
+    Route::get('/user-profile/{id}/edit', 'UserController@editProfile');
+    Route::post('/user-profile/{id}/update', 'UserController@updateProfile');
+    Route::post('/user-profile/{id}/update-avatar', 'UserController@updateAvatar');
+    Route::post('/user-profile/{id}/update-password', 'UserController@updatePassword');
+
     Route::get( '/site', 'SiteController@index' );
     Route::get( '/site-data', 'SiteController@anyData')->name('site.data' );
     Route::get( '/site/add', 'SiteController@create' );

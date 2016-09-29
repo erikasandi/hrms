@@ -30,12 +30,11 @@ class AssetType
 
     public function getAssetTypeById($id)
     {
-        $siteId = session('gSite');
-        $query = AssetTypeModel::where('id', '=', $id);
-        $query = ( $siteId != '0' ) ? $query->where('site_id', $siteId) : $query ;
-        // return AssetTypeModel::find($id);
+        if (! $this->checkIfDataExistsOnThisSite($id)) {
+            return false;
+        }
 
-        return $query->get()->first();
+        return AssetTypeModel::find($id);
     }
 
     public function update($id, array $inputs)
@@ -48,7 +47,11 @@ class AssetType
 
     public function destroy($id)
     {
-        return AssetTypeModel::destroy($id);
+        if ($this->checkIfDataExistsOnThisSite($id)) {
+            return AssetTypeModel::destroy($id);
+        }
+
+        return false;
     }
 
     public function assetTypeSelect($name, $defaultValue = null)
@@ -76,5 +79,15 @@ class AssetType
         $query = ( $siteId != '0' ) ? $query->where('site_id', $siteId) : $query ;
 
         return $query->get();
+    }
+
+    private function checkIfDataExistsOnThisSite($id)
+    {
+        $siteId = session('gSite');
+        $query = AssetTypeModel::where('id', $id)->where('site_id', $siteId);
+        if ($query->count() > 0) {
+            return true;
+        }
+        return false;
     }
 }

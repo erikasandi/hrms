@@ -13,11 +13,11 @@ class AssetPerformance
 
     public function getPerformanceById($id)
     {
-        $siteId = session('gSite');
-        $query = AssetPerformanceModel::where('id', '=', $id);
-        $query = ( $siteId != '0' ) ? $query->where('site_id', $siteId) : $query ;
-
-        return $query->get()->first();
+        if ($this->checkIfDataExistsOnThisSite($id)) {
+            return AssetPerformanceModel::find($id);
+        } else {
+            return false;
+        }
     }
 
     public function store(array $inputs)
@@ -35,7 +35,11 @@ class AssetPerformance
 
     public function destroy($id)
     {
-        return AssetPerformanceModel::destroy($id);
+        if ($this->checkIfDataExistsOnThisSite($id)) {
+            return AssetPerformanceModel::destroy($id);
+        } else {
+            return false;
+        }
     }
 
     public function datatableData()
@@ -69,5 +73,15 @@ class AssetPerformance
         $query = ( $siteId != '0' ) ? $query->where('site_id', $siteId) : $query ;
 
         return $query->get();
+    }
+
+    private function checkIfDataExistsOnThisSite($id)
+    {
+        $siteId = session('gSite');
+        $query = AssetPerformanceModel::where('id', $id)->where('site_id', $siteId);
+        if ($query->count() > 0) {
+            return true;
+        }
+        return false;
     }
 }

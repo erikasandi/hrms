@@ -4,6 +4,7 @@ namespace App\Service;
 
 
 use App\Models\User as UserModel;
+use App\Models\UserDetail;
 
 class User
 {
@@ -110,6 +111,55 @@ class User
     {
         $roles = $user->roles;
         return array_pluck($roles, 'name');
+    }
+
+    public function getUserById($id)
+    {
+        return UserModel::find($id);
+    }
+
+    public function isCurrentUser($id)
+    {
+        if (\Auth::user()->id == $id) {
+            return true;
+        }
+        return false;
+    }
+
+    public function updateProfile($id, array $inputs)
+    {
+        $userModel = UserModel::find($id);
+        $userModel->name = $inputs['name'];
+        $userModel->save();
+
+        $profile = $userModel->userDetail ?: new UserDetail;
+        $profile->mobile_phone = $inputs['mobile_phone'];
+        $userModel->userDetail()->save($profile);
+    }
+
+    public function updatePassword($id, array $inputs)
+    {
+        if ($inputs['new_password'] != $inputs['new_password2']) {
+            return false;
+        }
+        $userModel = UserModel::find($id);
+        $userModel->password = bcrypt($inputs['new_password']);
+        return $userModel->save();
+    }
+
+    public function updateAvatar($id, $request)
+    {
+        if ($request->hasFile('avatar')) {
+            $file = $request->file('avatar');
+            $extension = $file->extension();
+            $fileName = 'avatar-'.$id.'.'.$extension;
+            $file->storeAs('avatars', $fileName);
+            $user = UserModel::find($id);
+            $detail = $user->userDetail ?: new UserDetail;
+            $detail->avatar = $fileName;
+            return $user->userDetail()->save($detail);
+        }
+        return false;
     }
 
 }

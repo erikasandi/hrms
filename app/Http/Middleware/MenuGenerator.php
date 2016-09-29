@@ -33,6 +33,8 @@ class MenuGenerator
         $menu = $this->generator->generateMenu($request);
         View::share('menu', $menu);
 
+        $user = \Auth::user();
+        View::share('gUser', $user);
         return $next($request);
     }
 }

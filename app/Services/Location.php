@@ -23,11 +23,11 @@ class Location
 
     public function getLocationById($id)
     {
-        $siteId = session('gSite');
-        $query = LocationModel::where('id', '=', $id);
-        $query = ( $siteId != '0' ) ? $query->where('site_id', $siteId) : $query ;
+        if ($this->checkIfDataExistsOnThisSite($id)) {
+            return LocationModel::find($id);
+        }
 
-        return $query->get()->first();
+        return false;
     }
 
     public function store(array $inputs)
@@ -47,7 +47,11 @@ class Location
 
     public function destroy($id)
     {
-        return LocationModel::destroy($id);
+        if ($this->checkIfDataExistsOnThisSite($id)) {
+            return LocationModel::destroy($id);
+        }
+
+        return false;
     }
 
     public function locationSelect($name, $selected = '', $withBlank = true)
@@ -83,5 +87,15 @@ class Location
         $query = ( $siteId != '0' ) ? $query->where('site_id', $siteId) : $query ;
 
         return $query->get();
+    }
+
+    private function checkIfDataExistsOnThisSite($id)
+    {
+        $siteId = session('gSite');
+        $query = LocationModel::where('id', $id)->where('site_id', $siteId);
+        if ($query->count() > 0) {
+            return true;
+        }
+        return false;
     }
 }

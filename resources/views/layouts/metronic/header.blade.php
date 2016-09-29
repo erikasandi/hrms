@@ -4,8 +4,8 @@
     <div class="page-header-inner ">
         <!-- BEGIN LOGO -->
         <div class="page-logo">
-            <a href="index.html">
-                <img src="{!! asset('metronic/assets/layouts/layout/img/logo-aat.png') !!}" alt="logo" class="logo-default" /> </a>
+            <a href="{!! url('dashboard') !!}">
+                <img src="{!! asset('metronic/assets/layouts/layout/img/logo-aat-bw.png') !!}" alt="logo" class="logo-default" /> </a>
             <div class="menu-toggler sidebar-toggler">
                 <span></span>
             </div>
@@ -92,7 +92,7 @@
                                 <li>
                                     <a href="#">
                                         <span class="photo">
-                                            <img src="{!! asset('metronic/assets/layouts/layout3/img/avatar2.jpg') !!}" class="img-circle" alt="">
+                                            <img src="" class="img-circle" alt="">
                                         </span>
                                         <span class="subject">
                                             <span class="from"> Lisa Wong </span>
@@ -104,7 +104,7 @@
                                 <li>
                                     <a href="#">
                                         <span class="photo">
-                                            <img src="{!! asset('metronic/assets/layouts/layout3/img/avatar3.jpg') !!}" class="img-circle" alt="">
+                                            <img src="" class="img-circle" alt="">
                                         </span>
                                         <span class="subject">
                                             <span class="from"> Richard Doe </span>
@@ -123,13 +123,13 @@
                 <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
                 <li class="dropdown dropdown-user">
                     <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                        <img alt="" class="img-circle" src="{!! asset('metronic/assets/layouts/layout/img/avatar3_small.jpg') !!}" />
-                        <span class="username username-hide-on-mobile"> Nick </span>
+                        <img alt="" class="img-circle" src="{!! url('uploads/avatars/' . $gUser->userDetail->avatar) !!}" />
+                        <span class="username username-hide-on-mobile"> {!! $gUser->name !!} </span>
                         <i class="fa fa-angle-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-default">
                         <li>
-                            <a href="javascript:;">
+                            <a href="{!! url('user-profile/' . auth()->user()->id) !!}">
                                 <i class="icon-user"></i> My Profile </a>
                         </li>
                         <li>

@@ -75,8 +75,12 @@ class AssetConditionController extends Controller
      */
     public function edit($id)
     {
-        $data['condition'] = $this->conditionService->getConditionById($id);
+        $condition = $this->conditionService->getConditionById($id);
+        if (! $condition) {
+            return redirect('/asset-condition')->withErrors($this->getMessage('siteNotFound'));
+        }
 
+        $data['condition'] = $condition;
         return view('assets.conditions.edit', $data);
     }
 
@@ -102,8 +106,9 @@ class AssetConditionController extends Controller
      */
     public function destroy($id)
     {
-        $this->conditionService->destroy($id);
-
-        return redirect('asset-condition')->with($this->getMessage('delete'));
+        if ($this->conditionService->destroy($id)) {
+            return redirect('asset-condition')->with($this->getMessage('delete'));
+        }
+        return redirect('asset-condition')->withErrors($this->getMessage('siteNotFound'));
     }
 }

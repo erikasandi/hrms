@@ -31,6 +31,11 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function userDetail()
+    {
+        return $this->hasOne(UserDetail::class);
+    }
+
     public function assignRoleById(...$ids)
     {
         $roles = collect($ids)
