@@ -54,17 +54,17 @@ class AssetType
         return false;
     }
 
-    public function assetTypeSelect($name, $defaultValue = null)
+    public function assetTypeSelect($name, $selected = '', $withBlank = true)
     {
         $form = new FormGenerator();
         $assetTypes = $this->getAssetTypes();
         $fields = [
             'id' => 'id',
-            'value' => 'name'
+            'value' => 'name',
+            'withBlank' => $withBlank,
+            'selected' => $selected
         ];
-        if (!is_null($defaultValue)) {
-            $fields['selected'] = $defaultValue;
-        }
+
         return $form->dbSelect($assetTypes, $name, $fields, ['class' => 'form-control', 'id' => 'asset-type']);
     }
 

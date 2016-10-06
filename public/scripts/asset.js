@@ -23,7 +23,10 @@ $('#asset-type').on('change', function() {
                 autoclose: true
             });
             App.unblockUI('#form-detail');
-
+            //$('#asset-tab a').click(function (e) {
+            //    e.preventDefault()
+            //    $(this).tab('show')
+            //})
             //$('#ajax-loading').hide();
             //$("#projects").empty().html(data.html);
         })

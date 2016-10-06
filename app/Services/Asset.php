@@ -58,6 +58,11 @@ class Asset
         return $this->assetPerformance;
     }
 
+    public function getAssetById($assetId)
+    {
+        return AssetModel::find($assetId);
+    }
+
     public function store(array $inputs)
     {
         $className = $this->getClassHandler($inputs['asset_type_id']);
@@ -65,9 +70,9 @@ class Asset
         $assetClass->store();
     }
 
-    public function datatableData()
+    public function datatableData(array $request)
     {
-        $assets = $this->getAssets();
+        $assets = $this->getAssets($request);
         $actions = $this->actionParameters(['edit', 'detail', 'delete']);
 
         return (new DatatableGenerator($assets))
@@ -96,8 +101,19 @@ class Asset
         return $asset->location->name;
     }
 
-    private function getAssets()
+    private function getAssets($request)
     {
-        return $this->assetModel->all();
+        $model = $this->assetModel->where('id', '>', 0);
+        if ($request['s_name']) {
+            $model = $model->where('name', 'like', '%' . $request['s_name'] . '%');
+        }
+        if ($request['s_location']) {
+            $model = $model->where('location_id', $request['s_location']);
+        }
+        if ($request['s_type']) {
+            $model = $model->where('asset_type_id', $request['s_type']);
+        }
+
+        return $model->get();
     }
 }

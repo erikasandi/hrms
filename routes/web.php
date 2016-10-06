@@ -84,6 +84,7 @@ Route::group(['middleware' => ['auth', 'menu', 'site']], function () {
     Route::get( '/asset-location/{id}/delete', 'AssetLocationController@destroy' );
 
     Route::get('/asset', 'AssetController@index');
+    Route::post('/asset', 'AssetController@index');
     Route::get( '/asset-data', 'AssetController@anyData')->name('asset.data' );
     Route::get('/asset/add', 'AssetController@create');
     Route::post('/asset/save', 'AssetController@store');

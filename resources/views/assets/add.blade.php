@@ -69,10 +69,38 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-lg-12"><h3 class="form-section">Detail</h3></div>
-                                    <div class="col-lg-12" id="form-detail">
-
+                                    <div id="asset-tab">
+                                        <ul class="nav nav-tabs">
+                                            <li class="active">
+                                                <a href="#tab_general" data-toggle="tab"> General </a>
+                                            </li>
+                                            <li>
+                                                <a href="#tab_images" data-toggle="tab"> Images </a>
+                                            </li>
+                                        </ul>
+                                        <div class="tab-content">
+                                            <div class="tab-pane active" id="tab_general">
+                                                <div class="col-lg-12" id="form-detail"></div>
+                                            </div>
+                                            <div class="tab-pane" id="tab_images">
+                                                <div class="tab-pane" id="tab_images">
+                                                    <div class="alert alert-success margin-bottom-10">
+                                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+                                                        <i class="fa fa-warning fa-lg"></i> Image type and information need to be specified. </div>
+                                                    <div id="tab_images_uploader_container" class="text-align-reverse margin-bottom-10">
+                                                        <a id="tab_images_uploader_pickfiles" href="javascript:;" class="btn btn-success">
+                                                            <i class="fa fa-plus"></i> Select Files </a>
+                                                        <a id="tab_images_uploader_uploadfiles" href="javascript:;" class="btn btn-primary">
+                                                            <i class="fa fa-share"></i> Upload Files </a>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div id="tab_images_uploader_filelist" class="col-md-6 col-sm-12"> </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
+
 
                                     <div class="col-lg-12">
                                         <button type="submit" class="btn btn-sm sbold green">Save</button>
@@ -95,9 +123,14 @@
     <script src="{!! asset('metronic/assets/global/plugins/jquery.blockui.min.js') !!}" type="text/javascript"></script>
     <script src="{!! asset('metronic/assets/global/plugins/moment.min.js') !!}" type="text/javascript"></script>
     <script src="{!! asset('metronic/assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js') !!}" type="text/javascript"></script>
+    <script src="{!! asset('metronic/assets/global/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js') !!}" type="text/javascript"></script>
+    <script src="{!! asset('metronic/assets/global/plugins/bootstrap-maxlength/bootstrap-maxlength.min.js') !!}" type="text/javascript"></script>
+    <script src="{!! asset('metronic/assets/global/plugins/fancybox/source/jquery.fancybox.pack.js') !!}" type="text/javascript"></script>
+    <script src="{!! asset('metronic/assets/global/plugins/plupload/js/plupload.full.min.js') !!}" type="text/javascript"></script>
 @endsection
 
 @section('page-level-scripts')
+    <script src="{!! asset('metronic/assets/pages/scripts/ecommerce-products-edit.js') !!}" type="text/javascript"></script>
     <script>
         var assetFormUrl = '{!! $assetFormUrl !!}';
         $(function(){

@@ -17,11 +17,14 @@
                         <div class="portlet-title">
                             <div class="caption font-dark">
                                 <i class="fa fa-building-o font-dark"></i>
-                                <span class="caption-subject bold uppercase"> Asset Type List</span>
+                                <span class="caption-subject bold uppercase"> Asset List</span>
                             </div>
                             <div class="actions">
                                 <a class="btn btn-xs sbold green" href="{!! url('asset/add') !!}">
                                     <i class="fa fa-plus"></i> Add New
+                                </a>
+                                <a class="accordion-toggle btn btn-sm sbold green" data-toggle="collapse" data-parent="#accordion1" href="#collapse_1">
+                                    <i class="fa fa-search-plus"></i> Advanced Search
                                 </a>
                             </div>
                         </div>
@@ -32,6 +35,48 @@
                                     <strong>Info!</strong> {{ session('message') }}
                                 </div>
                             @endif
+                            <div class="table-toolbar">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <div id="collapse_1" class="panel-collapse collapse">
+                                            <form role="form" action="" method="post">
+                                                {!! csrf_field() !!}
+                                                <div class="row">
+                                                    <div class="col-lg-4">
+                                                        <div class="form-body">
+                                                            <div class="form-group">
+                                                                <label>Name</label>
+                                                                <input type="text" name="name" class="form-control search-input" placeholder="Name">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <div class="form-body">
+                                                            <div class="form-group">
+                                                                <label>Location</label>
+                                                                {!! $location !!}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <div class="form-body">
+                                                            <div class="form-group">
+                                                                <label>Asset Type</label>
+                                                                {!! $assetType !!}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <button type="submit" name="submit" value="search" class="btn btn-sm sbold green"><i class="fa fa-search"></i> Search</button>
+                                                        <button type="button" class="btn btn-sm sbold green search-close"><i class="fa fa-close"></i> Close</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                            <br><br>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <table class="table table-striped table-bordered table-hover table-checkable order-column" id="sample_1">
                                 <thead>
                                 <tr>
@@ -67,7 +112,14 @@
             $('#sample_1').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: '{!! route('asset.data') !!}',
+                ajax: {
+                    url: '{!! route('asset.data') !!}',
+                    data: {
+                        's_name': '{!! $sName !!}',
+                        's_location': '{!! $sLocation !!}',
+                        's_type': '{!! $sType !!}'
+                    }
+                },
                 columns: [
                     { data: 'id', name: 'id' },
                     { data: 'name', name: 'name' },
@@ -76,6 +128,14 @@
                     { data: 'action', name: 'action', orderable: false, searchable: false, "width": "180px" }
                 ]
             });
+
+            $('#collapse_1').on('shown.bs.collapse', function () {
+                $('.search-input').focus();
+            });
+
+            $('.search-close').click(function() {
+                $('#collapse_1').collapse('hide');
+            })
         });
     </script>
     <script src="{!! asset('metronic/assets/global/scripts/delete-confirmation.js') !!}" type="text/javascript"></script>

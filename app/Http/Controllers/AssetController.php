@@ -9,6 +9,7 @@ use App\Service\DatatableGenerator;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpFoundation\Response;
 
 class AssetController extends Controller
@@ -26,15 +27,30 @@ class AssetController extends Controller
         $this->assetService = $assetService;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $data = [];
+        $sName = '';
+        $sLocation = '';
+        $sType = '';
+        if ($request->has('submit')) {
+            $sName = $request->input('name');
+            $sLocation = $request->input('location_id');
+            $sType = $request->input('asset_type_id');
+        }
+        $data['sName'] = $sName;
+        $data['sLocation'] = $sLocation;
+        $data['sType'] = $sType;
+        $data['location'] = $this->assetService->location()->locationNestedSelect('location_id');
+        $data['assetType'] = $this->assetService->assetType()->assetTypeSelect('asset_type_id');
         return view('assets.list', $data);
     }
 
-    public function anyData()
+    public function anyData(Request $request)
     {
-        return $this->assetService->datatableData();
+//        Log::warning('s_name ==> ' . $request->input('s_name'));
+//        Log::warning('s_location ==> ' . $request->input('s_location'));
+//        Log::warning('s_type ==> ' . $request->input('s_type'));
+        return $this->assetService->datatableData($request->all());
     }
 
     public function create()
@@ -55,7 +71,9 @@ class AssetController extends Controller
 
     public function detail($assetId)
     {
+        $data['asset'] = $this->assetService->getAssetById($assetId);
 
+        return view('assets.detail', $data);
     }
 
     public function edit(Request $request, $id)
