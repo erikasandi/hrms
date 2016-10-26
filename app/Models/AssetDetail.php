@@ -20,14 +20,14 @@ class AssetDetail extends Model
         return $this->belongsTo(Asset::class);
     }
 
-    public function performance()
+    public function assetPerformance()
     {
-        return $this->hasOne(AssetPerformance::class);
+        return $this->belongsTo(AssetPerformance::class);
     }
 
-    public function condition()
+    public function assetCondition()
     {
-        return $this->hasOne(AssetCondition::class);
+        return $this->belongsTo(AssetCondition::class);
     }
 
     public function setInstallDateAttribute($value)

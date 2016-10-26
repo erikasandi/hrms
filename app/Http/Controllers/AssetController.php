@@ -6,10 +6,12 @@ use App\Http\Requests\AssetStore;
 use App\Service\Asset;
 use App\Service\DataMessage;
 use App\Service\DatatableGenerator;
+use App\Service\ImageService;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use Illuminate\Support\Facades\Log;
+use JildertMiedema\LaravelPlupload\Facades\Plupload;
 use Symfony\Component\HttpFoundation\Response;
 
 class AssetController extends Controller
@@ -17,14 +19,19 @@ class AssetController extends Controller
     use DataMessage;
 
     protected $assetService;
+    /**
+     * @var ImageService
+     */
+    private $imageService;
 
     /**
      * AssetController constructor.
      * @param $assetTypeService
      */
-    public function __construct(Asset $assetService)
+    public function __construct(Asset $assetService, ImageService $imageService)
     {
         $this->assetService = $assetService;
+        $this->imageService = $imageService;
     }
 
     public function index(Request $request)
@@ -56,7 +63,7 @@ class AssetController extends Controller
     public function create()
     {
         $data['location'] = $this->assetService->location()->locationNestedSelect('location_id', null, false);
-        $data['assetType'] = $this->assetService->assetType()->assetTypeSelect('asset_type_id');
+        $data['assetType'] = $this->assetService->assetType()->assetTypeSelect('asset_type_id', null, false);
         $data['assetFormUrl'] = url('/asset/asset-type-form/');
 
         return view('assets.add', $data);
@@ -64,6 +71,7 @@ class AssetController extends Controller
 
     public function store(AssetStore $request)
     {
+        // var_dump($request->all()); exit;
         $this->assetService->store($request->except(['_token']));
 
         return redirect('/asset')->with($this->getMessage('store'));
@@ -71,8 +79,8 @@ class AssetController extends Controller
 
     public function detail($assetId)
     {
-        $data['asset'] = $this->assetService->getAssetById($assetId);
-
+        $asset = $this->assetService->getAssetById($assetId);
+        $data['asset'] = $asset;
         return view('assets.detail', $data);
     }
 
@@ -93,6 +101,15 @@ class AssetController extends Controller
         $data['performance'] = $this->assetService->assetPerformance()->assetPerformanceSelect('asset_performance_id');
         $data['condition'] = $this->assetService->assetCondition()->assetConditionSelect('asset_condition_id');
         echo \View::make('assets.asset-type-form', $data)->render();
+    }
+
+    public function uploadImage(Request $request) {
+        return Plupload::receive('file', function ($file) {
+            return [
+                'path' => $this->imageService->saveImage($file),
+                'status' => 'OK'
+            ];
+        });
     }
 
 }

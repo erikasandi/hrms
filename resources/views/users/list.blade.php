@@ -47,40 +47,7 @@
                                 <strong>Info!</strong> {{ session('message') }}
                             </div>
                         @endif
-                        <div class="table-toolbar">
-                            <div class="row">
-                                <div class="col-md-8">
-                                    <div id="collapse_1" class="panel-collapse collapse">
-                                        <form role="form" action="" method="post">
-                                            {!! csrf_field() !!}
-                                            <div class="row">
-                                                <div class="col-lg-4">
-                                                    <div class="form-body">
-                                                        <div class="form-group">
-                                                            <label>Name</label>
-                                                            <input type="text" class="form-control search-input" placeholder="Name">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-4">
-                                                    <div class="form-body">
-                                                        <div class="form-group">
-                                                            <label>Email Address</label>
-                                                            <input type="text" class="form-control" placeholder="Email Address">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-12">
-                                                    <button type="submit" class="btn btn-sm sbold green"><i class="fa fa-search"></i> Search</button>
-                                                    <button type="button" class="btn btn-sm sbold green search-close"><i class="fa fa-close"></i> Close</button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                        <br><br>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
                         <table class="table table-striped table-bordered table-hover table-checkable order-column" id="sample_1">
                             <thead>
                             <tr>

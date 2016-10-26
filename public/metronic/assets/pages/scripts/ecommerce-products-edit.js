@@ -9,7 +9,7 @@ var EcommerceProductsEdit = function () {
             browse_button : document.getElementById('tab_images_uploader_pickfiles'), // you can pass in id...
             container: document.getElementById('tab_images_uploader_container'), // ... or DOM Element itself
              
-            url : "assets/plugins/plupload/examples/upload.php",
+            url : ajaxUrl + "/upload",
              
             filters : {
                 max_file_size : '10mb',
@@ -17,6 +17,10 @@ var EcommerceProductsEdit = function () {
                     {title : "Image files", extensions : "jpg,gif,png"},
                     {title : "Zip files", extensions : "zip"}
                 ]
+            },
+
+            headers: {
+                'X-CSRF-TOKEN': 'csrfToken'
             },
          
             // Flash settings

@@ -117,5 +117,5 @@ class Asset
         return $model->get();
     }
 
-    
+
 }

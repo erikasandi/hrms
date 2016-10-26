@@ -28,4 +28,9 @@ class Asset extends Model
         return $this->belongsTo(Site::class);
     }
 
+    public function images()
+    {
+        return $this->hasMany(AssetImage::class);
+    }
+
 }
