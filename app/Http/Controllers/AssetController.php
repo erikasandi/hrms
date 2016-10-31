@@ -80,6 +80,7 @@ class AssetController extends Controller
     public function detail($assetId)
     {
         $asset = $this->assetService->getAssetById($assetId);
+        $data['assetId'] = $assetId;
         $data['asset'] = $asset;
         return view('assets.detail', $data);
     }

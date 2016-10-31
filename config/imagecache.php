@@ -33,6 +33,7 @@ return array(
     'paths' => array(
         public_path('uploads/thumbnails'),
         public_path('uploads/assets'),
+        public_path('uploads/maintenances'),
         public_path('images')
     ),
 

@@ -2,7 +2,9 @@
 
 @section('page-level-styles')
     <link href="{!! asset('metronic/assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet" type="text/css" />') !!}">
-    @endsection
+    <link href="{!! asset('metronic/assets/global/plugins/datatables/datatables.min.css') !!}" rel="stylesheet" type="text/css" />
+    <link href="{!! asset('metronic/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css') !!}" rel="stylesheet" type="text/css" />
+@endsection
 
     @section('content')
             <!-- BEGIN CONTENT -->
@@ -61,6 +63,9 @@
                                                 </li>
                                                 <li>
                                                     <a href="#tab_images" data-toggle="tab"> Images </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#tab_maintenances" data-toggle="tab"> Maintenances </a>
                                                 </li>
                                             </ul>
                                             <div class="tab-content">
@@ -129,6 +134,9 @@
                                                         @endif
                                                     </div>
                                                 </div>
+                                                <div class="tab-pane" id="tab_maintenances">
+                                                    @include('assets.maintenances.list')
+                                                </div>
                                             </div>
                                         </div>
                                         {{--end of asset-tab--}}
@@ -149,14 +157,46 @@
 @endsection
 
 @section('page-level-plugins')
+    <script src="{!! asset('metronic/assets/global/scripts/datatable.js') !!}" type="text/javascript"></script>
+    <script src="{!! asset('metronic/assets/global/plugins/datatables/datatables.min.js') !!}" type="text/javascript"></script>
+    <script src="{!! asset('metronic/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js') !!}" type="text/javascript"></script>
+    <script src="{!! asset('metronic/assets/global/plugins/bootbox/bootbox.min.js') !!}" type="text/javascript"></script>
     <script src="{!! asset('metronic/assets/global/plugins/jquery-ui/jquery-ui.min.js') !!}" type="text/javascript"></script>
 @endsection
 
 @section('page-level-scripts')
-    {{--<script src="{!! asset('metronic/assets/pages/scripts/form-validation.min.js') !!}" type="text/javascript"></script>--}}
-    {{--<script src="{!! asset('metronic/assets/pages/scripts/ecommerce-products-edit.js') !!}" type="text/javascript"></script>--}}
     <script>
         var ajaxUrl = '{!! url('/ajax') !!}';
         var csrfToken = '{!! csrf_token() !!}';
     </script>
+    <script>
+        $(function() {
+            $('#sample_1').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: {
+                    url: '{!! route('maintenance.data') !!}',
+                    data: {
+                        'assetId': '{!! $assetId !!}'
+                    }
+                },
+                columns: [
+                    { data: 'id', name: 'id' },
+                    { data: 'date', name: 'date' },
+                    { data: 'type', name: 'type' },
+                    { data: 'description', name: 'description' },
+                    { data: 'action', name: 'action', orderable: false, searchable: false, "width": "180px" }
+                ]
+            });
+
+            $('#collapse_1').on('shown.bs.collapse', function () {
+                $('.search-input').focus();
+            });
+
+            $('.search-close').click(function() {
+                $('#collapse_1').collapse('hide');
+            })
+        });
+    </script>
+    <script src="{!! asset('metronic/assets/global/scripts/delete-confirmation.js') !!}" type="text/javascript"></script>
 @endsection
