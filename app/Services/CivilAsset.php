@@ -17,6 +17,7 @@ class CivilAsset extends AssetHandler
      */
     public function __construct(array $inputs)
     {
+        parent::__construct();
         $this->inputs = $inputs;
         $this->asset = $this->storeAsset($inputs);
     }

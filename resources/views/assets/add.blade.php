@@ -2,6 +2,7 @@
 
 @section('page-level-styles')
     <link href="{!! asset('metronic/assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet" type="text/css" />') !!}">
+    <link href="{!! asset('metronic/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css') !!}" rel="stylesheet" type="text/css" />
 @endsection
 
 @section('content')
@@ -86,41 +87,8 @@
                                                 <div class="col-lg-12" id="form-detail"></div>
                                             </div>
                                             <div class="tab-pane" id="tab_images">
-                                                <div class="tab-pane images-repeater" id="tab_images">
-
-                                                    {{--<div class="alert alert-success margin-bottom-10">--}}
-                                                        {{--<button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>--}}
-                                                        {{--<i class="fa fa-warning fa-lg"></i> Image type and information need to be specified.--}}
-                                                    {{--</div>--}}
-                                                    {{--<div id="tab_images_uploader_container" class="text-align-reverse margin-bottom-10">--}}
-                                                        {{--<a id="tab_images_uploader_pickfiles" href="javascript:;" class="btn btn-success">--}}
-                                                            {{--<i class="fa fa-plus"></i> Select Files--}}
-                                                        {{--</a>--}}
-                                                        {{--<a id="tab_images_uploader_uploadfiles" href="javascript:;" class="btn btn-primary">--}}
-                                                            {{--<i class="fa fa-share"></i> Upload Files--}}
-                                                        {{--</a>--}}
-                                                    {{--</div>--}}
-                                                    {{--<div class="row">--}}
-                                                        {{--<div id="tab_images_uploader_filelist" class="col-md-6 col-sm-12"> </div>--}}
-                                                    {{--</div>--}}
-
-                                                    <div data-repeater-list="group-a" class="col-md-12">
-                                                        <div data-repeater-item class="mt-repeater-item row">
-                                                            <div class="mt-repeater-input col-md-7 col-sm-12">
-                                                                <input type="file" name="images[]" class="form-control" />
-                                                            </div>
-                                                            <div class="mt-repeater-input col-md-5 col-sm-12">
-                                                                <a href="javascript:;" data-repeater-delete class="btn btn-sm btn-danger mt-repeater-delete">
-                                                                <i class="fa fa-close"></i> Delete</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <br>
-                                                    <div class="col-md-12">
-                                                        <a href="javascript:;" data-repeater-create class="btn btn-sm btn-success mt-repeater-add">
-                                                            <i class="fa fa-plus"></i> Add
-                                                        </a>
-                                                    </div>
+                                                <div class="tab-pane" id="tab_images">
+                                                    @include('assets.images')
                                                 </div>
                                             </div>
                                         </div>
@@ -152,9 +120,11 @@
     <script src="{!! asset('metronic/assets/global/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js') !!}" type="text/javascript"></script>
     <script src="{!! asset('metronic/assets/global/plugins/bootstrap-maxlength/bootstrap-maxlength.min.js') !!}" type="text/javascript"></script>
     <script src="{!! asset('metronic/assets/global/plugins/fancybox/source/jquery.fancybox.pack.js') !!}" type="text/javascript"></script>
-    <script src="{!! asset('metronic/assets/global/plugins/plupload/js/plupload.full.min.js') !!}" type="text/javascript"></script>
+    {{--<script src="{!! asset('metronic/assets/global/plugins/plupload/js/plupload.full.min.js') !!}" type="text/javascript"></script>--}}
+    <script src="{!! asset('metronic/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js') !!}" type="text/javascript"></script>
     <script src="{!! asset('metronic/assets/global/plugins/jquery-repeater/jquery.repeater.js') !!}" type="text/javascript"></script>
     <script src="{!! asset('metronic/assets/global/plugins/jquery-validation/js/jquery.validate.min.js') !!}" type="text/javascript"></script>
+
 @endsection
 
 @section('page-level-scripts')
@@ -166,7 +136,7 @@
         var csrfToken = '{!! csrf_token() !!}';
 
         jQuery(document).ready(function() {
-            $('.images-repeater').repeater({
+            $('.mt-repeater').repeater({
                 initEmpty: true,
                 show: function () {
                     $(this).slideDown();
@@ -239,6 +209,6 @@
             });
         });
     </script>
-    <script src="{!! asset('scripts/plupload.js') !!}" type="text/javascript"></script>
+{{--    <script src="{!! asset('scripts/plupload.js') !!}" type="text/javascript"></script>--}}
     <script src="{!! asset('scripts/asset.js') !!}"></script>
 @endsection

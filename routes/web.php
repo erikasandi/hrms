@@ -84,9 +84,10 @@ Route::group(['middleware' => ['auth', 'menu', 'site']], function () {
     Route::get('/asset/add', 'AssetController@create');
     Route::post('/asset/save', 'AssetController@store');
     Route::get('/asset/{id}/edit', 'AssetController@edit');
+    Route::post('/asset/{id}/update', 'AssetController@update');
     Route::get('/asset/{id}/detail', 'AssetController@detail');
     Route::get('/asset/{id}/delete', 'AssetController@destroy');
-    Route::get('/asset/asset-type-form/{formId}', 'AssetController@assetTypeForm');
+
 });
 
 
@@ -99,7 +100,8 @@ Route::group(['middleware' => ['auth', 'site']], function () {
     Route::get( '/asset-condition-data', 'AssetConditionController@anyData')->name('asset-condition.data' );
     Route::get( '/site-data', 'SiteController@anyData')->name('site.data' );
     Route::get( '/menu-data', 'MenuController@anyData')->name('menu.data' );
-
+    Route::get('/asset/asset-type-form/{formId}', 'AssetController@assetTypeForm');
+    Route::get('/asset/asset-type-edit-form/{assetId}/{formId}', 'AssetController@assetTypeEditForm');
     Route::post('/ajax/upload', 'AssetController@uploadImage');
 });
 

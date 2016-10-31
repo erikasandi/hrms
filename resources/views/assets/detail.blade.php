@@ -16,7 +16,7 @@
                         <div class="portlet-title">
                             <div class="caption font-dark">
                                 <i class="fa fa-building-o font-dark"></i>
-                                <span class="caption-subject bold uppercase"> Add Asset</span>
+                                <span class="caption-subject bold uppercase"> Asset's Detail</span>
                             </div>
                             <div class="actions">
                                 <a class="btn btn-xs sbold green" href="{!! url('/asset') !!}">
@@ -79,32 +79,54 @@
                                                             <div class="mt-element-card mt-element-overlay">
                                                                 {{--row--}}
                                                                 <div class="row">
-                                                                    {{--image container--}}
-                                                                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                                                                        {{--start mt-card-item--}}
-                                                                        <div class="mt-card-item">
-                                                                            <div class="mt-card-avatar mt-overlay-1">
-                                                                                <img src="{!! url('uploads/thumbnails/home2.jpg') !!}" />
-                                                                                {{--overlay--}}
-                                                                                <div class="mt-overlay">
-                                                                                    <ul class="mt-info">
-                                                                                        <li>
-                                                                                            <a class="btn default btn-outline" href="javascript:;">
-                                                                                                <i class="icon-magnifier"></i>
-                                                                                            </a>
-                                                                                        </li>
-                                                                                    </ul>
+                                                                    @if ($asset->images()->count() > 0)
+                                                                        @foreach($asset->images()->get() as $image)
+                                                                            {{--start mt-card-item--}}
+                                                                            <div class="mt-card-item col-md-3">
+                                                                                <div class="mt-card-avatar mt-overlay-1">
+                                                                                    <img src="{!! url('images/medium/' . $image->path) !!}" />
+                                                                                    {{--overlay--}}
+                                                                                    <div class="mt-overlay">
+                                                                                        <ul class="mt-info">
+                                                                                            <li>
+                                                                                                <a class="btn default btn-outline"
+                                                                                                   href="#image-{!! $image->id !!}"
+                                                                                                   data-toggle="modal">
+                                                                                                    <i class="icon-magnifier"></i>
+                                                                                                </a>
+                                                                                            </li>
+                                                                                        </ul>
+                                                                                    </div>
+                                                                                    {{--end of overlay--}}
                                                                                 </div>
-                                                                                {{--end of overlay--}}
                                                                             </div>
-                                                                        </div>
-                                                                        {{--mt-card-item--}}
-                                                                    </div>
-                                                                    {{--end of image container--}}
+                                                                            {{--mt-card-item--}}
+                                                                        @endforeach
+                                                                    @endif
                                                                 </div>
                                                                 {{--end of row--}}
                                                             </div>
                                                         </div>
+                                                        {{--end of portlet-body--}}
+                                                        @if ($asset->images()->count() > 0)
+                                                            @foreach($asset->images()->get() as $image)
+                                                            <div id="image-{!! $image->id !!}" class="modal fade" tabindex="-1" aria-hidden="true">
+                                                                <div class="modal-dialog">
+                                                                    <div class="modal-content text-center">
+                                                                        <div class="modal-body">
+                                                                            {{--<div class="scroller" style="height:400px" data-always-visible="1" data-rail-visible1="1">--}}
+                                                                                <div class="row">
+                                                                                    <div class="col-md-12">
+                                                                                        <img src="{!! url('images/large/' . $image->path) !!}">
+                                                                                    </div>
+                                                                                </div>
+                                                                            {{--</div>--}}
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            @endforeach
+                                                        @endif
                                                     </div>
                                                 </div>
                                             </div>
@@ -127,6 +149,7 @@
 @endsection
 
 @section('page-level-plugins')
+    <script src="{!! asset('metronic/assets/global/plugins/jquery-ui/jquery-ui.min.js') !!}" type="text/javascript"></script>
 @endsection
 
 @section('page-level-scripts')

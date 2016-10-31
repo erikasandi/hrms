@@ -63,13 +63,6 @@ class Asset
         return AssetModel::find($assetId);
     }
 
-    public function store(array $inputs)
-    {
-        $className = $this->getClassHandler($inputs['asset_type_id']);
-        $assetClass = new $className($inputs);
-        $assetClass->store();
-    }
-
     public function datatableData(array $request)
     {
         $assets = $this->getAssets($request);
@@ -84,6 +77,21 @@ class Asset
                 return $this->getLocation($asset);
             })
             ->generate();
+    }
+
+    public function store(array $inputs)
+    {
+        $className = $this->getClassHandler($inputs['asset_type_id']);
+        $assetClass = new $className();
+        $assetClass->store($inputs);
+    }
+
+    public function update($id, array $inputs)
+    {
+        $asset = $this->getAssetById($id);
+        $className = $this->getClassHandler($asset->asset_type_id);
+        $assetClass = new $className();
+        $assetClass->update($id, $inputs);
     }
 
     private function getClassHandler($assetTypeId)
@@ -115,6 +123,14 @@ class Asset
         }
 
         return $model->get();
+    }
+
+    public function destroy($id)
+    {
+        $asset = AssetModel::find($id);
+        $asset->detail()->delete();
+        $asset->images()->delete();
+        $asset->delete();
     }
 
 

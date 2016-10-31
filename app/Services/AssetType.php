@@ -54,7 +54,7 @@ class AssetType
         return false;
     }
 
-    public function assetTypeSelect($name, $selected = '', $withBlank = true)
+    public function assetTypeSelect($name, $selected = '', $withBlank = true, $options = '')
     {
         $form = new FormGenerator();
         $assetTypes = $this->getAssetTypes();
@@ -64,8 +64,8 @@ class AssetType
             'withBlank' => $withBlank,
             'selected' => $selected
         ];
-
-        return $form->dbSelect($assetTypes, $name, $fields, ['class' => 'form-control', 'id' => 'asset-type']);
+        $options = $options != '' ? $options : ['class' => 'form-control', 'id' => 'asset-type'];
+        return $form->dbSelect($assetTypes, $name, $fields, $options);
     }
 
     /**

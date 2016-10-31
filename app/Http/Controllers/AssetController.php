@@ -71,7 +71,7 @@ class AssetController extends Controller
 
     public function store(AssetStore $request)
     {
-        // var_dump($request->all()); exit;
+//        var_dump($request->all()); exit;
         $this->assetService->store($request->except(['_token']));
 
         return redirect('/asset')->with($this->getMessage('store'));
@@ -86,12 +86,30 @@ class AssetController extends Controller
 
     public function edit(Request $request, $id)
     {
-        return 'edit';
+        $asset = $this->assetService->getAssetById($id);
+        $images = $asset->images;
+        $options = ['disabled' => 'disabled', 'class' => 'form-control', 'id' => 'asset-type'];
+        $data['asset'] = $asset;
+        $data['assetImages'] = $images;
+        $data['location'] = $this->assetService->location()->locationNestedSelect('location_id', $asset->location_id, false);
+        $data['assetType'] = $this->assetService->assetType()->assetTypeSelect('asset_type_id', $asset->asset_type_id, false, $options);
+        $data['assetFormUrl'] = url('/asset/asset-type-edit-form/' . $asset->id);
+
+        return view('assets.edit', $data);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $this->assetService->update($id, $request->except(['_token']));
+
+        return redirect('asset')->with($this->getMessage('update'));
     }
 
     public function destroy($id)
     {
-        return redirect('/asset')->with(['message' => 'Delete button is executed.']);
+        $this->assetService->destroy($id);
+
+        return redirect('/asset')->with($this->getMessage('delete'));
     }
 
     public function assetTypeForm($assetType)
@@ -101,6 +119,20 @@ class AssetController extends Controller
         $data['performance'] = $this->assetService->assetPerformance()->assetPerformanceSelect('asset_performance_id');
         $data['condition'] = $this->assetService->assetCondition()->assetConditionSelect('asset_condition_id');
         echo \View::make('assets.asset-type-form', $data)->render();
+    }
+
+    public function assetTypeEditForm($assetId, $assetType)
+    {
+        $asset = $this->assetService->getAssetById($assetId);
+        $detail = $asset->detail;
+
+        $data['assetDetail'] = $detail;
+        $data['assetType'] = $assetType;
+        $data['assetFormUrl'] = url('/asset/asset-type-edit-form/');
+        $data['performance'] = $this->assetService->assetPerformance()->assetPerformanceSelect('asset_performance_id', $detail->asset_performance_id);
+        $data['condition'] = $this->assetService->assetCondition()->assetConditionSelect('asset_condition_id', $detail->asset_condition_id);
+
+        echo \View::make('assets.asset-type-edit-form', $data)->render();
     }
 
     public function uploadImage(Request $request) {

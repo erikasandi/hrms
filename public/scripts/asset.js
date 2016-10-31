@@ -16,7 +16,6 @@ $('#asset-type').on('change', function() {
         })
         .done(function(data)
         {
-            console.log(data);
             $('#form-detail').empty().html(data);
             $('.date-picker').datepicker({
                 orientation: "left",
