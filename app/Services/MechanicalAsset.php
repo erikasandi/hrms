@@ -8,13 +8,6 @@ use App\Models\AssetModel;
 class MechanicalAsset extends AssetHandler
 {
     /**
-     * @var \App\Models\Asset
-     */
-    private $inputs;
-    private $asset;
-
-
-    /**
      * MechanicalAsset constructor.
      */
     public function __construct()
@@ -32,7 +25,7 @@ class MechanicalAsset extends AssetHandler
                 'performance_detail', 'condition_detail'
             ]
         );
-//        var_dump($assetParams); exit;
+
         return $asset->detail()->create($assetParams);
     }
 

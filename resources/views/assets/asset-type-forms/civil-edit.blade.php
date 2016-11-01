@@ -7,7 +7,7 @@
             </div>
             <div class="form-group ">
                 <label>Contractor</label>
-                <input type="text" name="contractor" class="form-control" value="{!! $assetDetail->contractor !!}">
+                <input type="text" name="contractor" class="form-control" value="{!! $assetDetail->serial_number !!}">
             </div>
             <div class="form-group ">
                 <label>Condition</label>
@@ -25,7 +25,7 @@
             </div>
             <div class="form-group ">
                 <label>Construction Date</label>
-                <input type="text" name="construction_date" class="form-control date-picker" value="{!! $assetDetail->construction_date !!}">
+                <input type="text" name="construction_date" class="form-control date-picker" value="@if ($assetDetail->construction_date != '') {!! Carbon\Carbon::createFromFormat('Y-m-d', $assetDetail->construction_date)->format('m/d/Y') !!} @endif">
             </div>
             <div class="form-group ">
                 <label>Performance</label>
