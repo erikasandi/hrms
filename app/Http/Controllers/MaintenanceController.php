@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Service\Maintenance;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -38,6 +39,7 @@ class MaintenanceController extends Controller
     {
         $data['assetId'] = $assetId;
         $data['maintenanceTypeSelect'] = $this->maintenanceService->maintenanceSelect('maintenance_type_id');
+
         return view('assets.maintenances.add', $data);
     }
 
@@ -50,14 +52,19 @@ class MaintenanceController extends Controller
 
     public function edit($assetId, $id)
     {
-        $data = '';
+        $maintenance = $this->maintenanceService->getMaintenanceById($id);
+        $data['maintenance'] = $maintenance;
+        $data['maintenanceDate'] = Carbon::createFromFormat('Y-m-d', $maintenance->maintenance_date)->format('m/d/Y');
+        $data['images'] = $maintenance->images;
+        $data['assetId'] = $assetId;
+        $data['maintenanceTypeSelect'] = $this->maintenanceService->maintenanceSelect('maintenance_type_id', $maintenance->maintenance_type_id);
 
         return view('assets.maintenances.edit', $data);
     }
 
     public function update(Request $request, $assetId, $id)
     {
-        $this->maintenanceService->update($id, $request->except(['_token']));
+        $this->maintenanceService->update($assetId, $id, $request->except(['_token']));
 
         return redirect('asset/' . $assetId . '/detail/#tab_maintenances');
     }
