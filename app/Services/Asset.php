@@ -67,6 +67,12 @@ class Asset
     {
         $assets = $this->getAssets($request);
         $actions = $this->actionParameters(['edit', 'detail', 'delete']);
+        $actions['maintenance'] = [
+            'title'     => 'Maintenance',
+            'link'      => url('asset/%s/detail/#tab_maintenances'),
+            'class'     => 'btn btn-xs btn-default',
+            'icon'      => ''
+        ];
 
         return (new DatatableGenerator($assets))
             ->addActions($actions)
