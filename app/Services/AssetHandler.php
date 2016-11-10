@@ -9,6 +9,8 @@ use File;
 
 abstract class AssetHandler
 {
+    protected $assetModel;
+
     /**
      * AssetHandler constructor.
      */
@@ -42,12 +44,14 @@ abstract class AssetHandler
 
     private function storeImages($asset, array $inputs)
     {
-        $formRepeaters = $inputs['images'];
+        $formRepeaters = isset($inputs['images']) ? $inputs['images'] : [];
         if (count($formRepeaters) > 0) {
             foreach ($formRepeaters as $repeater) {
-                $imageInput = $repeater['image'];
-                $imageName = $this->putImage($imageInput);
-                $this->addImage($asset, $imageName);
+                $imageInput = isset($repeater['image']) ? $repeater['image'] : '';
+                if ($imageInput != '' && is_a($imageInput, 'Illuminate\Http\UploadedFile')) {
+                    $imageName = $this->putImage($imageInput);
+                    $this->addImage($asset, $imageName);
+                }
             }
         }
 
@@ -70,7 +74,7 @@ abstract class AssetHandler
 
         // check new & updated images
         foreach ($formRepeaters as $repeater) {
-            $imageId = $repeater['image_id'];
+            $imageId = isset($repeater['image_id']) ? $repeater['image_id'] : '';
             $imageInput = isset($repeater['image']) ? $repeater['image'] : '';
             if ($imageId == '') {
                 if ($imageInput != '' && is_a($imageInput, 'Illuminate\Http\UploadedFile')) {

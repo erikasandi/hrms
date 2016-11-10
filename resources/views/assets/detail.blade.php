@@ -76,6 +76,8 @@
                                                         @include('assets.asset-type-details.electrical')
                                                     @elseif($asset->asset_type_id == 4)
                                                         @include('assets.asset-type-details.civil')
+                                                    @elseif($asset->asset_type_id == 6)
+                                                        @include('assets.asset-type-details.network-pipe')
                                                     @endif
                                                 </div>
                                                 <div class="tab-pane" id="tab_images">

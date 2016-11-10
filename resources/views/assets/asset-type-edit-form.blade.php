@@ -17,4 +17,6 @@
     </div>
 @elseif($assetType == 4)
     @include('assets.asset-type-forms.civil-edit')
+@elseif($assetType == 6)
+    @include('assets.asset-type-forms.network-pipe-edit')
 @endif

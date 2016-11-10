@@ -10,7 +10,8 @@ class AssetDetail extends Model
     public $fillable = [
         'asset_id', 'specification', 'serial_number', 'function', 'asset_condition_id',
         'asset_performance_id', 'install_date', 'construction_date', 'condition_detail',
-        'performance_detail'
+        'performance_detail', 'contractor', 'contract', 'operational_date', 'description',
+        'pipe_diameter', 'network_diameter', 'length', 'number_of_valve', 'number_of_pipe_bridge'
     ];
 
     public $timestamps = false;
@@ -34,6 +35,13 @@ class AssetDetail extends Model
     {
         if ($value != '') {
             $this->attributes['install_date'] = Carbon::createFromFormat('m/d/Y', $value)->format('Y-m-d');
+        }
+    }
+
+    public function setOperationalDateAttribute($value)
+    {
+        if ($value != '') {
+            $this->attributes['operational_date'] = Carbon::createFromFormat('m/d/Y', $value)->format('Y-m-d');
         }
     }
 

@@ -6,7 +6,7 @@
 @endsection
 
     @section('content')
-            <!-- BEGIN CONTENT -->
+    <!-- BEGIN CONTENT -->
     <div class="page-content-wrapper">
 
         <!-- BEGIN CONTENT BODY -->
@@ -125,7 +125,7 @@
                     { data: 'name', name: 'name' },
                     { data: 'type', name: 'type' },
                     { data: 'location', name: 'location' },
-                    { data: 'action', name: 'action', orderable: false, searchable: false, "width": "180px" }
+                    { data: 'action', name: 'action', orderable: false, searchable: false, "width": "280px" }
                 ]
             });
 
