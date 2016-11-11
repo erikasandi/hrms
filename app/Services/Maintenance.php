@@ -56,7 +56,7 @@ class Maintenance
         $maintenance = MaintenanceModel::create([
             'maintenance_type_id' => $inputs['maintenance_type_id'],
             'asset_id' => $assetId,
-            'maintenance_date' => Carbon::createFromFormat('d/m/Y', $inputs['date'])->format('Y-m-d'),
+            'maintenance_date' => Carbon::createFromFormat('m/d/Y', $inputs['date'])->format('Y-m-d'),
             'performance' => $inputs['performance'],
             'description' => $inputs['description']
         ]);
@@ -64,9 +64,9 @@ class Maintenance
         if (isset($inputs['images'])) {
             $repeaters = $inputs['images'];
             foreach ($repeaters as $repeater) {
-                $image = $repeater['image'];
-                if ( is_a($image, 'Illuminate\Http\UploadedFile') ) {
-                    $imageName = $this->uploadImage($image);
+                $imageInput = isset($repeater['image']) ? $repeater['image'] : '';
+                if ( is_a($imageInput, 'Illuminate\Http\UploadedFile') ) {
+                    $imageName = $this->uploadImage($imageInput);
                     $this->createImage($maintenance, $imageName, $repeater['image_description']);
                 }
             }
@@ -78,7 +78,7 @@ class Maintenance
         $maintenance = $this->getMaintenanceById($id);
         $maintenance->maintenance_type_id = $inputs['maintenance_type_id'];
         $maintenance->asset_id = $assetId;
-        $maintenance->maintenance_date = Carbon::createFromFormat('d/m/Y', $inputs['date'])->format('Y-m-d');
+        $maintenance->maintenance_date = Carbon::createFromFormat('m/d/Y', $inputs['date'])->format('Y-m-d');
         $maintenance->performance = $inputs['performance'];
         $maintenance->description = $inputs['description'];
         $maintenance->save();

@@ -21,7 +21,7 @@
             </div>
             <div class="form-group ">
                 <label>Operational Date</label>
-                <input type="text" name="operational_date" value="@if ($assetDetail->operational_date != '') {!! Carbon\Carbon::createFromFormat('Y-m-d', $assetDetail->operational_date)->format('m/d/Y') !!} @endif" class="form-control date-picker">
+                <input type="text" name="operational_date" value="@if ($assetDetail->operational_date != ''){!! Carbon\Carbon::createFromFormat('Y-m-d', $assetDetail->operational_date)->format('m/d/Y') !!}@endif" class="form-control date-picker">
             </div>
             <div class="form-group ">
                 <label>Network Diameter</label>
