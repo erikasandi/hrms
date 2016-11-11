@@ -1,6 +1,6 @@
 /*
 SQLyog Community
-MySQL - 5.7.12 : Database - asset
+MySQL - 5.7.12-0ubuntu1.1 : Database - asset
 *********************************************************************
 */
 
@@ -12,10 +12,6 @@ MySQL - 5.7.12 : Database - asset
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-CREATE DATABASE /*!32312 IF NOT EXISTS*/`asset` /*!40100 DEFAULT CHARACTER SET latin1 */;
-
-USE `asset`;
-
 /*Table structure for table `asset_conditions` */
 
 CREATE TABLE `asset_conditions` (
@@ -253,7 +249,6 @@ insert  into `menus`(`id`,`name`,`display`,`link`,`parent_id`,`permission`,`icon
 insert  into `menus`(`id`,`name`,`display`,`link`,`parent_id`,`permission`,`icon_class`,`description`,`created_at`,`updated_at`,`order`) values (16,'asset.location','Location','asset-location',1,'setting','',NULL,'2016-09-21 06:14:44','2016-09-21 06:15:13',800);
 insert  into `menus`(`id`,`name`,`display`,`link`,`parent_id`,`permission`,`icon_class`,`description`,`created_at`,`updated_at`,`order`) values (17,'asset.add','Add Asset','asset/add',12,'asset.add','',NULL,'2016-09-22 07:00:43','2016-10-31 06:27:28',200);
 insert  into `menus`(`id`,`name`,`display`,`link`,`parent_id`,`permission`,`icon_class`,`description`,`created_at`,`updated_at`,`order`) values (18,'asset.list','Asset List','asset',12,'asset.add','',NULL,'2016-09-28 07:20:37','2016-10-31 06:27:24',100);
-insert  into `menus`(`id`,`name`,`display`,`link`,`parent_id`,`permission`,`icon_class`,`description`,`created_at`,`updated_at`,`order`) values (19,'maintenance.add','Add Maintenance','maintenance/add',12,'maintenance','',NULL,NULL,'2016-10-31 06:27:42',300);
 
 /*Table structure for table `migrations` */
 
@@ -398,7 +393,13 @@ CREATE TABLE `sessions` (
 
 /*Data for the table `sessions` */
 
+insert  into `sessions`(`id`,`user_id`,`ip_address`,`user_agent`,`payload`,`last_activity`) values ('1TsqRhUNK8qqFN3dxDGiHYMx03cwQ7f2YvdUNn7d',NULL,'192.168.10.1','Mozilla/5.0 (Windows NT 6.3; WOW64; rv:49.0) Gecko/20100101 Firefox/49.0','YTo0OntzOjY6Il90b2tlbiI7czo0MDoiWVowV29kYW14c3l1emdOMkQ2RmJoSHhONVZRMkRzbWVMYVB2OWtjTyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjI6Imh0dHA6Ly90d2IubG9jYWwvbG9naW4iO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjk6Il9zZjJfbWV0YSI7YTozOntzOjE6InUiO2k6MTQ3ODY2NzgzMztzOjE6ImMiO2k6MTQ3ODY2NzgzMTtzOjE6ImwiO3M6MToiMCI7fX0=',1478667833);
+insert  into `sessions`(`id`,`user_id`,`ip_address`,`user_agent`,`payload`,`last_activity`) values ('1z1tovpKT4V4EqQoGtwFvdWA4UZEJ0A35NiGjlYT',1,'192.168.10.1','Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36','YTo0OntzOjY6Il90b2tlbiI7czo0MDoiN2Y4U2o3VmlOWWljRG95bFZQTldZZjh6Z3IzZzBsYW5PN29vMzZlUCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MTg6Imh0dHA6Ly9hc3NldC5sb2NhbCI7fXM6OToiX3NmMl9tZXRhIjthOjM6e3M6MToidSI7aToxNDc4NzQ3MTEzO3M6MToiYyI7aToxNDc4NzQ3MTEzO3M6MToibCI7czoxOiIwIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1478747113);
 insert  into `sessions`(`id`,`user_id`,`ip_address`,`user_agent`,`payload`,`last_activity`) values ('mIkl6hLzWzZAGplOmBQXOJVLcSaxZTyzNyrUevck',1,'192.168.10.1','Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36','YTo4OntzOjY6Il90b2tlbiI7czo0MDoiRjNJTTFsV052NTZLWDNXVXlHcUhSdERMZTJFUkZGTVhIT1RZOWNmUiI7czozOiJ1cmwiO2E6MDp7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjI0OiJodHRwOi8vYXNzZXQubG9jYWwvYXNzZXQiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO3M6NToiZ1NpdGUiO2k6MjtzOjk6ImdTaXRlTmFtZSI7czozOiJBQVQiO3M6OToiX3NmMl9tZXRhIjthOjM6e3M6MToidSI7aToxNDc4MDcyMjMwO3M6MToiYyI7aToxNDc4MDY0NDIxO3M6MToibCI7czoxOiIwIjt9fQ==',1478072230);
+insert  into `sessions`(`id`,`user_id`,`ip_address`,`user_agent`,`payload`,`last_activity`) values ('pStDK2CwUiiuZtkhIm6STBnAMmehyeUU1TEjTJYn',1,'192.168.10.1','Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36','YTo0OntzOjY6Il90b2tlbiI7czo0MDoiVXpuNWxIdkNnUHdTQldWU0N4SHl0UWhRYklONzNCMDhTaVJTUk1OZiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MTg6Imh0dHA6Ly9hc3NldC5sb2NhbCI7fXM6OToiX3NmMl9tZXRhIjthOjM6e3M6MToidSI7aToxNDc4NzQ3MTEzO3M6MToiYyI7aToxNDc4NzQ3MTEzO3M6MToibCI7czoxOiIwIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1478747113);
+insert  into `sessions`(`id`,`user_id`,`ip_address`,`user_agent`,`payload`,`last_activity`) values ('ROzahccNrdBooey75TBSTNyhPovjOITY51injt9E',NULL,'192.168.10.1','Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36','YTo0OntzOjY6Il90b2tlbiI7czo0MDoicjZ3ejRnUkliMGY2d3NTaU5HUzZxNko4bzZBRWhXeUxKZTJFeUs0YSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MTg6Imh0dHA6Ly9hc3NldC5sb2NhbCI7fXM6OToiX3NmMl9tZXRhIjthOjM6e3M6MToidSI7aToxNDc4MDg4MjU5O3M6MToiYyI7aToxNDc4MDg4MjU5O3M6MToibCI7czoxOiIwIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1478088259);
+insert  into `sessions`(`id`,`user_id`,`ip_address`,`user_agent`,`payload`,`last_activity`) values ('xK43ysMJtfeDYiZUurFvO5EyFGyAWGWBYJU4P8vt',1,'192.168.10.1','Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36','YTo3OntzOjY6Il90b2tlbiI7czo0MDoiZlh4UXhLOWREM0RCV1hxWm9vckt4emxCTGRoS1FsbHRRaTJHQUZacCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjQ6Imh0dHA6Ly9hc3NldC5sb2NhbC9hc3NldCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7czo1OiJnU2l0ZSI7aToyO3M6OToiZ1NpdGVOYW1lIjtzOjM6IkFBVCI7czo5OiJfc2YyX21ldGEiO2E6Mzp7czoxOiJ1IjtpOjE0NzgwODgyODY7czoxOiJjIjtpOjE0NzgwODgyNTk7czoxOiJsIjtzOjE6IjAiO319',1478088286);
+insert  into `sessions`(`id`,`user_id`,`ip_address`,`user_agent`,`payload`,`last_activity`) values ('ypwKrK8iltcE9dIpPv7W27smbXFBF6lQaGK9f0iI',1,'192.168.10.1','Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36','YTo3OntzOjY6Il90b2tlbiI7czo0MDoiODJaOXpvcndJZ2JydVVnYnZLMnpZemJOZ0o2QWtvM2R2U0dJS3dDMiI7czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjk6Il9wcmV2aW91cyI7YToxOntzOjM6InVybCI7czoyNDoiaHR0cDovL2Fzc2V0LmxvY2FsL2Fzc2V0Ijt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1OiJnU2l0ZSI7aToyO3M6OToiZ1NpdGVOYW1lIjtzOjM6IkFBVCI7czo5OiJfc2YyX21ldGEiO2E6Mzp7czoxOiJ1IjtpOjE0Nzg3NDcyMTk7czoxOiJjIjtpOjE0Nzg3NDcxMTM7czoxOiJsIjtzOjE6IjAiO319',1478747219);
 
 /*Table structure for table `sites` */
 

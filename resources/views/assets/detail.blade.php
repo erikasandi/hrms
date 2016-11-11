@@ -35,22 +35,22 @@
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <div class="col-lg-6">
-                                                <div class="form-group  @if ($errors->has('name')) has-error @endif">
-                                                    <label>Name <span class="required"> * </span></label>
+                                                <div class="form-group">
+                                                    <label class="form-label">Name :</label>
                                                     <span class="form-control">{!! $asset->name !!}</span>
                                                 </div>
-                                                <div class="form-group  @if ($errors->has('code')) has-error @endif">
-                                                    <label>Code <span class="required"> * </span></label>
+                                                <div class="form-group">
+                                                    <label class="form-label">Code :</label>
                                                     <span class="form-control">{!! $asset->code !!}</span>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
-                                                <div class="form-group  @if ($errors->has('location_id')) has-error @endif">
-                                                    <label>Location</label>
+                                                <div class="form-group">
+                                                    <label class="form-label">Location :</label>
                                                     <span class="form-control">{!! $asset->location->name !!}</span>
                                                 </div>
-                                                <div class="form-group  @if ($errors->has('asset_type_id')) has-error @endif">
-                                                    <label>Asset Type</label>
+                                                <div class="form-group">
+                                                    <label class="form-label">Asset Type :</label>
                                                     <span class="form-control">{!! $asset->assetType->name !!}</span>
                                                 </div>
                                             </div>
@@ -68,7 +68,7 @@
                                                     <a href="#tab_maintenances" data-toggle="tab"> Maintenances </a>
                                                 </li>
                                             </ul>
-                                            <div class="tab-content">
+                                            <div class="tab-content asset-tab-content">
                                                 <div class="tab-pane active" id="tab_general">
                                                     @if($asset->asset_type_id == 2)
                                                         @include('assets.asset-type-details.m-e')
@@ -184,10 +184,10 @@
                 },
                 columns: [
                     { data: 'id', name: 'id' },
-                    { data: 'date', name: 'date' },
-                    { data: 'type', name: 'type' },
+                    { data: 'date', name: 'date', "width": "110px" },
+                    { data: 'type', name: 'type', "width": "140px" },
                     { data: 'description', name: 'description' },
-                    { data: 'action', name: 'action', orderable: false, searchable: false, "width": "180px" }
+                    { data: 'action', name: 'action', orderable: false, searchable: false, "width": "120px" }
                 ]
             });
 

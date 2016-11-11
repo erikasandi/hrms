@@ -25,7 +25,7 @@
             </div>
             <div class="form-group ">
                 <label>Install Date</label>
-                <input type="text" name="install_date" class="form-control date-picker" value="@if ($assetDetail->install_date != '') {!! Carbon\Carbon::createFromFormat('Y-m-d', $assetDetail->install_date)->format('m/d/Y') !!} @endif">
+                <input type="text" name="install_date" class="form-control date-picker" value="@if ($assetDetail->install_date != ''){!! Carbon\Carbon::createFromFormat('Y-m-d', $assetDetail->install_date)->format('m/d/Y') !!}@endif">
             </div>
             <div class="form-group ">
                 <label>Performance</label>

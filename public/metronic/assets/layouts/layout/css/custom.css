@@ -5,3 +5,11 @@
 #asset-tab {
     margin: 10px 0;
 }
+
+.form-label {
+    font-weight: bolder;
+}
+
+.asset-tab-content {
+    margin: 20px 0px;
+}
