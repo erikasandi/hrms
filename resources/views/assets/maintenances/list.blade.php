@@ -6,7 +6,7 @@
             <span class="caption-subject font-blue sbold uppercase">Maintenances</span>
         </div>
         <div class="actions">
-            <a href="{!! url('maintenance/' . $assetId . '/add') !!}" class="btn btn-default" > Add Maintenance </a>
+            <a href="{!! url('maintenance/' . $group . '/' . $assetId . '/add') !!}" class="btn btn-default" > Add Maintenance </a>
         </div>
     </div>
     <div class="portlet-body">

@@ -64,15 +64,12 @@ class FormGenerator
                         $items[$key] = $it;
                     }
                 }
-
             } else {
                 $items = ['0' => '----'];
             }
         } else {
             $items = $datas;
         }
-
-//        var_dump($items); exit;
 
         return Form::select($name, $items, $selectedValue, $options);
     }
@@ -94,8 +91,8 @@ class FormGenerator
     private function generateChildrenItems($selects, $data, $id, $value, $space = '')
     {
         $children = $data->children()->get();
+        $space = $space . '--';
         foreach ($children as $child) {
-            $space = $space . '--';
             if ($child->children) {
                 $selects->push([$child->$id => $space . '&nbsp;' . $child->$value]);
                 $this->generateChildrenItems($selects, $child, $id, $value, $space);

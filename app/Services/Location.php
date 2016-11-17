@@ -89,6 +89,11 @@ class Location
         return $query->get();
     }
 
+    public function getLocationByName($name)
+    {
+        return LocationModel::where('name', $name)->first();
+    }
+
     private function checkIfDataExistsOnThisSite($id)
     {
         $siteId = session('gSite');

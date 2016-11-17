@@ -20,13 +20,13 @@
                             <span class="caption-subject bold uppercase"> Add Maintenance</span>
                         </div>
                         <div class="actions">
-                            <a class="btn btn-xs sbold green" href="{!! url('asset/' . $assetId . '/detail#tab_maintenances') !!}">
+                            <a class="btn btn-xs sbold green" href="{!! url('asset-by-group/' . $group . '/' . $assetId . '/detail#tab_maintenances') !!}">
                                 <i class="fa fa-arrow-left"></i> Back
                             </a>
                         </div>
                     </div>
                     <div class="portlet-body">
-                        <form role="form" method="post" action="{!! url('maintenance/' . $assetId . '/save') !!}" enctype="multipart/form-data" >
+                        <form role="form" method="post" action="{!! url('maintenance/' . $group . '/' . $assetId . '/save') !!}" enctype="multipart/form-data" >
                             {{ csrf_field() }}
                             <input type="hidden" name="site_id" value="{!! session('gSite') !!}">
                             <div class="form-body">

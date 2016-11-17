@@ -1,6 +1,6 @@
 <div class="row">
     <div class="asset-type-2">
-        <div class="col-lg-6">
+        <div class="col-md-6">
             <div class="form-group ">
                 <label>Specification</label>
                 <textarea class="form-control" name="specification"></textarea>
@@ -18,7 +18,7 @@
                 <textarea class="form-control" name="condition_detail"></textarea>
             </div>
         </div>
-        <div class="col-lg-6">
+        <div class="col-md-6">
             <div class="form-group ">
                 <label>Function</label>
                 <textarea class="form-control" name="function"></textarea>

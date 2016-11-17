@@ -63,6 +63,30 @@ class Asset
         return AssetModel::find($assetId);
     }
 
+    public function groupedDatatableData(array $request)
+    {
+        $group = $request['group'];
+        $this->baseUrl = 'asset-by-group/' . $group;
+        $assets = $this->getAssets($request);
+        $actions = $this->actionParameters(['edit', 'detail', 'delete']);
+        $actions['maintenance'] = [
+            'title'     => 'Maintenance',
+            'link'      => url('asset-by-group/' . $group . '/%s/detail/#tab_maintenances'),
+            'class'     => 'btn btn-xs btn-default',
+            'icon'      => ''
+        ];
+
+        return (new DatatableGenerator($assets))
+            ->addActions($actions)
+            ->addColumn('type', function($asset) {
+                return $this->getType($asset);
+            })
+            ->addColumn('location', function($asset) {
+                return $this->getLocation($asset);
+            })
+            ->generate();
+    }
+
     public function datatableData(array $request)
     {
         $assets = $this->getAssets($request);
@@ -115,14 +139,16 @@ class Asset
         return $asset->location->name;
     }
 
-    private function getAssets($request)
+    public function getAssets($request)
     {
         $model = $this->assetModel->where('id', '>', 0);
         if ($request['s_name']) {
             $model = $model->where('name', 'like', '%' . $request['s_name'] . '%');
         }
         if ($request['s_location']) {
-            $model = $model->where('location_id', $request['s_location']);
+            $locations = $this->getAllNestedLocations($request['s_location']);
+            $locations = explode(",", $locations);
+            $model = $model->whereIn('location_id', $locations);
         }
         if ($request['s_type']) {
             $model = $model->where('asset_type_id', $request['s_type']);
@@ -137,6 +163,23 @@ class Asset
         $asset->detail()->delete();
         $asset->images()->delete();
         $asset->delete();
+    }
+
+    private function getAllNestedLocations($location, $result = '')
+    {
+        $loc = $this->location()->getLocationById($location);
+
+        $children = $loc->children()->get();
+
+        $result .= ( $result == '' ? $loc->id : ',' . $loc->id );
+
+        if (count($children) > 0) {
+            foreach ($children as $child) {
+                $result = $this->getAllNestedLocations($child->id, $result);
+            }
+        }
+
+        return $result;
     }
 
 

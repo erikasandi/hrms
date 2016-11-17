@@ -15,9 +15,11 @@ class Maintenance
 
     protected $baseUrl = '';
 
-    public function datatableData($assetId)
+    public function datatableData(array $request)
     {
-        $this->baseUrl = 'maintenance/'.$assetId;
+        $assetId = $request['assetId'];
+        $group = $request['group'];
+        $this->baseUrl = 'maintenance/' . $group . '/' .$assetId;
         $maintenances = $this->getMaintenances($assetId);
         $actions = $this->actionParameters(['edit', 'delete']);
 

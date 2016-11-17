@@ -88,12 +88,21 @@ Route::group(['middleware' => ['auth', 'menu', 'site']], function () {
     Route::get('/asset/{id}/detail', 'AssetController@detail');
     Route::get('/asset/{id}/delete', 'AssetController@destroy');
 
-    Route::get('/maintenance/{assetId}/add', 'MaintenanceController@create');
-    Route::post('/maintenance/{assetId}/save', 'MaintenanceController@store');
-    Route::get('/maintenance/{assetId}/{id}/edit', 'MaintenanceController@edit');
-    Route::post('/maintenance/{assetId}/{id}/update', 'MaintenanceController@update');
-    Route::get('/maintenance/{assetId}/{id}/detail', 'MaintenanceController@detail');
-    Route::get('/maintenance/{assetId}/{id}/delete', 'MaintenanceController@destroy');
+    Route::get('/asset-by-group/{group}', 'AssetByGroupController@index');
+    Route::post('/asset-by-group/{group}', 'AssetByGroupController@index');
+    Route::get('/asset-by-group/{group}/add', 'AssetByGroupController@create');
+    Route::post('/asset-by-group/{group}/save', 'AssetByGroupController@store');
+    Route::get('/asset-by-group/{group}/{id}/edit', 'AssetByGroupController@edit');
+    Route::post('/asset-by-group/{group}/{id}/update', 'AssetByGroupController@update');
+    Route::get('/asset-by-group/{group}/{id}/detail', 'AssetByGroupController@detail');
+    Route::get('/asset-by-group/{group}/{id}/delete', 'AssetByGroupController@destroy');
+
+    Route::get('/maintenance/{group}/{assetId}/add', 'MaintenanceController@create');
+    Route::post('/maintenance/{group}/{assetId}/save', 'MaintenanceController@store');
+    Route::get('/maintenance/{group}/{assetId}/{id}/edit', 'MaintenanceController@edit');
+    Route::post('/maintenance/{group}/{assetId}/{id}/update', 'MaintenanceController@update');
+    Route::get('/maintenance/{group}/{assetId}/{id}/detail', 'MaintenanceController@detail');
+    Route::get('/maintenance/{group}/{assetId}/{id}/delete', 'MaintenanceController@destroy');
 
 });
 
@@ -101,6 +110,7 @@ Route::group(['middleware' => ['auth', 'menu', 'site']], function () {
 Route::group(['middleware' => ['auth', 'site']], function () {
     Route::get( '/user-data', 'UserController@anyData')->name('user.data' );
     Route::get( '/asset-data', 'AssetController@anyData')->name('asset.data' );
+    Route::get( '/grouped-asset-data', 'AssetByGroupController@anyData')->name('grouped-asset.data' );
     Route::get( '/maintenance-data', 'MaintenanceController@anyData')->name('maintenance.data' );
     Route::get( '/asset-location-data', 'AssetLocationController@anyData')->name('asset-location.data' );
     Route::get( '/asset-performance-data', 'AssetPerformanceController@anyData')->name('asset-performance.data' );
