@@ -30,7 +30,7 @@
                     <div class="portlet light profile-sidebar-portlet ">
                         <!-- SIDEBAR USERPIC -->
                         <div class="profile-userpic">
-                            <img src="{!! asset('uploads/avatars/' . $user->userDetail->avatar) !!}" class="img-responsive" alt=""> </div>
+                            <img src="@if(isset($user->userDetail->avatar)){!! asset('uploads/avatars/' . $user->userDetail->avatar) !!}@else{!! asset('images/avatar.jpg') !!}@endif" class="img-responsive" alt=""> </div>
                         <!-- END SIDEBAR USERPIC -->
                         <!-- SIDEBAR USER TITLE -->
                         <div class="profile-usertitle">
