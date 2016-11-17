@@ -183,10 +183,10 @@
                 },
                 columns: [
                     { data: 'id', name: 'id' },
-                    { data: 'date', name: 'date', "width": "110px" },
-                    { data: 'type', name: 'type', "width": "140px" },
+                    { data: 'date', name: 'date', "width": "120px" },
+                    { data: 'type', name: 'type', "width": "120px" },
                     { data: 'description', name: 'description' },
-                    { data: 'action', name: 'action', orderable: false, searchable: false, "width": "120px" }
+                    { data: 'action', name: 'action', orderable: false, searchable: false, "width": "130px" }
                 ]
             });
 
