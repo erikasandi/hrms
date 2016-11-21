@@ -67,6 +67,20 @@ class Location
         return $form->dbSelect($data, $name, $fields, ['class' => 'form-control']);
     }
 
+    public function locationNestedByParentSelect($name, $parent = '0', $selected = '', $withBlank = true)
+    {
+        $params = [ 'parent_id' => $parent];
+        $form = new FormGenerator();
+        $data = $this->getLocations($params);
+        $fields = [
+            'id' => 'id',
+            'value' => 'name',
+            'selected' => $selected,
+            'withBlank' => $withBlank,
+        ];
+        return $form->nestedDbSelect($data, $name, $fields, ['class' => 'form-control']);
+    }
+
     public function locationNestedSelect($name, $selected = '', $withBlank = true)
     {
         $form = new FormGenerator();
@@ -80,11 +94,14 @@ class Location
         return $form->nestedDbSelect($data, $name, $fields, ['class' => 'form-control']);
     }
 
-    private function getLocations()
+    private function getLocations($params = [])
     {
         $siteId = session('gSite');
         $query = LocationModel::where('id', '<>', 0);
         $query = ( $siteId != '0' ) ? $query->where('site_id', $siteId) : $query ;
+        if ( isset($params['parent_id'])) {
+            $query = $query->where('id', $params['parent_id'])->orWhere('parent_id', $params['parent_id']);
+        }
 
         return $query->get();
     }

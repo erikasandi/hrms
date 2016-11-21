@@ -39,31 +39,44 @@
                                         </div>
                                     @endif
                                     <div class="col-md-12">
-                                        <div class="col-md-4">
-                                            <div class="form-group  @if ($errors->has('name')) has-error @endif">
-                                                <label>Name <span class="required"> * </span></label>
-                                                <input type="text" name="name" class="form-control" placeholder="Name" value="{!! old('name') !!}" autofocus>
-                                                @if ($errors->has('name'))
-                                                    <span class="help-block">{!! $errors->first('name') !!}</span>
-                                                @endif
+                                        <div class="col-md-6">
+                                            <div class="col-md-12">
+                                                <div class="form-group  @if ($errors->has('name')) has-error @endif">
+                                                    <label>Name <span class="required"> * </span></label>
+                                                    <input type="text" name="name" class="form-control" placeholder="Name" value="{!! old('name') !!}" autofocus>
+                                                    @if ($errors->has('name'))
+                                                        <span class="help-block">{!! $errors->first('name') !!}</span>
+                                                    @endif
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group  @if ($errors->has('code')) has-error @endif">
+                                                    <label>Code <span class="required"> * </span></label>
+                                                    <input type="text" name="code" class="form-control" placeholder="Code" value="{!! old('code') !!}">
+                                                    @if ($errors->has('code'))
+                                                        <span class="help-block">{!! $errors->first('code') !!}</span>
+                                                    @endif
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group  @if ($errors->has('code')) has-error @endif">
-                                                <label>Code <span class="required"> * </span></label>
-                                                <input type="text" name="code" class="form-control" placeholder="Code" value="{!! old('code') !!}">
-                                                @if ($errors->has('code'))
-                                                    <span class="help-block">{!! $errors->first('code') !!}</span>
-                                                @endif
+                                        <div class="col-md-6">
+                                            <div class="col-md-12">
+                                                <div class="form-group  @if ($errors->has('location_id')) has-error @endif">
+                                                    <label>Asset Location / Class</label>
+                                                    {!! $locationSelect !!}
+                                                    @if ($errors->has('location_id'))
+                                                        <span class="help-block">{!! $errors->first('location_id') !!}</span>
+                                                    @endif
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group  @if ($errors->has('asset_type_id')) has-error @endif">
-                                                <label>Asset Type</label>
-                                                {!! $assetType !!}
-                                                @if ($errors->has('asset_type_id'))
-                                                    <span class="help-block">{!! $errors->first('asset_type_id') !!}</span>
-                                                @endif
+                                            <div class="col-md-12">
+                                                <div class="form-group  @if ($errors->has('asset_type_id')) has-error @endif">
+                                                    <label>Asset Type</label>
+                                                    {!! $assetType !!}
+                                                    @if ($errors->has('asset_type_id'))
+                                                        <span class="help-block">{!! $errors->first('asset_type_id') !!}</span>
+                                                    @endif
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
