@@ -48,14 +48,17 @@ class AssetByGroupController extends Controller
         $location = $this->locationService->getLocationByName($group);
         $sName = '';
         $sType = '';
+        $sLocation = '';
         if ($request->has('submit')) {
             $sName = $request->input('name');
             $sType = $request->input('asset_type_id');
+            $sLocation = $request->input('location_id');
         }
         $data['sName'] = $sName;
         $data['sType'] = $sType;
+        $data['sLocation'] = $sLocation;
         $data['location'] = $location;
-
+        $data['locationSelect'] = $this->assetService->location()->locationNestedByParentSelect('location_id', $location->id, null, true);
         $data['assetType'] = $this->assetService->assetType()->assetTypeSelect('asset_type_id');
         $data['group'] = $group;
 
