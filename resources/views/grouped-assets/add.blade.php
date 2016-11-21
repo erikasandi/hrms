@@ -20,7 +20,7 @@
                             <span class="caption-subject bold uppercase"> Add {!! $location->name !!} Asset</span>
                         </div>
                         <div class="actions">
-                            <a class="btn btn-xs sbold green" href="{!! url('/asset') !!}">
+                            <a class="btn btn-xs sbold green" href="{!! url('/asset-by-group/' . $group) !!}">
                                 <i class="fa fa-arrow-left"></i> Back
                             </a>
                         </div>
