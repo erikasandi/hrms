@@ -71,6 +71,7 @@ class AssetByGroupController extends Controller
     {
         $data['assetType'] = $this->assetService->assetType()->assetTypeSelect('asset_type_id', null, false);
         $location = $this->locationService->getLocationByName($group);
+        $data['locationSelect'] = $this->assetService->location()->locationNestedByParentSelect('location_id', $location->id, null, false);
         $data['location'] = $location;
         $data['group'] = $group;
         $data['assetFormUrl'] = url('/asset/asset-type-form/');
@@ -82,7 +83,6 @@ class AssetByGroupController extends Controller
     {
         $location = $this->locationService->getLocationByName($group);
         $inputs = $request->except(['_token']);
-        $inputs['location_id'] = $location->id;
         $this->assetService->store($inputs);
 
         return redirect('/asset-by-group/' . $group)->with($this->getMessage('store'));
@@ -94,6 +94,7 @@ class AssetByGroupController extends Controller
         $asset = $this->assetService->getAssetById($id);
         $images = $asset->images;
         $options = ['disabled' => 'disabled', 'class' => 'form-control', 'id' => 'asset-type'];
+        $data['locationSelect'] = $this->assetService->location()->locationNestedByParentSelect('location_id', $location->id, $asset->location_id, false);
         $data['asset'] = $asset;
         $data['assetImages'] = $images;
         $data['assetType'] = $this->assetService->assetType()->assetTypeSelect('asset_type_id', $asset->asset_type_id, false, $options);
@@ -108,7 +109,6 @@ class AssetByGroupController extends Controller
     {
         $location = $this->locationService->getLocationByName($group);
         $inputs = $request->except(['_token']);
-        $inputs['location_id'] = $location->id;
         $this->assetService->update($id, $inputs);
 
         return redirect('asset-by-group/' . $group)->with($this->getMessage('update'));
