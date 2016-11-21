@@ -58,6 +58,14 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    <div class="col-lg-4">
+                                                        <div class="form-body">
+                                                            <div class="form-group">
+                                                                <label>Asset Location / Class</label>
+                                                                {!! $locationSelect !!}
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                     <div class="col-lg-12">
                                                         <button type="submit" name="submit" value="search" class="btn btn-sm sbold green"><i class="fa fa-search"></i> Search</button>
                                                         <button type="button" class="btn btn-sm sbold green search-close"><i class="fa fa-close"></i> Close</button>
@@ -109,7 +117,7 @@
                     data: {
                         's_name': '{!! $sName !!}',
                         's_type': '{!! $sType !!}',
-                        's_location': '{!! $location->id !!}',
+                        's_location': '{!! $sLocation !!}',
                         'group': '{!! $group !!}'
                     }
                 },

@@ -34,22 +34,32 @@
                                 <div class="form-body">
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label class="form-label">Name :</label>
-                                                    <span class="form-control">{!! $asset->name !!}</span>
+                                            <div class="col-md-6">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label class="form-label">Name :</label>
+                                                        <span class="form-control">{!! $asset->name !!}</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label class="form-label">Code :</label>
+                                                        <span class="form-control">{!! $asset->code !!}</span>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label class="form-label">Code :</label>
-                                                    <span class="form-control">{!! $asset->code !!}</span>
+                                            <div class="col-md-6">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label class="form-label">Asset Location / Class :</label>
+                                                        <span class="form-control">{!! $asset->location->name !!}</span>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label class="form-label">Asset Type :</label>
-                                                    <span class="form-control">{!! $asset->assetType->name !!}</span>
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label class="form-label">Asset Type :</label>
+                                                        <span class="form-control">{!! $asset->assetType->name !!}</span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
