@@ -117,7 +117,7 @@
                     data: {
                         's_name': '{!! $sName !!}',
                         's_type': '{!! $sType !!}',
-                        's_location': '{!! $sLocation !!}',
+                        's_location': '@if($sLocation != ''){!! $sLocation !!}@else{!! $location->id !!}@endif',
                         'group': '{!! $group !!}'
                     }
                 },

@@ -17,6 +17,10 @@
                 <label>Condition Details</label>
                 <textarea class="form-control" name="condition_detail"></textarea>
             </div>
+            <div class="form-group ">
+                <label>Reservoir Capacity</label>
+                <input type="text" name="reservoir_capacity" class="form-control">
+            </div>
         </div>
         <div class="col-md-6">
             <div class="form-group ">

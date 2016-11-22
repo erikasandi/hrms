@@ -1,6 +1,6 @@
 <div class="row">
     <div class="asset-type-2">
-        <div class="col-lg-6">
+        <div class="col-md-6">
             <div class="form-group ">
                 <label>Specification</label>
                 <textarea class="form-control" name="specification">{!! $assetDetail->specification !!}</textarea>
@@ -17,8 +17,12 @@
                 <label>Condition Details</label>
                 <textarea class="form-control" name="condition_detail">{!! $assetDetail->condition_detail !!}</textarea>
             </div>
+            <div class="form-group ">
+                <label>Reservoir Capacity</label>
+                <input type="text" name="reservoir_capacity" value="{!! $assetDetail->reservoir_capacity !!}" class="form-control">
+            </div>
         </div>
-        <div class="col-lg-6">
+        <div class="col-md-6">
             <div class="form-group ">
                 <label>Function</label>
                 <textarea class="form-control" name="function">{!! $assetDetail->function !!}</textarea>

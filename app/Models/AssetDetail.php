@@ -7,12 +7,13 @@ use Carbon\Carbon;
 
 class AssetDetail extends Model
 {
-    public $fillable = [
-        'asset_id', 'specification', 'serial_number', 'function', 'asset_condition_id',
-        'asset_performance_id', 'install_date', 'construction_date', 'condition_detail',
-        'performance_detail', 'contractor', 'contract', 'operational_date', 'description',
-        'pipe_diameter', 'network_diameter', 'length', 'number_of_valve', 'number_of_pipe_bridge'
-    ];
+//    public $fillable = [
+//        'asset_id', 'specification', 'serial_number', 'function', 'asset_condition_id',
+//        'asset_performance_id', 'install_date', 'construction_date', 'condition_detail',
+//        'performance_detail', 'contractor', 'contract', 'operational_date', 'description',
+//        'pipe_diameter', 'network_diameter', 'length', 'number_of_valve', 'number_of_pipe_bridge'
+//    ];
+    protected $guarded = ['id'];
 
     public $timestamps = false;
 
