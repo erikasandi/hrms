@@ -19,7 +19,7 @@ class CivilAsset extends AssetHandler
         $assetParams = array_only(
             $inputs,
             [
-                'specification', 'contractor', 'construction_date', 'function', 'asset_performance_id', 'asset_condition_id', 'performance_detail', 'condition_detail'
+                'specification', 'contractor', 'construction_date', 'function', 'asset_performance_id', 'asset_condition_id', 'performance_detail', 'condition_detail', 'reservoir_capacity'
             ]
         );
 
@@ -48,6 +48,9 @@ class CivilAsset extends AssetHandler
         if ($assetParams['condition_detail'] != '') {
             $params['condition_detail'] = $assetParams['condition_detail'];
         }
+        if ($assetParams['reservoir_capacity'] != '') {
+            $params['reservoir_capacity'] = $assetParams['reservoir_capacity'];
+        }
 
         return $asset->detail()->create($assetParams);
     }
@@ -65,6 +68,7 @@ class CivilAsset extends AssetHandler
         $assetDetail->asset_condition_id = $inputs['asset_condition_id'];
         $assetDetail->performance_detail = $inputs['performance_detail'];
         $assetDetail->condition_detail = $inputs['condition_detail'];
+        $assetDetail->reservoir_capacity = $inputs['reservoir_capacity'];
 
         return $assetDetail->save();
     }

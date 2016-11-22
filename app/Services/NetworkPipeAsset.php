@@ -19,8 +19,7 @@ class NetworkPipeAsset extends AssetHandler
         $assetParams = array_only(
             $inputs,
             [
-                'contract', 'contractor', 'pipe_diameter', 'description', 'operational_date', 'network_diameter',
-                'number_of_valve', 'length', 'number_of_pipe_bridge'
+                'contract', 'location', 'location_2', 'contractor', 'operational_date', 'length_per_pipe_diameter', 'description', 'asset_condition_id', 'condition_detail', 'number_of_pipe', 'number_of_valve', 'number_of_pipe_bridge'
             ]
         );
 
@@ -28,26 +27,35 @@ class NetworkPipeAsset extends AssetHandler
         if ($assetParams['contract'] != '') {
             $params['contract'] = $assetParams['contract'];
         }
+        if ($assetParams['location'] != '') {
+            $params['location'] = $assetParams['location'];
+        }
+        if ($assetParams['location_2'] != '') {
+            $params['location_2'] = $assetParams['location_2'];
+        }
         if ($assetParams['contractor'] != '') {
             $params['contractor'] = $assetParams['contractor'];
-        }
-        if ($assetParams['pipe_diameter'] != '') {
-            $params['pipe_diameter'] = $assetParams['pipe_diameter'];
-        }
-        if ($assetParams['description'] != '') {
-            $params['description'] = $assetParams['description'];
         }
         if ($assetParams['operational_date'] != '') {
             $params['operational_date'] = $assetParams['operational_date'];
         }
-        if ($assetParams['network_diameter'] != '') {
-            $params['network_diameter'] = $assetParams['network_diameter'];
+        if ($assetParams['length_per_pipe_diameter'] != '') {
+            $params['length_per_pipe_diameter'] = $assetParams['length_per_pipe_diameter'];
+        }
+        if ($assetParams['description'] != '') {
+            $params['description'] = $assetParams['description'];
+        }
+        if ($assetParams['asset_condition_id'] != '') {
+            $params['asset_condition_id'] = $assetParams['asset_condition_id'];
+        }
+        if ($assetParams['condition_detail'] != '') {
+            $params['condition_detail'] = $assetParams['condition_detail'];
+        }
+        if ($assetParams['number_of_pipe'] != '') {
+            $params['number_of_pipe'] = $assetParams['number_of_pipe'];
         }
         if ($assetParams['number_of_valve'] != '') {
             $params['number_of_valve'] = $assetParams['number_of_valve'];
-        }
-        if ($assetParams['length'] != '') {
-            $params['length'] = $assetParams['length'];
         }
         if ($assetParams['number_of_pipe_bridge'] != '') {
             $params['number_of_pipe_bridge'] = $assetParams['number_of_pipe_bridge'];
@@ -62,12 +70,15 @@ class NetworkPipeAsset extends AssetHandler
 
         $assetDetail = $asset->detail;
         $assetDetail->contract = $inputs['contract'];
+        $assetDetail->location = $inputs['location'];
+        $assetDetail->location_2 = $inputs['location_2'];
         $assetDetail->contractor = $inputs['contractor'];
         $assetDetail->operational_date = $inputs['operational_date'];
-        $assetDetail->pipe_diameter = $inputs['pipe_diameter'];
-        $assetDetail->network_diameter = $inputs['network_diameter'];
+        $assetDetail->length_per_pipe_diameter = $inputs['length_per_pipe_diameter'];
         $assetDetail->description = $inputs['description'];
-        $assetDetail->length = $inputs['length'];
+        $assetDetail->asset_condition_id = $inputs['asset_condition_id'];
+        $assetDetail->condition_detail = $inputs['condition_detail'];
+        $assetDetail->number_of_pipe = $inputs['number_of_pipe'];
         $assetDetail->number_of_valve = $inputs['number_of_valve'];
         $assetDetail->number_of_pipe_bridge = $inputs['number_of_pipe_bridge'];
 

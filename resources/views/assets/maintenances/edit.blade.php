@@ -63,7 +63,7 @@
                                                         @foreach($images as $image)
                                                         <div data-repeater-item class="mt-repeater-item">
                                                             <div class="row mt-repeater-row">
-                                                                <div class="form-group col-md-3">
+                                                                <div class="form-group col-md-4">
                                                                     <div class="fileinput fileinput-new" data-provides="fileinput">
                                                                         <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;">
                                                                             <img src="{!! url('images/medium/' . $image->file_name) !!}">
@@ -79,7 +79,7 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <div class="form-group col-md-8">
+                                                                <div class="form-group col-md-7">
                                                                     <label class="control-label">Image Description</label>
                                                                     <textarea class="form-control" name="image_description"></textarea>
                                                                 </div>

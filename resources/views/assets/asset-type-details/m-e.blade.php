@@ -19,7 +19,7 @@
                     <span class="col-md-12">{!! $asset->detail->condition_detail !!}</span>
                 </div>
             </div>
-            <div class="col-lg-6">
+            <div class="col-md-6">
                 <div class="form-group row">
                     <label class="form-label col-md-12">Function :</label>
                     <span class="col-md-12">{!! $asset->detail->function !!}</span>

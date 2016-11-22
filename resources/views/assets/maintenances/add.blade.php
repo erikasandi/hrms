@@ -55,13 +55,13 @@
                                             <textarea name="performance" class="form-control" placeholder="Performance"></textarea>
                                         </div>
                                     </div>
-                                    <div class="col-lg-12 margin-top-10"><h4>Images</h4></div>
+                                    <div class="col-md-12 margin-top-10"><h4>Images</h4></div>
                                     <div class="col-md-12">
                                         <div class="form-group mt-repeater">
                                             <div data-repeater-list="images">
                                                 <div data-repeater-item class="mt-repeater-item">
                                                     <div class="row mt-repeater-row">
-                                                        <div class="form-group col-md-3">
+                                                        <div class="form-group col-md-4">
                                                             <div class="fileinput fileinput-new" data-provides="fileinput">
                                                                 <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;"> </div>
                                                                 <div>
@@ -74,7 +74,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="form-group col-md-8">
+                                                        <div class="form-group col-md-7">
                                                             <label class="control-label">Image Description</label>
                                                             <textarea class="form-control" name="image_description"></textarea>
                                                         </div>
