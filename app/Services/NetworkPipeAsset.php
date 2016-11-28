@@ -5,6 +5,12 @@ namespace App\Service;
 
 class NetworkPipeAsset extends AssetHandler
 {
+
+    public $formTemplate = 'assets.asset-type-forms.network-pipe';
+    public $editFormTemplate = 'assets.asset-type-forms.network-pipe-edit';
+    public $detailTemplate = 'assets.asset-type-details.network-pipe';
+    public $detailRelation = 'networkPipe';
+
     /**
      * MechanicalAsset constructor.
      */

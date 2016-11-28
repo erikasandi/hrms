@@ -124,6 +124,27 @@ class Asset
         $assetClass->update($id, $inputs);
     }
 
+    public function getFormTemplate($assetTypeId)
+    {
+        $className = $this->getClassHandler($assetTypeId);
+        $assetClass = new $className();
+        return $assetClass->formTemplate;
+    }
+
+    public function getEditFormTemplate($assetTypeId)
+    {
+        $className = $this->getClassHandler($assetTypeId);
+        $assetClass = new $className();
+        return $assetClass->editFormTemplate;
+    }
+
+    public function getDetailTemplate($assetTypeId)
+    {
+        $className = $this->getClassHandler($assetTypeId);
+        $assetClass = new $className();
+        return $assetClass->detailTemplate;
+    }
+
     private function getClassHandler($assetTypeId)
     {
         return '\App\Service\\' . $this->assetType->getAssetTypeById($assetTypeId)->class_name;
@@ -180,6 +201,16 @@ class Asset
         }
 
         return $result;
+    }
+
+    public function getDetailData($assetId)
+    {
+        $asset = AssetModel::find($assetId);
+        $className = $this->getClassHandler($asset->asset_type_id);
+        $handler = new $className();
+        $detailRelation = $handler->detailRelation;
+
+        return $asset->$detailRelation;
     }
 
 

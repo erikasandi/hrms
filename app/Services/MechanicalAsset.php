@@ -7,6 +7,12 @@ use App\Models\AssetModel;
 
 class MechanicalAsset extends AssetHandler
 {
+
+    public $formTemplate = 'assets.asset-type-forms.m-e';
+    public $editFormTemplate = 'assets.asset-type-forms.m-e-edit';
+    public $detailTemplate = 'assets.asset-type-details.m-e';
+    public $detailRelation = 'mechanical';
+
     /**
      * MechanicalAsset constructor.
      */
@@ -52,14 +58,14 @@ class MechanicalAsset extends AssetHandler
             $params['condition_detail'] = $assetParams['condition_detail'];
         }
 
-        return $asset->detail()->create($assetParams);
+        return $asset->mechanical()->create($assetParams);
     }
 
     function update($id, array $inputs)
     {
         $asset = $this->updateAsset($id, $inputs);
 
-        $assetDetail = $asset->detail;
+        $assetDetail = $asset->mechanical;
         $assetDetail->specification = $inputs['specification'];
         $assetDetail->serial_number = $inputs['serial_number'];
         $assetDetail->install_date = $inputs['install_date'];
@@ -71,4 +77,5 @@ class MechanicalAsset extends AssetHandler
 
         return $assetDetail->save();
     }
+
 }

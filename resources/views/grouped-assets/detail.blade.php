@@ -78,15 +78,7 @@
                                             </ul>
                                             <div class="tab-content asset-tab-content">
                                                 <div class="tab-pane active" id="tab_general">
-                                                    @if($asset->asset_type_id == 2)
-                                                        @include('assets.asset-type-details.m-e')
-                                                    @elseif($asset->asset_type_id == 3)
-                                                        @include('assets.asset-type-details.electrical')
-                                                    @elseif($asset->asset_type_id == 4)
-                                                        @include('assets.asset-type-details.civil')
-                                                    @elseif($asset->asset_type_id == 6)
-                                                        @include('assets.asset-type-details.network-pipe')
-                                                    @endif
+                                                    @include($detailTemplate)
                                                 </div>
                                                 <div class="tab-pane" id="tab_images">
                                                     <div class="tab-pane images-repeater" id="tab_images">

@@ -118,8 +118,8 @@ Route::group(['middleware' => ['auth', 'site']], function () {
     Route::get( '/asset-condition-data', 'AssetConditionController@anyData')->name('asset-condition.data' );
     Route::get( '/site-data', 'SiteController@anyData')->name('site.data' );
     Route::get( '/menu-data', 'MenuController@anyData')->name('menu.data' );
-    Route::get('/asset/asset-type-form/{formId}', 'AssetController@assetTypeForm');
-    Route::get('/asset/asset-type-edit-form/{assetId}/{formId}', 'AssetController@assetTypeEditForm');
+    Route::get('/asset/asset-type-form/{formId}', 'AssetByGroupController@assetTypeForm');
+    Route::get('/asset/asset-type-edit-form/{assetId}/{formId}', 'AssetByGroupController@assetTypeEditForm');
     Route::post('/ajax/upload', 'AssetController@uploadImage');
 });
 

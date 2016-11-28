@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class AssetCondition extends Model
 {
+    use HasManyAsset;
+
     public $timestamps = false;
     public $fillable = ['name', 'description'];
 

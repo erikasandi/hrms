@@ -13,6 +13,21 @@ class Asset extends Model
         return $this->hasOne(AssetDetail::class);
     }
 
+    public function mechanical()
+    {
+        return $this->hasOne(MechanicalDetail::class);
+    }
+
+    public function civil()
+    {
+        return $this->hasOne(CivilDetail::class);
+    }
+
+    public function networkPipe()
+    {
+        return $this->hasOne(NetworkPipeDetail::class);
+    }
+
     public function assetType()
     {
         return $this->belongsTo(AssetType::class);
