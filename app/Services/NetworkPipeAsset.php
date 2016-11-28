@@ -67,14 +67,14 @@ class NetworkPipeAsset extends AssetHandler
             $params['number_of_pipe_bridge'] = $assetParams['number_of_pipe_bridge'];
         }
 
-        return $asset->detail()->create($params);
+        return $asset->networkPipe()->create($params);
     }
 
     function update($id, array $inputs)
     {
         $asset = $this->updateAsset($id, $inputs);
 
-        $assetDetail = $asset->detail;
+        $assetDetail = $asset->networkPipe;
         $assetDetail->contract = $inputs['contract'];
         $assetDetail->location = $inputs['location'];
         $assetDetail->location_2 = $inputs['location_2'];
