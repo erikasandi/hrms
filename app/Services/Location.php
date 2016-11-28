@@ -106,6 +106,20 @@ class Location
         return $query->get();
     }
 
+    public function assetTypeByLocationSelect($name, $location, $selected = '', $withBlank = true, $options = '')
+    {
+        $form = new FormGenerator();
+        $assetTypes = $this->getAssetTypesByLocation($location);
+        $fields = [
+            'id' => 'id',
+            'value' => 'name',
+            'withBlank' => $withBlank,
+            'selected' => $selected
+        ];
+        $options = $options != '' ? $options : ['class' => 'form-control', 'id' => 'asset-type'];
+        return $form->dbSelect($assetTypes, $name, $fields, $options);
+    }
+
     public function getLocationByName($name)
     {
         return LocationModel::where('name', $name)->first();
@@ -119,5 +133,10 @@ class Location
             return true;
         }
         return false;
+    }
+
+    private function getAssetTypesByLocation($location)
+    {
+        return LocationModel::find($location)->assetTypes;
     }
 }

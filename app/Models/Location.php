@@ -28,4 +28,9 @@ class Location extends Model
     {
         return $this->belongsTo(Site::class);
     }
+
+    public function assetTypes()
+    {
+        return $this->belongsToMany(AssetType::class, 'location_has_asset_types');
+    }
 }

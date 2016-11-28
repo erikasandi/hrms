@@ -10,6 +10,7 @@ use App\Service\Location;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\Log;
 
 class AssetByGroupController extends Controller
 {
@@ -58,8 +59,9 @@ class AssetByGroupController extends Controller
         $data['sType'] = $sType;
         $data['sLocation'] = $sLocation;
         $data['location'] = $location;
-        $data['locationSelect'] = $this->assetService->location()->locationNestedByParentSelect('location_id', $location->id, null, true);
-        $data['assetType'] = $this->assetService->assetType()->assetTypeSelect('asset_type_id');
+        $locationSelect = $this->assetService->location()->locationNestedByParentSelect('location_id', $location->id, null, false);
+        $data['locationSelect'] = $locationSelect;
+        $data['assetType'] = $this->locationService->assetTypeByLocationSelect('asset_type_id', $location->id, null, false);
         $data['group'] = $group;
 
         return view('grouped-assets.list', $data);
@@ -72,8 +74,8 @@ class AssetByGroupController extends Controller
 
     public function create($group = '')
     {
-        $data['assetType'] = $this->assetService->assetType()->assetTypeSelect('asset_type_id', null, false);
         $location = $this->locationService->getLocationByName($group);
+        $data['assetType'] = $this->locationService->assetTypeByLocationSelect('asset_type_id', $location->id, null, false);
         $data['locationSelect'] = $this->assetService->location()->locationNestedByParentSelect('location_id', $location->id, null, false);
         $data['location'] = $location;
         $data['group'] = $group;
@@ -100,7 +102,7 @@ class AssetByGroupController extends Controller
         $data['locationSelect'] = $this->assetService->location()->locationNestedByParentSelect('location_id', $location->id, $asset->location_id, false);
         $data['asset'] = $asset;
         $data['assetImages'] = $images;
-        $data['assetType'] = $this->assetService->assetType()->assetTypeSelect('asset_type_id', $asset->asset_type_id, false, $options);
+        $data['assetType'] = $this->locationService->assetTypeByLocationSelect('asset_type_id', $location->id, $asset->asset_type_id, false, $options);
         $data['assetFormUrl'] = url('/asset/asset-type-edit-form/' . $asset->id);
         $data['group'] = $group;
         $data['location'] = $location;
@@ -125,6 +127,8 @@ class AssetByGroupController extends Controller
         $data['asset'] = $asset;
         $data['location'] = $location;
         $data['group'] = $group;
+        $data['detailTemplate'] = $this->assetService->getDetailTemplate($asset->asset_type_id);
+        $data['assetDetail'] = $this->assetService->getDetailData($assetId);
         return view('grouped-assets.detail', $data);
     }
 
@@ -133,5 +137,31 @@ class AssetByGroupController extends Controller
         $this->assetService->destroy($id);
 
         return redirect('/asset-by-group/' . $group)->with($this->getMessage('delete'));
+    }
+
+    public function assetTypeForm($assetType)
+    {
+        $data['assetType'] = $assetType;
+        $data['assetFormUrl'] = url('/asset/asset-type-form/');
+        $data['performance'] = $this->assetService->assetPerformance()->assetPerformanceSelect('asset_performance_id');
+        $data['condition'] = $this->assetService->assetCondition()->assetConditionSelect('asset_condition_id');
+        $formTemplate = $this->assetService->getFormTemplate($assetType);
+
+        echo \View::make($formTemplate, $data)->render();
+    }
+
+    public function assetTypeEditForm($assetId, $assetType)
+    {
+        $asset = $this->assetService->getAssetById($assetId);
+        $detail = $this->assetService->getDetailData($assetId);
+
+        $data['assetDetail'] = $detail;
+        $data['assetType'] = $assetType;
+        $data['assetFormUrl'] = url('/asset/asset-type-edit-form/');
+        $data['performance'] = $this->assetService->assetPerformance()->assetPerformanceSelect('asset_performance_id', $detail->asset_performance_id);
+        $data['condition'] = $this->assetService->assetCondition()->assetConditionSelect('asset_condition_id', $detail->asset_condition_id);
+        $formTemplate = $this->assetService->getEditFormTemplate($assetType);
+
+        echo \View::make($formTemplate, $data)->render();
     }
 }

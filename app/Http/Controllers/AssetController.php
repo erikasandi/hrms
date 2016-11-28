@@ -119,6 +119,7 @@ class AssetController extends Controller
         $data['assetFormUrl'] = url('/asset/asset-type-form/');
         $data['performance'] = $this->assetService->assetPerformance()->assetPerformanceSelect('asset_performance_id');
         $data['condition'] = $this->assetService->assetCondition()->assetConditionSelect('asset_condition_id');
+
         echo \View::make('assets.asset-type-form', $data)->render();
     }
 
