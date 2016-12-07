@@ -28,7 +28,7 @@ class MechanicalAsset extends AssetHandler
             $inputs,
             [
                 'specification', 'serial_number', 'install_date', 'function', 'asset_performance_id', 'asset_condition_id',
-                'performance_detail', 'condition_detail'
+                'performance_detail', 'condition_detail', 'brand'
             ]
         );
 
@@ -57,8 +57,11 @@ class MechanicalAsset extends AssetHandler
         if ($assetParams['condition_detail'] != '') {
             $params['condition_detail'] = $assetParams['condition_detail'];
         }
+        if ($assetParams['brand'] != '') {
+            $params['brand'] = $assetParams['brand'];
+        }
 
-        return $asset->mechanical()->create($assetParams);
+        return $asset->mechanical()->create($params);
     }
 
     function update($id, array $inputs)
@@ -74,6 +77,7 @@ class MechanicalAsset extends AssetHandler
         $assetDetail->asset_condition_id = $inputs['asset_condition_id'];
         $assetDetail->performance_detail = $inputs['performance_detail'];
         $assetDetail->condition_detail = $inputs['condition_detail'];
+        $assetDetail->brand = $inputs['brand'];
 
         return $assetDetail->save();
     }

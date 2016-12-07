@@ -7,6 +7,10 @@
                     <span class="col-md-12">{!! $assetDetail->specification !!}</span>
                 </div>
                 <div class="form-group row">
+                    <label class="form-label col-md-12">Brand :</label>
+                    <span class="col-md-12">{!! $assetDetail->brand !!}</span>
+                </div>
+                <div class="form-group row">
                     <label class="form-label col-md-12">Serial Number :</label>
                     <span class="col-md-12">{!! $assetDetail->serial_number !!}</span>
                 </div>
@@ -35,6 +39,10 @@
                 <div class="form-group row">
                     <label class="form-label col-md-12">Performance Details :</label>
                     <span class="col-md-12">{!! $assetDetail->performance_detail !!}</span>
+                </div>
+                <div class="form-group row">
+                    <label class="form-label col-md-12">Reservoir Capacity :</label>
+                    <span class="col-md-12">{!! $assetDetail->reservoir_capacity !!}</span>
                 </div>
             </div>
         </div>

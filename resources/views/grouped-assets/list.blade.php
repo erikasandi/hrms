@@ -126,7 +126,7 @@
                     { data: 'name', name: 'name' },
                     { data: 'type', name: 'type' },
                     { data: 'location', name: 'location' },
-                    { data: 'action', name: 'action', orderable: false, searchable: false, "width": "280px" }
+                    { data: 'action', name: 'action', orderable: false, searchable: false, "width": "{!! $actionWidth !!}" }
                 ]
             });
 

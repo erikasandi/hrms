@@ -58,6 +58,8 @@ class AssetByGroupController extends Controller
         $data['sName'] = $sName;
         $data['sType'] = $sType;
         $data['sLocation'] = $sLocation;
+        // set action column width
+        $data['actionWidth'] = ( $group == 'commercial' ? '302px' : '280px' );
         $data['location'] = $location;
         $locationSelect = $this->assetService->location()->locationNestedByParentSelect('location_id', $location->id, null, false);
         $data['locationSelect'] = $locationSelect;
@@ -79,6 +81,7 @@ class AssetByGroupController extends Controller
         $data['locationSelect'] = $this->assetService->location()->locationNestedByParentSelect('location_id', $location->id, null, false);
         $data['location'] = $location;
         $data['group'] = $group;
+        $data['codeLabel'] = ( $group == 'commercial' ? 'Account ID' : 'Code' );
         $data['assetFormUrl'] = url('/asset/asset-type-form/');
 
         return view('grouped-assets.add', $data);
@@ -129,6 +132,7 @@ class AssetByGroupController extends Controller
         $data['group'] = $group;
         $data['detailTemplate'] = $this->assetService->getDetailTemplate($asset->asset_type_id);
         $data['assetDetail'] = $this->assetService->getDetailData($assetId);
+
         return view('grouped-assets.detail', $data);
     }
 

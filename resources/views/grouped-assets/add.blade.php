@@ -51,8 +51,8 @@
                                             </div>
                                             <div class="col-md-12">
                                                 <div class="form-group  @if ($errors->has('code')) has-error @endif">
-                                                    <label>Code <span class="required"> * </span></label>
-                                                    <input type="text" name="code" class="form-control" placeholder="Code" value="{!! old('code') !!}">
+                                                    <label>{!! $codeLabel !!} <span class="required"> * </span></label>
+                                                    <input type="text" name="code" class="form-control" placeholder="{!! $codeLabel !!}" value="{!! old('code') !!}">
                                                     @if ($errors->has('code'))
                                                         <span class="help-block">{!! $errors->first('code') !!}</span>
                                                     @endif
