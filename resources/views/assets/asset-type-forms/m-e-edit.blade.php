@@ -6,6 +6,10 @@
                 <textarea class="form-control" name="specification">{!! $assetDetail->specification !!}</textarea>
             </div>
             <div class="form-group ">
+                <label>Brand</label>
+                <input type="text" name="brand" value="{!! $assetDetail->brand !!}" class="form-control">
+            </div>
+            <div class="form-group ">
                 <label>Serial Number</label>
                 <input type="text" name="serial_number" value="{!! $assetDetail->serial_number !!}" class="form-control">
             </div>
@@ -34,6 +38,10 @@
             <div class="form-group ">
                 <label>Performance Details</label>
                 <textarea class="form-control" name="performance_detail">{!! $assetDetail->performance_detail !!}</textarea>
+            </div>
+            <div class="form-group ">
+                <label>Reservoir Capacity</label>
+                <input type="text" name="reservoir_capacity" value="{!! $assetDetail->reservoir_capacity !!}" class="form-control">
             </div>
         </div>
     </div>

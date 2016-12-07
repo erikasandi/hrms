@@ -28,6 +28,16 @@ class Asset extends Model
         return $this->hasOne(NetworkPipeDetail::class);
     }
 
+    public function commercial()
+    {
+        return $this->hasOne(CommercialDetail::class);
+    }
+
+    public function bills()
+    {
+        return $this->hasMany(AssetBill::class);
+    }
+
     public function assetType()
     {
         return $this->belongsTo(AssetType::class);

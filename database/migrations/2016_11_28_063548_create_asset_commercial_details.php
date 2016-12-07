@@ -28,7 +28,11 @@ class CreateAssetCommercialDetails extends Migration
             $table->date('install_date')->nullable();
             $table->string('meter_digit')->nullable();
             $table->string('meter_picture')->nullable();
-            $table->timestamps();
+
+            $table->foreign('asset_id')
+                ->references('id')
+                ->on('assets')
+                ->onDelete('cascade');
         });
     }
 

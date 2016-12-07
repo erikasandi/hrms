@@ -3,8 +3,13 @@
 namespace App\Service;
 
 
-class CommercialAsset
+class CommercialAsset extends AssetHandler
 {
+    public $formTemplate = 'assets.asset-type-forms.commercial';
+    public $editFormTemplate = 'assets.asset-type-forms.commercial-edit';
+    public $detailTemplate = 'assets.asset-type-details.commercial';
+    public $detailRelation = 'commercial';
+    
     /**
      * CommercialAsset constructor.
      */
@@ -20,7 +25,7 @@ class CommercialAsset
             $inputs,
             [
                 'address', 'gps_location', 'pic', 'phone', 'status', 'line_of_business',
-                'serial_number', 'brand', 'size', 'install_date', 'meter_digit'
+                'meter_serial_number', 'meter_brand', 'meter_size', 'meter_install_date', 'meter_digit'
             ]
         );
 
@@ -49,44 +54,44 @@ class CommercialAsset
             $params['line_of_business'] = $assetParams['line_of_business'];
         }
 
-        if ($assetParams['serial_number'] != '') {
-            $params['serial_number'] = $assetParams['serial_number'];
+        if ($assetParams['meter_serial_number'] != '') {
+            $params['serial_number'] = $assetParams['meter_serial_number'];
         }
 
-        if ($assetParams['brand'] != '') {
-            $params['brand'] = $assetParams['brand'];
+        if ($assetParams['meter_brand'] != '') {
+            $params['brand'] = $assetParams['meter_brand'];
         }
 
-        if ($assetParams['size'] != '') {
-            $params['size'] = $assetParams['size'];
+        if ($assetParams['meter_size'] != '') {
+            $params['size'] = $assetParams['meter_size'];
         }
 
-        if ($assetParams['install_date'] != '') {
-            $params['install_date'] = $assetParams['install_date'];
+        if ($assetParams['meter_install_date'] != '') {
+            $params['install_date'] = $assetParams['meter_install_date'];
         }
 
         if ($assetParams['meter_digit'] != '') {
             $params['meter_digit'] = $assetParams['meter_digit'];
         }
 
-        return $asset->detail()->create($assetParams);
+        return $asset->commercial()->create($params);
     }
 
     function update($id, array $inputs)
     {
         $asset = $this->updateAsset($id, $inputs);
 
-        $assetDetail = $asset->detail;
+        $assetDetail = $asset->commercial;
         $assetDetail->address = $inputs['address'];
         $assetDetail->gps_location = $inputs['gps_location'];
         $assetDetail->pic = $inputs['pic'];
         $assetDetail->phone = $inputs['phone'];
         $assetDetail->status = $inputs['status'];
         $assetDetail->line_of_business = $inputs['line_of_business'];
-        $assetDetail->serial_number = $inputs['serial_number'];
-        $assetDetail->brand = $inputs['brand'];
-        $assetDetail->size = $inputs['size'];
-        $assetDetail->install_date = $inputs['install_date'];
+        $assetDetail->serial_number = $inputs['meter_serial_number'];
+        $assetDetail->brand = $inputs['meter_brand'];
+        $assetDetail->size = $inputs['meter_size'];
+        $assetDetail->install_date = $inputs['meter_install_date'];
         $assetDetail->meter_digit = $inputs['meter_digit'];
 
         return $assetDetail->save();

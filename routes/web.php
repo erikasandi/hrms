@@ -104,6 +104,13 @@ Route::group(['middleware' => ['auth', 'menu', 'site']], function () {
     Route::get('/maintenance/{group}/{assetId}/{id}/detail', 'MaintenanceController@detail');
     Route::get('/maintenance/{group}/{assetId}/{id}/delete', 'MaintenanceController@destroy');
 
+    Route::get('/bill/{group}/{assetId}/add', 'BillController@create');
+    Route::post('/bill/{group}/{assetId}/save', 'BillController@store');
+    Route::get('/bill/{group}/{assetId}/{id}/edit', 'BillController@edit');
+    Route::post('/bill/{group}/{assetId}/{id}/update', 'BillController@update');
+    Route::get('/bill/{group}/{assetId}/{id}/detail', 'BillController@detail');
+    Route::get('/bill/{group}/{assetId}/{id}/delete', 'BillController@destroy');
+
 });
 
 
@@ -112,6 +119,7 @@ Route::group(['middleware' => ['auth', 'site']], function () {
     Route::get( '/asset-data', 'AssetController@anyData')->name('asset.data' );
     Route::get( '/grouped-asset-data', 'AssetByGroupController@anyData')->name('grouped-asset.data' );
     Route::get( '/maintenance-data', 'MaintenanceController@anyData')->name('maintenance.data' );
+    Route::get( '/bill-data', 'BillController@anyData')->name('bill.data' );
     Route::get( '/asset-location-data', 'AssetLocationController@anyData')->name('asset-location.data' );
     Route::get( '/asset-performance-data', 'AssetPerformanceController@anyData')->name('asset-performance.data' );
     Route::get( '/asset-type-data', 'AssetTypeController@anyData')->name('asset-type.data' );

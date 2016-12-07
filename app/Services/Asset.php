@@ -70,11 +70,20 @@ class Asset
         $assets = $this->getAssets($request);
         $actions = $this->actionParameters(['edit', 'detail', 'delete']);
         $actions['maintenance'] = [
-            'title'     => 'Maintenance',
+            'title'     => 'Maint',
             'link'      => url('asset-by-group/' . $group . '/%s/detail/#tab_maintenances'),
             'class'     => 'btn btn-xs btn-default',
             'icon'      => ''
         ];
+
+        if ($group == 'commercial') {
+            $actions['bill'] = [
+                'title'     => 'Bill',
+                'link'      => url('asset-by-group/' . $group . '/%s/detail/#tab_bills'),
+                'class'     => 'btn btn-xs btn-default',
+                'icon'      => ''
+            ];
+        }
 
         return (new DatatableGenerator($assets))
             ->addActions($actions)

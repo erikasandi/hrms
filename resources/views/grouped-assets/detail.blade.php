@@ -75,6 +75,11 @@
                                                 <li>
                                                     <a href="#tab_maintenances" data-toggle="tab"> Maintenances </a>
                                                 </li>
+                                                @if ($group == 'commercial')
+                                                <li>
+                                                    <a href="#tab_bills" data-toggle="tab"> Bills </a>
+                                                </li>
+                                                @endif
                                             </ul>
                                             <div class="tab-content asset-tab-content">
                                                 <div class="tab-pane active" id="tab_general">
@@ -139,6 +144,11 @@
                                                 <div class="tab-pane" id="tab_maintenances">
                                                     @include('assets.maintenances.list')
                                                 </div>
+                                                @if ($group == 'commercial')
+                                                <div class="tab-pane" id="tab_bills">
+                                                    @include('assets.bills.list')
+                                                </div>
+                                                @endif
                                             </div>
                                         </div>
                                         {{--end of asset-tab--}}
@@ -191,6 +201,28 @@
                     { data: 'action', name: 'action', orderable: false, searchable: false, "width": "130px" }
                 ]
             });
+
+            @if($group == 'commercial')
+            $('#bill').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: {
+                    url: '{!! route('bill.data') !!}',
+                    data: {
+                        'assetId': '{!! $assetId !!}',
+                        'group': '{!! $group !!}'
+                    }
+                },
+                columns: [
+                    { data: 'id', name: 'id' },
+                    { data: 'bill_date', name: 'bill_date', "width": "120px" },
+                    { data: 'tariff_code', name: 'tariff_code', "width": "120px" },
+                    { data: 'water_usage', name: 'water_usage' },
+                    { data: 'bill_amount', name: 'bill_amount' },
+                    { data: 'action', name: 'action', orderable: false, searchable: false, "width": "130px" }
+                ]
+            });
+            @endif
 
             $('#collapse_1').on('shown.bs.collapse', function () {
                 $('.search-input').focus();

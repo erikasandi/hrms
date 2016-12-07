@@ -58,7 +58,7 @@ class CivilAsset extends AssetHandler
             $params['reservoir_capacity'] = $assetParams['reservoir_capacity'];
         }
 
-        return $asset->civil()->create($assetParams);
+        return $asset->civil()->create($params);
     }
 
     function update($id, array $inputs)
