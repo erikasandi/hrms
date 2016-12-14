@@ -45,9 +45,11 @@ CREATE TABLE `asset_civil_details` (
   PRIMARY KEY (`id`),
   KEY `asset_civil_details_asset_id_foreign` (`asset_id`),
   CONSTRAINT `asset_civil_details_asset_id_foreign` FOREIGN KEY (`asset_id`) REFERENCES `assets` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `asset_civil_details` */
+
+insert  into `asset_civil_details`(`id`,`asset_id`,`specification`,`contractor`,`construction_date`,`function`,`asset_performance_id`,`performance_detail`,`asset_condition_id`,`condition_detail`,`reservoir_capacity`) values (1,57,'ASUS','ENCONA','2016-12-27','TEST',8,'TES',1,'TEST','TE');
 
 /*Table structure for table `asset_commercial_details` */
 
@@ -176,7 +178,7 @@ CREATE TABLE `asset_images` (
   `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `path` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `asset_images` */
 
@@ -188,6 +190,7 @@ insert  into `asset_images`(`id`,`asset_id`,`title`,`path`) values (11,3,'head-s
 insert  into `asset_images`(`id`,`asset_id`,`title`,`path`) values (12,3,'head-sample-02.jpg','head-sample-02.jpg');
 insert  into `asset_images`(`id`,`asset_id`,`title`,`path`) values (20,12,'banner-ticket.png','banner-ticket.png');
 insert  into `asset_images`(`id`,`asset_id`,`title`,`path`) values (21,16,'banner-ticket.png','banner-ticket.png');
+insert  into `asset_images`(`id`,`asset_id`,`title`,`path`) values (22,57,'404.png','404.png');
 
 /*Table structure for table `asset_mechanical_details` */
 
@@ -282,7 +285,7 @@ CREATE TABLE `asset_types` (
   `class_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `site_id` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `asset_types` */
 
@@ -293,6 +296,7 @@ insert  into `asset_types`(`id`,`name`,`description`,`class_name`,`site_id`) val
 insert  into `asset_types`(`id`,`name`,`description`,`class_name`,`site_id`) values (7,'Scada',NULL,'ScadaAsset',2);
 insert  into `asset_types`(`id`,`name`,`description`,`class_name`,`site_id`) values (8,'Commercial',NULL,'CommercialAsset',2);
 insert  into `asset_types`(`id`,`name`,`description`,`class_name`,`site_id`) values (9,'ICT','','ICTAsset',2);
+insert  into `asset_types`(`id`,`name`,`description`,`class_name`,`site_id`) values (10,'GA',NULL,'GAAsset',2);
 
 /*Table structure for table `assets` */
 
@@ -306,7 +310,7 @@ CREATE TABLE `assets` (
   `asset_type_id` int(11) NOT NULL,
   `site_id` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `assets` */
 
@@ -331,6 +335,7 @@ insert  into `assets`(`id`,`code`,`name`,`location_id`,`created_at`,`updated_at`
 insert  into `assets`(`id`,`code`,`name`,`location_id`,`created_at`,`updated_at`,`asset_type_id`,`site_id`) values (47,'xxx123','xxx','37','2016-11-29 03:57:34','2016-11-29 03:57:34',8,1);
 insert  into `assets`(`id`,`code`,`name`,`location_id`,`created_at`,`updated_at`,`asset_type_id`,`site_id`) values (48,'ITK-001000','BREAST PUMP','8','2016-12-07 07:05:56','2016-12-07 07:05:56',2,1);
 insert  into `assets`(`id`,`code`,`name`,`location_id`,`created_at`,`updated_at`,`asset_type_id`,`site_id`) values (56,'O-001','Office 360','39','2016-12-08 07:09:33','2016-12-08 07:09:33',9,1);
+insert  into `assets`(`id`,`code`,`name`,`location_id`,`created_at`,`updated_at`,`asset_type_id`,`site_id`) values (57,'TP001','TESTPROD','8','2016-12-09 03:37:00','2016-12-09 03:37:00',4,1);
 
 /*Table structure for table `location_has_asset_types` */
 
@@ -343,7 +348,7 @@ CREATE TABLE `location_has_asset_types` (
   KEY `location_has_asset_types_asset_type_id_foreign` (`asset_type_id`),
   CONSTRAINT `location_has_asset_types_asset_type_id_foreign` FOREIGN KEY (`asset_type_id`) REFERENCES `asset_types` (`id`) ON DELETE CASCADE,
   CONSTRAINT `location_has_asset_types_location_id_foreign` FOREIGN KEY (`location_id`) REFERENCES `locations` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `location_has_asset_types` */
 
@@ -355,6 +360,8 @@ insert  into `location_has_asset_types`(`id`,`location_id`,`asset_type_id`) valu
 insert  into `location_has_asset_types`(`id`,`location_id`,`asset_type_id`) values (6,8,7);
 insert  into `location_has_asset_types`(`id`,`location_id`,`asset_type_id`) values (7,37,8);
 insert  into `location_has_asset_types`(`id`,`location_id`,`asset_type_id`) values (8,38,9);
+insert  into `location_has_asset_types`(`id`,`location_id`,`asset_type_id`) values (9,41,2);
+insert  into `location_has_asset_types`(`id`,`location_id`,`asset_type_id`) values (10,41,4);
 
 /*Table structure for table `locations` */
 
@@ -366,7 +373,7 @@ CREATE TABLE `locations` (
   `parent_id` int(11) NOT NULL DEFAULT '0',
   `site_id` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `locations` */
 
@@ -403,6 +410,7 @@ insert  into `locations`(`id`,`name`,`description`,`image_path`,`parent_id`,`sit
 insert  into `locations`(`id`,`name`,`description`,`image_path`,`parent_id`,`site_id`) values (38,'ICT',NULL,NULL,0,2);
 insert  into `locations`(`id`,`name`,`description`,`image_path`,`parent_id`,`site_id`) values (39,'Software','',NULL,38,2);
 insert  into `locations`(`id`,`name`,`description`,`image_path`,`parent_id`,`site_id`) values (40,'Hardware','',NULL,38,2);
+insert  into `locations`(`id`,`name`,`description`,`image_path`,`parent_id`,`site_id`) values (41,'GA','',NULL,0,2);
 
 /*Table structure for table `maintenance_images` */
 
@@ -454,7 +462,7 @@ CREATE TABLE `maintenances` (
   PRIMARY KEY (`id`),
   KEY `maintenances_asset_id_foreign` (`asset_id`),
   CONSTRAINT `maintenances_asset_id_foreign` FOREIGN KEY (`asset_id`) REFERENCES `assets` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `maintenances` */
 
@@ -481,6 +489,7 @@ insert  into `maintenances`(`id`,`asset_id`,`maintenance_type_id`,`description`,
 insert  into `maintenances`(`id`,`asset_id`,`maintenance_type_id`,`description`,`performance`,`maintenance_date`,`created_at`,`updated_at`) values (30,30,1,'Treatment oli trafo, cleaning dan pengujian transformator oleh vendor.','','2015-04-01','2016-11-10 18:54:11','2016-11-10 18:54:11');
 insert  into `maintenances`(`id`,`asset_id`,`maintenance_type_id`,`description`,`performance`,`maintenance_date`,`created_at`,`updated_at`) values (31,30,1,'Treatment oli trafo, cleaning dan pengujian transformator oleh vendor.','','2016-10-01','2016-11-10 18:54:40','2016-11-10 18:54:40');
 insert  into `maintenances`(`id`,`asset_id`,`maintenance_type_id`,`description`,`performance`,`maintenance_date`,`created_at`,`updated_at`) values (32,56,1,'Update License','','2016-12-14','2016-12-08 07:10:04','2016-12-08 07:10:04');
+insert  into `maintenances`(`id`,`asset_id`,`maintenance_type_id`,`description`,`performance`,`maintenance_date`,`created_at`,`updated_at`) values (33,57,1,'Ganti keyboard','test','2016-12-08','2016-12-09 03:37:55','2016-12-09 03:37:55');
 
 /*Table structure for table `menus` */
 
@@ -513,12 +522,12 @@ insert  into `menus`(`id`,`name`,`display`,`link`,`parent_id`,`permission`,`icon
 insert  into `menus`(`id`,`name`,`display`,`link`,`parent_id`,`permission`,`icon_class`,`description`,`created_at`,`updated_at`,`order`) values (16,'asset.location','Location','asset-location',19,'setting','',NULL,'2016-09-20 16:14:44','2016-11-13 14:31:13',800);
 insert  into `menus`(`id`,`name`,`display`,`link`,`parent_id`,`permission`,`icon_class`,`description`,`created_at`,`updated_at`,`order`) values (17,'asset.add','Add Asset','asset/add',1,'asset.all.add','',NULL,'2016-09-21 17:00:43','2016-11-13 14:29:49',150);
 insert  into `menus`(`id`,`name`,`display`,`link`,`parent_id`,`permission`,`icon_class`,`description`,`created_at`,`updated_at`,`order`) values (18,'asset.list','Asset List','asset',1,'asset.all','',NULL,'2016-09-27 17:20:37','2016-11-13 14:29:45',100);
-insert  into `menus`(`id`,`name`,`display`,`link`,`parent_id`,`permission`,`icon_class`,`description`,`created_at`,`updated_at`,`order`) values (19,'asset.setting','Asset Settings','javascript:;',2,'setting','',NULL,'2016-11-13 14:30:39','2016-11-13 14:30:39',50);
+insert  into `menus`(`id`,`name`,`display`,`link`,`parent_id`,`permission`,`icon_class`,`description`,`created_at`,`updated_at`,`order`) values (19,'asset.setting','Asset Settings','javascript:;',2,'setting','',NULL,'2016-11-13 14:30:39','2016-12-08 08:59:23',100);
 insert  into `menus`(`id`,`name`,`display`,`link`,`parent_id`,`permission`,`icon_class`,`description`,`created_at`,`updated_at`,`order`) values (20,'asset.distribution.list','Distribution','asset-by-group/distribution',1,'asset.distribution',NULL,NULL,NULL,NULL,100);
 insert  into `menus`(`id`,`name`,`display`,`link`,`parent_id`,`permission`,`icon_class`,`description`,`created_at`,`updated_at`,`order`) values (21,'asset.production.list','Production','asset-by-group/production',1,'asset.production','',NULL,NULL,'2016-11-17 17:39:08',50);
 insert  into `menus`(`id`,`name`,`display`,`link`,`parent_id`,`permission`,`icon_class`,`description`,`created_at`,`updated_at`,`order`) values (22,'asset.commercial.list','Commercial','asset-by-group/commercial',1,'asset.commercial',NULL,NULL,NULL,NULL,300);
 insert  into `menus`(`id`,`name`,`display`,`link`,`parent_id`,`permission`,`icon_class`,`description`,`created_at`,`updated_at`,`order`) values (23,'asset.ict.list','ICT','asset-by-group/ict',1,'asset.ict',NULL,NULL,NULL,NULL,400);
-insert  into `menus`(`id`,`name`,`display`,`link`,`parent_id`,`permission`,`icon_class`,`description`,`created_at`,`updated_at`,`order`) values (24,'asset.ga.list','GA','asset-by-group/ga',1,'asset.ga',NULL,NULL,NULL,NULL,500);
+insert  into `menus`(`id`,`name`,`display`,`link`,`parent_id`,`permission`,`icon_class`,`description`,`created_at`,`updated_at`,`order`) values (24,'asset.ga.list','GA','asset-by-group/ga',1,'asset.ga','',NULL,NULL,'2016-12-13 04:20:48',500);
 insert  into `menus`(`id`,`name`,`display`,`link`,`parent_id`,`permission`,`icon_class`,`description`,`created_at`,`updated_at`,`order`) values (25,'permission.list','Permission','permission',2,'permission',NULL,NULL,NULL,NULL,60);
 insert  into `menus`(`id`,`name`,`display`,`link`,`parent_id`,`permission`,`icon_class`,`description`,`created_at`,`updated_at`,`order`) values (26,'role.list','Role','role',2,'role',NULL,NULL,NULL,NULL,70);
 
@@ -592,7 +601,7 @@ CREATE TABLE `permissions` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `permissions_name_unique` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `permissions` */
 
@@ -633,6 +642,10 @@ insert  into `permissions`(`id`,`name`,`created_at`,`updated_at`) values (34,'ro
 insert  into `permissions`(`id`,`name`,`created_at`,`updated_at`) values (35,'role.add',NULL,NULL);
 insert  into `permissions`(`id`,`name`,`created_at`,`updated_at`) values (36,'role.edit',NULL,NULL);
 insert  into `permissions`(`id`,`name`,`created_at`,`updated_at`) values (37,'role.delete',NULL,NULL);
+insert  into `permissions`(`id`,`name`,`created_at`,`updated_at`) values (38,'asset.ga','2016-12-13 04:19:55','2016-12-13 04:19:55');
+insert  into `permissions`(`id`,`name`,`created_at`,`updated_at`) values (39,'asset.ga.add','2016-12-13 04:20:03','2016-12-13 04:20:03');
+insert  into `permissions`(`id`,`name`,`created_at`,`updated_at`) values (40,'asset.ga.edit','2016-12-13 04:20:10','2016-12-13 04:20:10');
+insert  into `permissions`(`id`,`name`,`created_at`,`updated_at`) values (41,'asset.ga.delete','2016-12-13 04:20:16','2016-12-13 04:20:16');
 
 /*Table structure for table `role_has_permissions` */
 
@@ -672,6 +685,10 @@ insert  into `role_has_permissions`(`permission_id`,`role_id`) values (22,4);
 insert  into `role_has_permissions`(`permission_id`,`role_id`) values (23,4);
 insert  into `role_has_permissions`(`permission_id`,`role_id`) values (24,4);
 insert  into `role_has_permissions`(`permission_id`,`role_id`) values (25,4);
+insert  into `role_has_permissions`(`permission_id`,`role_id`) values (26,4);
+insert  into `role_has_permissions`(`permission_id`,`role_id`) values (27,4);
+insert  into `role_has_permissions`(`permission_id`,`role_id`) values (28,4);
+insert  into `role_has_permissions`(`permission_id`,`role_id`) values (29,4);
 insert  into `role_has_permissions`(`permission_id`,`role_id`) values (30,4);
 insert  into `role_has_permissions`(`permission_id`,`role_id`) values (31,4);
 insert  into `role_has_permissions`(`permission_id`,`role_id`) values (32,4);
@@ -680,6 +697,10 @@ insert  into `role_has_permissions`(`permission_id`,`role_id`) values (34,4);
 insert  into `role_has_permissions`(`permission_id`,`role_id`) values (35,4);
 insert  into `role_has_permissions`(`permission_id`,`role_id`) values (36,4);
 insert  into `role_has_permissions`(`permission_id`,`role_id`) values (37,4);
+insert  into `role_has_permissions`(`permission_id`,`role_id`) values (38,4);
+insert  into `role_has_permissions`(`permission_id`,`role_id`) values (39,4);
+insert  into `role_has_permissions`(`permission_id`,`role_id`) values (40,4);
+insert  into `role_has_permissions`(`permission_id`,`role_id`) values (41,4);
 insert  into `role_has_permissions`(`permission_id`,`role_id`) values (1,5);
 insert  into `role_has_permissions`(`permission_id`,`role_id`) values (2,5);
 insert  into `role_has_permissions`(`permission_id`,`role_id`) values (3,5);
@@ -743,8 +764,9 @@ CREATE TABLE `sessions` (
 
 /*Data for the table `sessions` */
 
-insert  into `sessions`(`id`,`user_id`,`ip_address`,`user_agent`,`payload`,`last_activity`) values ('oCIdUBdLcwg3WNMFR4YoyT2wETn6SS1lFXKl5xTU',1,'192.168.10.1','Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36','YTo4OntzOjY6Il90b2tlbiI7czo0MDoidW04UEhJTWtDQmhTejN3VFlxYm5VWEZFQmNqV3lvMDBqbkxSbUpyeiI7czozOiJ1cmwiO2E6MDp7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjI5OiJodHRwOi8vYXNzZXQubG9jYWwvcGVybWlzc2lvbiI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7czo1OiJnU2l0ZSI7aToyO3M6OToiZ1NpdGVOYW1lIjtzOjM6IkFBVCI7czo5OiJfc2YyX21ldGEiO2E6Mzp7czoxOiJ1IjtpOjE0ODExODU3NjE7czoxOiJjIjtpOjE0ODExNzk5Mzg7czoxOiJsIjtzOjE6IjAiO319',1481185761);
-insert  into `sessions`(`id`,`user_id`,`ip_address`,`user_agent`,`payload`,`last_activity`) values ('UsYPY1qOKj06CkTspPHUKqNLXIaHPWccg40wvXoF',NULL,'192.168.10.1','Mozilla/5.0 (Windows NT 6.3; WOW64; rv:50.0) Gecko/20100101 Firefox/50.0','YTo1OntzOjY6Il90b2tlbiI7czo0MDoiTk1pRVV1bUhaMmZONXVCVThOcDNKV1lVbHdkZjRpcVV0U1BKNmQ1UCI7czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czo0NDoiaHR0cDovL2Fzc2V0LmxvY2FsL2Fzc2V0LWJ5LWdyb3VwL3Byb2R1Y3Rpb24iO31zOjk6Il9wcmV2aW91cyI7YToxOntzOjM6InVybCI7czoyNDoiaHR0cDovL2Fzc2V0LmxvY2FsL2xvZ2luIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfc2YyX21ldGEiO2E6Mzp7czoxOiJ1IjtpOjE0ODExNzk5MzA7czoxOiJjIjtpOjE0ODExNzk5MzA7czoxOiJsIjtzOjE6IjAiO319',1481179930);
+insert  into `sessions`(`id`,`user_id`,`ip_address`,`user_agent`,`payload`,`last_activity`) values ('0KhBBIY7mHaA5smcskWFoeUrQ1k32LOT62gGFGKL',NULL,'192.168.10.1','Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36','YTo0OntzOjY6Il90b2tlbiI7czo0MDoiYUZ6VEtYT1M1OG4zU1ZnaHlkVzVNZzZITTVmYVJmbkNRc0FxdGxjeiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MTg6Imh0dHA6Ly9hc3NldC5sb2NhbCI7fXM6OToiX3NmMl9tZXRhIjthOjM6e3M6MToidSI7aToxNDgxNjAwNDE3O3M6MToiYyI7aToxNDgxNjAwNDE3O3M6MToibCI7czoxOiIwIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1481600417);
+insert  into `sessions`(`id`,`user_id`,`ip_address`,`user_agent`,`payload`,`last_activity`) values ('E8SPFhXgYXsLM3uqaW50UfIj21kMT8I86GEKETII',1,'192.168.10.1','Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36','YTo4OntzOjY6Il90b2tlbiI7czo0MDoiRTJJcUhDQmVlWTVRcXdNcExRN3lIQm5ldG5yZGVWc0Vna21SNERaTiI7czozOiJ1cmwiO2E6MDp7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjI4OiJodHRwOi8vYXNzZXQubG9jYWwvZGFzaGJvYXJkIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjU6ImdTaXRlIjtpOjI7czo5OiJnU2l0ZU5hbWUiO3M6MzoiQUFUIjtzOjk6Il9zZjJfbWV0YSI7YTozOntzOjE6InUiO2k6MTQ4MTY4NzA3MTtzOjE6ImMiO2k6MTQ4MTY4NjIyODtzOjE6ImwiO3M6MToiMCI7fX0=',1481687071);
+insert  into `sessions`(`id`,`user_id`,`ip_address`,`user_agent`,`payload`,`last_activity`) values ('q24DSehqAaOPXTkmlpsxCSrFq1iEJ8YDhtm1iMUR',1,'192.168.10.1','Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36','YTo3OntzOjY6Il90b2tlbiI7czo0MDoid3QyOUFnQXRyalh4SFlJRmJUYjZOdGJNMmRKMkFJa2NaTENrUEMzdiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDU6Imh0dHA6Ly9hc3NldC5sb2NhbC9hc3NldC1ieS1ncm91cC9mYXZpY29uLmljbyI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7czo1OiJnU2l0ZSI7aToyO3M6OToiZ1NpdGVOYW1lIjtzOjM6IkFBVCI7czo5OiJfc2YyX21ldGEiO2E6Mzp7czoxOiJ1IjtpOjE0ODE2MDM5Mjg7czoxOiJjIjtpOjE0ODE2MDA0MTc7czoxOiJsIjtzOjE6IjAiO319',1481603928);
 
 /*Table structure for table `sites` */
 
@@ -825,6 +847,7 @@ insert  into `user_has_roles`(`role_id`,`user_id`) values (7,14);
 insert  into `user_has_roles`(`role_id`,`user_id`) values (7,15);
 insert  into `user_has_roles`(`role_id`,`user_id`) values (7,16);
 insert  into `user_has_roles`(`role_id`,`user_id`) values (8,17);
+insert  into `user_has_roles`(`role_id`,`user_id`) values (9,18);
 
 /*Table structure for table `user_has_sites` */
 
@@ -867,6 +890,8 @@ insert  into `user_has_sites`(`user_id`,`site_id`) values (16,1);
 insert  into `user_has_sites`(`user_id`,`site_id`) values (16,2);
 insert  into `user_has_sites`(`user_id`,`site_id`) values (17,1);
 insert  into `user_has_sites`(`user_id`,`site_id`) values (17,2);
+insert  into `user_has_sites`(`user_id`,`site_id`) values (18,1);
+insert  into `user_has_sites`(`user_id`,`site_id`) values (18,2);
 
 /*Table structure for table `user_sites` */
 
@@ -893,13 +918,13 @@ CREATE TABLE `users` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `users` */
 
-insert  into `users`(`id`,`name`,`email`,`password`,`remember_token`,`created_at`,`updated_at`) values (1,'Pasha Mahardika','me@pashamahardika.com','$2y$10$jHaudbpE7P4OryKpRHEDheyTO62AziKX17urZtNI2ZqrS9zeuvoQe','uPeFFvMZhCgEuC7OrMaJ5tMHluEcmbH24ZT0sEJb8i2OanXc1969qysn53wS','2016-09-12 12:17:16','2016-12-07 07:40:06');
+insert  into `users`(`id`,`name`,`email`,`password`,`remember_token`,`created_at`,`updated_at`) values (1,'Pasha Mahardika','me@pashamahardika.com','$2y$10$jHaudbpE7P4OryKpRHEDheyTO62AziKX17urZtNI2ZqrS9zeuvoQe','9fjrQvzJyoFIOelMyfkE4S28zxXSPwslGP7aVLnG7WpRzVOun1ynGImlzsLB','2016-09-12 12:17:16','2016-12-08 09:02:25');
 insert  into `users`(`id`,`name`,`email`,`password`,`remember_token`,`created_at`,`updated_at`) values (3,'Addie Priwibowo','addie.priwibowo@acuatico.co.id','$2y$10$HpKkHa9TdxbG6P2jp12AZu5AoUMl6sUXhA.rFWdHWMhHZYOcrlUU.',NULL,'2016-09-18 16:05:25','2016-09-18 16:05:25');
-insert  into `users`(`id`,`name`,`email`,`password`,`remember_token`,`created_at`,`updated_at`) values (4,'Erikasandi','erik@erik.com','$2y$10$w2m6FgGWCdTgTVIj3OuOQ.3Xf9bdKtWgHYYdU5fyHTdJD7oivsvkS','w3gmwZAbvY4Nn3Xu1aJbDNfl4HkpmojBwis98Ovw93XORdyz1udfYDGLojqx','2016-09-26 12:23:39','2016-09-26 12:24:44');
+insert  into `users`(`id`,`name`,`email`,`password`,`remember_token`,`created_at`,`updated_at`) values (4,'Erikasandi','erik@erik.com','$2y$10$w2m6FgGWCdTgTVIj3OuOQ.3Xf9bdKtWgHYYdU5fyHTdJD7oivsvkS','swuZzRWPbRGtzTXIdpy3PTFmqEdIe3CecfdFEtnCJS38o1i0EigLqgX1hNK0','2016-09-26 12:23:39','2016-12-08 08:47:34');
 insert  into `users`(`id`,`name`,`email`,`password`,`remember_token`,`created_at`,`updated_at`) values (5,'Aryo','aryo.kusumo@aat.co.id','$2y$10$RXYpi2jAywFybYIVjdErnO3R.j7wTs//2dJjR7ubbrNVXC3SDZDRm','bciNN13AbDw5B2hcYAjaPGP0HOC2sn3mu0qEE0Korysj3lLRN5M5LLt2hyBq','2016-11-16 13:58:24','2016-11-17 16:50:44');
 insert  into `users`(`id`,`name`,`email`,`password`,`remember_token`,`created_at`,`updated_at`) values (6,'Asa Ardian','asa.ardian@acuatico.co.id','$2y$10$y5AYobw.8SLPAS7pvst5UOJsYK.KrRwGI25r5IL9E7gyJVR94c4yW','7CfiQWnfzRG8WvPC4o8MgtBxnPEg9LeYBOelArwJ8zSCvCdrn4TSM1KgBBIZ','2016-11-22 00:34:05','2016-11-27 21:41:10');
 insert  into `users`(`id`,`name`,`email`,`password`,`remember_token`,`created_at`,`updated_at`) values (7,'Yusli Meirino','yusli.meirino@aat.co.id','$2y$10$XRGZamffT4ds3ox0jUheSuvX1ZTkizj00uiu4uGFpXHzzIljMuZLu',NULL,'2016-11-27 22:14:09','2016-11-27 22:14:09');
@@ -913,6 +938,7 @@ insert  into `users`(`id`,`name`,`email`,`password`,`remember_token`,`created_at
 insert  into `users`(`id`,`name`,`email`,`password`,`remember_token`,`created_at`,`updated_at`) values (15,'Anggara','anggara@aat.co.id','$2y$10$MYfl4lCjsZoDrVk/C32/ZuWAAHd1uorVlTXTI6ep4RDPTaJDz8b9W',NULL,'2016-11-27 22:16:40','2016-11-27 22:16:40');
 insert  into `users`(`id`,`name`,`email`,`password`,`remember_token`,`created_at`,`updated_at`) values (16,'Wahyudi','wahyudi.santoso@aat.co.id','$2y$10$FTnPeKHus3OipjkHWzGhsuL58LGcS9PuNTnapUhcQ6I2KvUrCCAe6',NULL,'2016-11-27 22:17:00','2016-11-27 22:17:00');
 insert  into `users`(`id`,`name`,`email`,`password`,`remember_token`,`created_at`,`updated_at`) values (17,'Achmad','achmad@acuatico.co.id','$2y$10$xQmhvmK.Bmak9jcHJDOotuFqVlJa4gRvQ1W5geRPKsCfgE8nR/KgW','qPXxyjuZgOKZJTDhKRw4wmiT8BlFRcBJhd7mvX6SEuH4QnNw85w3vzFI6Jpf','2016-12-07 03:24:12','2016-12-07 03:25:02');
+insert  into `users`(`id`,`name`,`email`,`password`,`remember_token`,`created_at`,`updated_at`) values (18,'Mawan','mawan@rim.com','$2y$10$6GVaxNZf5wDycNmysOK6suZfV/ww37ftorDFxPFPr7lKKX09Z/8kC','A3L61RwQXdfUAbwCoIpRjdpoUiXQff7zS8WBm8qMvoF1lRQB4pOU2zbOeFk3','2016-12-08 09:02:18','2016-12-08 09:04:04');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
