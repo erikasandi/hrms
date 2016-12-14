@@ -39,10 +39,10 @@
                 <label>Performance Details</label>
                 <textarea class="form-control" name="performance_detail"></textarea>
             </div>
-            <div class="form-group ">
-                <label>Reservoir Capacity</label>
-                <input type="text" name="reservoir_capacity" class="form-control">
-            </div>
+            {{--<div class="form-group ">--}}
+                {{--<label>Reservoir Capacity</label>--}}
+                {{--<input type="text" name="reservoir_capacity" class="form-control">--}}
+            {{--</div>--}}
         </div>
     </div>
 </div>

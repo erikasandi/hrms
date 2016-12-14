@@ -21,6 +21,7 @@ Auth::routes();
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 Route::group(['middleware' => ['auth', 'menu', 'site']], function () {
+
     Route::get('/dashboard' ,'HomeController@dashboard');
 
     Route::get( '/user', 'UserController@index' );
@@ -30,6 +31,22 @@ Route::group(['middleware' => ['auth', 'menu', 'site']], function () {
     Route::get( '/user/{id}/edit', 'UserController@edit' );
     Route::get( '/user/{id}/delete', 'UserController@destroy' );
     Route::post( '/user/{id}/update', 'UserController@update' );
+
+    // Role
+    Route::get('/role', 'RoleController@index')->name('role');
+    Route::get('/role/add', 'RoleController@create')->name('role.add');
+    Route::post('/role/save', 'RoleController@store')->name('role.add');
+    Route::get('/role/{id}/edit', 'RoleController@edit')->name('role.edit');
+    Route::post('/role/{id}/update', 'RoleController@update')->name('role.edit');
+    Route::get('/role/{id}/delete', 'RoleController@destroy')->name('role.delete');
+
+    // Permission
+    Route::get('/permission', 'PermissionController@index')->name('permission');
+    Route::get('/permission/add', 'PermissionController@create')->name('permission.add');
+    Route::post('/permission/save', 'PermissionController@store')->name('permission.add');
+    Route::get('/permission/{id}/edit', 'PermissionController@edit')->name('permission.edit');
+    Route::post('/permission/{id}/update', 'PermissionController@update')->name('permission.edit');
+    Route::get('/permission/{id}/delete', 'PermissionController@destroy')->name('permission.delete');
 
     Route::get('/user-profile/{id}', 'UserController@profile');
     Route::get('/user-profile/{id}/edit', 'UserController@editProfile');
@@ -116,6 +133,8 @@ Route::group(['middleware' => ['auth', 'menu', 'site']], function () {
 
 Route::group(['middleware' => ['auth', 'site']], function () {
     Route::get( '/user-data', 'UserController@anyData')->name('user.data' );
+    Route::get( '/permission-data', 'PermissionController@anyData')->name('permission.data' );
+    Route::get( '/role-data', 'RoleController@anyData')->name('role.data' );
     Route::get( '/asset-data', 'AssetController@anyData')->name('asset.data' );
     Route::get( '/grouped-asset-data', 'AssetByGroupController@anyData')->name('grouped-asset.data' );
     Route::get( '/maintenance-data', 'MaintenanceController@anyData')->name('maintenance.data' );
