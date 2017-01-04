@@ -218,7 +218,12 @@
                     { data: 'bill_date', name: 'bill_date', "width": "120px" },
                     { data: 'tariff_code', name: 'tariff_code', "width": "120px" },
                     { data: 'water_usage', name: 'water_usage' },
-                    { data: 'bill_amount', name: 'bill_amount' },
+                    //{ data: 'bill_amount', name: 'bill_amount' },
+
+                    // Edit By Erik, 22 Desember 2016
+                    // Menampilkan nilai amount dengan separator ribuan
+                    { data: 'bill_amount', name: 'bill_amount' , render: $.fn.DataTable.render.number('.',',',0,'Rp. ')},
+                    // End
                     { data: 'action', name: 'action', orderable: false, searchable: false, "width": "130px" }
                 ]
             });
