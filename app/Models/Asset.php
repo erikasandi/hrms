@@ -17,7 +17,12 @@ class Asset extends Model
     {
         return $this->hasOne(MechanicalDetail::class);
     }
-
+    // Add By erik 23/12/2016, for Aset Type GA-Furnitute
+    public function furniture()
+    {
+        return $this->hasOne(FurnitureDetail::class);
+    }
+    // End Add
     public function civil()
     {
         return $this->hasOne(CivilDetail::class);
