@@ -26,7 +26,13 @@
             <div class="col-md-6">
                 <div class="form-group row ">
                     <label class="form-label col-md-12">Length per Pipe Diameter :</label>
-                    <span class="col-md-12">{!! $assetDetail->length_per_pipe_diameter !!}</span>
+                    <!-- <span class="col-md-12">{!! $assetDetail->length_per_pipe_diameter !!}</span> -->
+                    <!--
+                       Add by Erik, 01 Jan 2017
+                       for separator thousand in length pipe
+                    -->
+                    <span class="col-md-12">{!! number_format(rtrim($assetDetail->length_per_pipe_diameter),0,'','.') !!} m </span>
+                    <!-- End Add -->
                 </div>
                 <div class="form-group row ">
                     <label class="form-label col-md-12">Description :</label>

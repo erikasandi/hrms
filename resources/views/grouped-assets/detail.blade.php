@@ -217,9 +217,12 @@
                     { data: 'id', name: 'id' },
                     { data: 'bill_date', name: 'bill_date', "width": "120px" },
                     { data: 'tariff_code', name: 'tariff_code', "width": "120px" },
-                    { data: 'water_usage', name: 'water_usage' },
+                    //{ data: 'water_usage', name: 'water_usage' },                    
+                    //Edit By Erik, 17 Jan 2017
+                    //Menampilkan nilai water usage dengan separator ribuan dan m3
+                    { data: 'water_usage', name: 'water_usage', render: $.fn.DataTable.render.number('.',',',0,'', ' m<sup>3</sup>')},
+                    //End
                     //{ data: 'bill_amount', name: 'bill_amount' },
-
                     // Edit By Erik, 22 Desember 2016
                     // Menampilkan nilai amount dengan separator ribuan
                     { data: 'bill_amount', name: 'bill_amount' , render: $.fn.DataTable.render.number('.',',',0,'Rp. ')},
