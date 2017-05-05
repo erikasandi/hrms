@@ -25,14 +25,14 @@ class ScadaAsset extends AssetHandler
             $inputs,
             [
                 'specification', 'serial_number', 'install_date', 'function', 'asset_performance_id', 'asset_condition_id',
-                'performance_detail', 'condition_detail'
+                'performance_detail', 'condition_detail', 'brand'
             ]
         );
 
         $params = [];
         if ($assetParams['specification'] != '') {
             $params['specification'] = $assetParams['specification'];
-        }
+        }       
         if ($assetParams['serial_number'] != '') {
             $params['serial_number'] = $assetParams['serial_number'];
         }
@@ -54,7 +54,11 @@ class ScadaAsset extends AssetHandler
         if ($assetParams['condition_detail'] != '') {
             $params['condition_detail'] = $assetParams['condition_detail'];
         }
-
+         // Add by Erik, 5 Mei 2017
+        if ($assetParams['brand'] != '') {
+            $params['brand'] = $assetParams['brand'];
+        }
+        // End Add
         return $asset->mechanical()->create($assetParams);
     }
 
@@ -63,7 +67,7 @@ class ScadaAsset extends AssetHandler
         $asset = $this->updateAsset($id, $inputs);
 
         $assetDetail = $asset->mechanical;
-        $assetDetail->specification = $inputs['specification'];
+        $assetDetail->specification = $inputs['specification'];       
         $assetDetail->serial_number = $inputs['serial_number'];
         $assetDetail->install_date = $inputs['install_date'];
         $assetDetail->function = $inputs['function'];
@@ -71,6 +75,9 @@ class ScadaAsset extends AssetHandler
         $assetDetail->asset_condition_id = $inputs['asset_condition_id'];
         $assetDetail->performance_detail = $inputs['performance_detail'];
         $assetDetail->condition_detail = $inputs['condition_detail'];
+         // Add by Erik, 5 Mei 2017
+        $assetDetail->brand = $inputs['brand'];
+        // End Add
 
         return $assetDetail->save();
     }
