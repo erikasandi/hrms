@@ -183,7 +183,11 @@ class Asset
         if ($request['s_type']) {
             $model = $model->where('asset_type_id', $request['s_type']);
         }
-
+        /* Add By Erik, 27 Feb 2018 */
+         if ($request['s_code']) {
+            $model = $model->where('code', 'like', '%' . $request['s_code'] . '%');
+        }
+        /* End Add */
         return $model->get();
     }
 

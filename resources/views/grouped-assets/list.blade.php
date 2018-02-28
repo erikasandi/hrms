@@ -66,6 +66,16 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    <!--  Add by Erik, 27 Feb 2018 -->       
+                                                    <div class="col-lg-4">
+                                                        <div class="form-body">
+                                                            <div class="form-group">
+                                                                <label>Asset Code</label>
+                                                                <input type="text" name="code" class="form-control search-input" placeholder="Asset Code">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- End Add -->
                                                     <div class="col-lg-12">
                                                         <button type="submit" name="submit" value="search" class="btn btn-sm sbold green"><i class="fa fa-search"></i> Search</button>
                                                         <button type="button" class="btn btn-sm sbold green search-close"><i class="fa fa-close"></i> Close</button>
@@ -81,6 +91,9 @@
                                 <thead>
                                 <tr>
                                     <th>Id</th>
+                                    <!-- Add by Erik, 27 Feb 2018 -->
+                                    <th>Asset Code</th>
+                                    <!-- End Add -->
                                     <th>Asset Name</th>
                                     <th>Type</th>
                                     <th>Location</th>
@@ -115,7 +128,10 @@
                 ajax: {
                     url: '{!! route('grouped-asset.data') !!}',
                     data: {
-                        's_name': '{!! $sName !!}',
+                        /* Add by Erik, 27 Feb 2018 */
+                        's_code': '{!! $sCode !!}',
+                         /* End Add */
+                        's_name': '{!! $sName !!}',                        
                         's_type': '{!! $sType !!}',
                         's_location': '@if($sLocation != ''){!! $sLocation !!}@else{!! $location->id !!}@endif',
                         'group': '{!! $group !!}'
@@ -123,6 +139,9 @@
                 },
                 columns: [
                     { data: 'id', name: 'id' },
+                    /* Add by Erik, 27 Feb 2018 */
+                    { data: 'code', name: 'code' },
+                    /* End Add */
                     { data: 'name', name: 'name' },
                     { data: 'type', name: 'type' },
                     { data: 'location', name: 'location' },
