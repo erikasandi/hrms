@@ -50,14 +50,23 @@ class AssetByGroupController extends Controller
         $sName = '';
         $sType = '';
         $sLocation = '';
+        /* Add By Erik, 27 Feb 2018 */
+        $sCode = '';
+        /* End Add */
         if ($request->has('submit')) {
             $sName = $request->input('name');
             $sType = $request->input('asset_type_id');
             $sLocation = $request->input('location_id');
+            /* Add By Erik, 27 Feb 2018 */
+            $sCode = $request->input('code');
+            /* End Add */
         }
         $data['sName'] = $sName;
         $data['sType'] = $sType;
         $data['sLocation'] = $sLocation;
+        /* Add By Erik, 27 Feb 2018 */
+        $data['sCode'] = $sCode;
+        /* End Add */
         // set action column width
         $data['actionWidth'] = ( $group == 'commercial' ? '302px' : '280px' );
         $data['location'] = $location;
