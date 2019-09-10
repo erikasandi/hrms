@@ -5,7 +5,8 @@
         <!-- BEGIN LOGO -->
         <div class="page-logo">
             <a href="{!! url('dashboard') !!}">
-                <img src="{!! asset('metronic/assets/layouts/layout/img/logo-aat-bw.png') !!}" alt="logo" class="logo-default" /> </a>
+                <!-- <img src="{!! asset('metronic/assets/layouts/layout/img/logo-aat-bw.png') !!}" alt="logo" class="logo-default" /> -->
+            </a>
             <div class="menu-toggler sidebar-toggler">
                 <span></span>
             </div>

@@ -164,9 +164,9 @@ return [
         Illuminate\View\ViewServiceProvider::class,
 
         /*
-         * Package Service Providers...
+         * Package Service Providers Calendar
          */
-
+        MaddHatter\LaravelFullcalendar\ServiceProvider::class,
         //
 
         /*
@@ -255,6 +255,7 @@ return [
 
         'Image' => Intervention\Image\Facades\Image::class,
 
+        'Calendar' => MaddHatter\LaravelFullcalendar\Facades\Calendar::class,
 //        'EntityManager' => LaravelDoctrine\ORM\Facades\EntityManager::class,
 //        'Registry'      => LaravelDoctrine\ORM\Facades\Registry::class,
 //        'Doctrine'      => LaravelDoctrine\ORM\Facades\Doctrine::class,

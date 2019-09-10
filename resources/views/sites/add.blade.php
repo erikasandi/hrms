@@ -29,9 +29,12 @@
                             <div class="form-body">
                                 <div class="row">
                                     <div class="col-lg-6">
-                                        <div class="form-group">
+                                        <div class="form-group @if ($errors->has('name')) has-error @endif">
                                             <label>Name</label>
                                             <input type="text" name="name" class="form-control" placeholder="Name" autofocus>
+                                            @if ($errors->has('name'))
+                                                <span class="help-block">{!! $errors->first('name') !!}</span>
+                                            @endif
                                         </div>
                                         <div class="form-group">
                                             <label>Description</label>

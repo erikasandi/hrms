@@ -1,142 +1,89 @@
 <!DOCTYPE html>
-
-<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
-<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
-<!--[if !IE]><!-->
 <html lang="en">
-<!--<![endif]-->
-<!-- BEGIN HEAD -->
-
 <head>
-    <meta charset="utf-8" />
-    <title>Acuatico Internal Application | Login</title>
+	<title>Acuatico Internal Application | Login</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta content="width=device-width, initial-scale=1" name="viewport" />
     
-    <!-- BEGIN GLOBAL MANDATORY STYLES -->
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
-    <link href="{!! asset('metronic/assets/global/plugins/font-awesome/css/font-awesome.min.css') !!}" rel="stylesheet" type="text/css" />
-    <link href="{!! asset('metronic/assets/global/plugins/simple-line-icons/simple-line-icons.min.css') !!}" rel="stylesheet" type="text/css" />
-    <link href="{!! asset('metronic/assets/global/plugins/bootstrap/css/bootstrap.min.css') !!}" rel="stylesheet" type="text/css" />
-    <link href="{!! asset('metronic/assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css') !!}" rel="stylesheet" type="text/css" />
-    <!-- END GLOBAL MANDATORY STYLES -->
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="{!! asset('metronic/assets/global/plugins/Login/images/icons/favicon.ico') !!}"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{!! asset('metronic/assets/global/plugins/Login/vendor/bootstrap/css/bootstrap.min.css') !!}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{!! asset('metronic/assets/global/plugins/Login/fonts/font-awesome-4.7.0/css/font-awesome.min.css') !!}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{!! asset('metronic/assets/global/plugins/Login/fonts/Linearicons-Free-v1.0.0/icon-font.min.css') !!}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{!! asset('metronic/assets/global/plugins/Login/vendor/animate/animate.css') !!}">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="{!! asset('metronic/assets/global/plugins/Login/vendor/css-hamburgers/hamburgers.min.css') !!}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{!! asset('metronic/assets/global/plugins/Login/vendor/select2/select2.min.css') !!}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{!! asset('metronic/assets/global/plugins/Login/css/util.css') !!}">
+	<link rel="stylesheet" type="text/css" href="{!! asset('metronic/assets/global/plugins/Login/css/main.css') !!}">
+<!--===============================================================================================-->
+</head>
+<body>	
+	<div class="limiter">
+		<div class="container-login100" style="background-image: url('images/img-01.jpg');">
+			<div class="wrap-login100 p-t-190 p-b-30">
+				<form class="login100-form validate-form" action="{!! url('/login') !!}" method="post">
+					{!! csrf_field() !!}
+					<span class="login100-form-title p-t-20 p-b-45">
+						Login to your account
+					</span>
 
-    <!-- BEGIN THEME GLOBAL STYLES -->
-    <link href="{!! asset('metronic/assets/global/css/components-rounded.min.css') !!}" rel="stylesheet" id="style_components" type="text/css" />
-    <link href="{!! asset('metronic/assets/global/css/plugins.min.css') !!}" rel="stylesheet" type="text/css" />
-    <!-- END THEME GLOBAL STYLES -->
-    <!-- BEGIN PAGE LEVEL STYLES -->
-    <link href="{!! asset('metronic/assets/pages/css/login-3.min.css') !!}" rel="stylesheet" type="text/css" />
-    <!-- END PAGE LEVEL STYLES -->
-    <!-- BEGIN THEME LAYOUT STYLES -->
-    <!-- END THEME LAYOUT STYLES -->
-    <link rel="shortcut icon" href="favicon.ico" /> </head>
-<!-- END HEAD -->
+					<div class="wrap-input100 validate-input m-b-10" data-validate = "Username is required">
+						<input class="input100" type="text" name="name" placeholder="Username">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-user"></i>
+						</span>
+					</div>
 
-<body class=" login">
-<!-- BEGIN LOGO -->
-<div class="logo">
-    {{--<a href="index.html"> <img src="metronic/assets/pages/img/acuatico.png" alt="" /> </a>--}}
-</div>
-<!-- END LOGO -->
-<!-- BEGIN LOGIN -->
-<div class="content">
-    <!-- BEGIN LOGIN FORM -->
-    <form class="login-form" action="{!! url('/login') !!}" method="post">
-        {!! csrf_field() !!}
-        <h3 class="form-title">Login to your account</h3>
+					<div class="wrap-input100 validate-input m-b-10" data-validate = "Password is required">
+						<input class="input100" type="password" name="password" placeholder="Password">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-lock"></i>
+						</span>
+					</div>
 
-        <!--div class="alert alert-danger display-hide">
-            <button class="close" data-close="alert"></button>
-            <span> Enter your username and password. </span>
-        </div-->
+					<div class="container-login100-form-btn p-t-10">
+						<button type="submit" class="login100-form-btn">
+							Login
+						</button>
+					</div>
 
-        @if (count($errors) > 0)
-            <div class="alert alert-danger">
-                <button class="close" data-close="alert"></button>
-                @if ($errors->has('email'))
-                    <span> {{ $errors->first('email') }} </span>
-                @endif
-                @if ($errors->has('password'))
-                    <span> {{ $errors->first('password') }} </span>
-                @endif
-            </div>
-        @endif
+					<div class="text-center w-full p-t-25 p-b-230">
+						<a href="#" class="txt1">
+							<!--Forgot Username / Password?-->
+						</a>
+					</div>
 
-        <div class="form-group">
-            <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
-            <label class="control-label visible-ie8 visible-ie9">Username</label>
-            <div class="input-icon">
-                <i class="fa fa-user"></i>
-                <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="Username" name="email" autofocus /> </div>
-        </div>
+					<div class="text-center w-full">
+						<a class="txt1" href="#">
+							<!--
+							Create new account
+							<i class="fa fa-long-arrow-right"></i>
+							-->						
+						</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>	
+<!--===============================================================================================-->	
+	<script src="{!! asset('metronic/assets/global/plugins/Login/vendor/jquery/jquery-3.2.1.min.js') !!}" type="text/javascript"></script>
+<!--===============================================================================================-->
+	<script src="{!! asset('metronic/assets/global/plugins/Login/vendor/bootstrap/js/popper.js') !!}" type="text/javascript"></script>
+	<script src="{!! asset('metronic/assets/global/plugins/Login/vendor/bootstrap/js/bootstrap.min.js') !!}" type="text/javascript"></script>
+<!--===============================================================================================-->
+	<script src="{!! asset('metronic/assets/global/plugins/Login/vendor/select2/select2.min.js') !!}" type="text/javascript"></script>
+<!--===============================================================================================-->
+	<script src="{!! asset('metronic/assets/global/plugins/Login/js/main.js') !!}"></script>
 
-        <div class="form-group">
-            <label class="control-label visible-ie8 visible-ie9">Password</label>
-            <div class="input-icon">
-                <i class="fa fa-lock"></i>
-                <input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="Password" name="password" /> </div>
-        </div>
-
-        <div class="form-actions">
-            <label class="rememberme mt-checkbox mt-checkbox-outline">
-                <input type="checkbox" name="remember" value="1" /> Remember me
-                <span></span>
-            </label>
-            <button type="submit" class="btn green pull-right"> Login </button>
-        </div>
-
-        <div class="forget-password">
-            <h4>Forgot your password ?</h4>
-            <p> no worries, click
-                <a href="javascript:;" id="forget-password"> here </a> to reset your password. </p>
-        </div>
-    </form>
-    <!-- END LOGIN FORM -->
-
-    <!-- BEGIN FORGOT PASSWORD FORM -->
-    <form class="forget-form" action="index.html" method="post">
-        <h3>Forget Password ?</h3>
-        <p> Enter your e-mail address below to reset your password. </p>
-        <div class="form-group">
-            <div class="input-icon">
-                <i class="fa fa-envelope"></i>
-                <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="Email" name="email" /> </div>
-        </div>
-        <div class="form-actions">
-            <button type="button" id="back-btn" class="btn grey-salsa btn-outline"> Back </button>
-            <button type="submit" class="btn green pull-right"> Submit </button>
-        </div>
-    </form>
-    <!-- END FORGOT PASSWORD FORM -->
-
-</div>
-<!-- END LOGIN -->
-<!--[if lt IE 9]>
-<script src="{!! asset('metronic/assets/global/plugins/respond.min.js') !!}"></script>
-<script src="{!! asset('metronic/assets/global/plugins/excanvas.min.js') !!}"></script>
-<script src="{!! asset('metronic/assets/global/plugins/ie8.fix.min.js') !!}"></script>
-<![endif]-->
-<!-- BEGIN CORE PLUGINS -->
-<script src="{!! asset('metronic/assets/global/plugins/jquery.min.js') !!}" type="text/javascript"></script>
-<script src="{!! asset('metronic/assets/global/plugins/bootstrap/js/bootstrap.min.js') !!}" type="text/javascript"></script>
-<script src="{!! asset('metronic/assets/global/plugins/js.cookie.min.js') !!}" type="text/javascript"></script>
-<script src="{!! asset('metronic/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js') !!}" type="text/javascript"></script>
-<script src="{!! asset('metronic/assets/global/plugins/jquery.blockui.min.js') !!}" type="text/javascript"></script>
-<script src="{!! asset('metronic/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js') !!}" type="text/javascript"></script>
-<!-- END CORE PLUGINS -->
-<!-- BEGIN PAGE LEVEL PLUGINS -->
-<script src="{!! asset('metronic/assets/global/plugins/jquery-validation/js/jquery.validate.min.js') !!}" type="text/javascript"></script>
-<script src="{!! asset('metronic/assets/global/plugins/jquery-validation/js/additional-methods.min.js') !!}" type="text/javascript"></script>
-<!-- END PAGE LEVEL PLUGINS -->
-<!-- BEGIN THEME GLOBAL SCRIPTS -->
-<script src="{!! asset('metronic/assets/global/scripts/app.min.js') !!}" type="text/javascript"></script>
-<!-- END THEME GLOBAL SCRIPTS -->
-<!-- BEGIN PAGE LEVEL SCRIPTS -->
-<script src="{!! asset('metronic/assets/pages/scripts/login.min.js') !!}" type="text/javascript"></script>
-<!-- END PAGE LEVEL SCRIPTS -->
-<!-- BEGIN THEME LAYOUT SCRIPTS -->
-<!-- END THEME LAYOUT SCRIPTS -->
 </body>
-
 </html>

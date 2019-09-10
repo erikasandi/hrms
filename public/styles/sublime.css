@@ -5644,7 +5644,7 @@ table.dataTable thead .sorting {
   position: relative;
   overflow: hidden;
   border-bottom: 1px solid #eaecf6;
-  background-color: #eaecf6;
+  background-color: #4CAF50;
   border-radius: 2px 2px 0;
 }
 .wizard ul {

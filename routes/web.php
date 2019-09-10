@@ -68,86 +68,146 @@ Route::group(['middleware' => ['auth', 'menu', 'site']], function () {
     Route::post( '/menu/{id}/update', 'MenuController@update' );
     Route::get( '/menu/{id}/delete', 'MenuController@destroy' );
 
-    Route::get( '/asset-condition', 'AssetConditionController@index' );
-    Route::get( '/asset-condition/add', 'AssetConditionController@create' );
-    Route::post( '/asset-condition/save', 'AssetConditionController@store' );
-    Route::get( '/asset-condition/{id}/edit', 'AssetConditionController@edit' );
-    Route::post( '/asset-condition/{id}/update', 'AssetConditionController@update' );
-    Route::get( '/asset-condition/{id}/delete', 'AssetConditionController@destroy' );
+    Route::get( '/gender', 'GenderController@index' );
+    Route::get( '/gender/add', 'GenderController@create' );
+    Route::post( '/gender/save', 'GenderController@store' );
+    Route::get( '/gender/{id}/edit', 'GenderController@edit' );
+    Route::post( '/gender/{id}/update', 'GenderController@update' );
+    Route::get( '/gender/{id}/delete', 'GenderController@destroy' );
 
-    Route::get( '/asset-performance', 'AssetPerformanceController@index' );
-    Route::get( '/asset-performance/add', 'AssetPerformanceController@create' );
-    Route::post( '/asset-performance/save', 'AssetPerformanceController@store' );
-    Route::get( '/asset-performance/{id}/edit', 'AssetPerformanceController@edit' );
-    Route::post( '/asset-performance/{id}/update', 'AssetPerformanceController@update' );
-    Route::get( '/asset-performance/{id}/delete', 'AssetPerformanceController@destroy' );
+    Route::get( '/division', 'DivisionController@index' );
+    Route::get( '/division/add', 'DivisionController@create' );
+    Route::post( '/division/save', 'DivisionController@store' );
+    Route::get( '/division/{id}/edit', 'DivisionController@edit' );
+    Route::post( '/division/{id}/update', 'DivisionController@update' );
+    Route::get( '/division/{id}/delete', 'DivisionController@destroy' );
 
-    Route::get( '/asset-type', 'AssetTypeController@index' );
-    Route::get( '/asset-type/add', 'AssetTypeController@create' );
-    Route::post( '/asset-type/save', 'AssetTypeController@store' );
-    Route::get( '/asset-type/{id}/edit', 'AssetTypeController@edit' );
-    Route::post( '/asset-type/{id}/update', 'AssetTypeController@update' );
-    Route::get( '/asset-type/{id}/delete', 'AssetTypeController@destroy' );
+    Route::get( '/religion', 'ReligionController@index' );
+    Route::get( '/religion/add', 'ReligionController@create' );
+    Route::post( '/religion/save', 'ReligionController@store' );
+    Route::get( '/religion/{id}/edit', 'ReligionController@edit' );
+    Route::post( '/religion/{id}/update', 'ReligionController@update' );
+    Route::get( '/religion/{id}/delete', 'ReligionController@destroy' );
 
-    Route::get( '/asset-location', 'AssetLocationController@index' );
-    Route::get( '/asset-location/add', 'AssetLocationController@create' );
-    Route::post( '/asset-location/save', 'AssetLocationController@store' );
-    Route::get( '/asset-location/{id}/edit', 'AssetLocationController@edit' );
-    Route::post( '/asset-location/{id}/update', 'AssetLocationController@update' );
-    Route::get( '/asset-location/{id}/delete', 'AssetLocationController@destroy' );
+    Route::get( '/marital', 'MaritalStatusController@index' );
+    Route::get( '/marital/add', 'MaritalStatusController@create' );
+    Route::post( '/marital/save', 'MaritalStatusController@store' );
+    Route::get( '/marital/{id}/edit', 'MaritalStatusController@edit' );
+    Route::post( '/marital/{id}/update', 'MaritalStatusController@update' );
+    Route::get( '/marital/{id}/delete', 'MaritalStatusController@destroy' );
 
-    Route::get('/asset', 'AssetController@index');
-    Route::post('/asset', 'AssetController@index');
-    Route::get('/asset/add', 'AssetController@create');
-    Route::post('/asset/save', 'AssetController@store');
-    Route::get('/asset/{id}/edit', 'AssetController@edit');
-    Route::post('/asset/{id}/update', 'AssetController@update');
-    Route::get('/asset/{id}/detail', 'AssetController@detail');
-    Route::get('/asset/{id}/delete', 'AssetController@destroy');
+    Route::get( '/position', 'PositionController@index' );
+    Route::get( '/position/add', 'PositionController@create' );
+    Route::post( '/position/save', 'PositionController@store' );
+    Route::get( '/position/{id}/edit', 'PositionController@edit' );
+    Route::post( '/position/{id}/update', 'PositionController@update' );
+    Route::get( '/position/{id}/delete', 'PositionController@destroy' );
 
-    Route::get('/asset-by-group/{group}', 'AssetByGroupController@index');
-    Route::post('/asset-by-group/{group}', 'AssetByGroupController@index');
-    Route::get('/asset-by-group/{group}/add', 'AssetByGroupController@create');
-    Route::post('/asset-by-group/{group}/save', 'AssetByGroupController@store');
-    Route::get('/asset-by-group/{group}/{id}/edit', 'AssetByGroupController@edit');
-    Route::post('/asset-by-group/{group}/{id}/update', 'AssetByGroupController@update');
-    Route::get('/asset-by-group/{group}/{id}/detail', 'AssetByGroupController@detail');
-    Route::get('/asset-by-group/{group}/{id}/delete', 'AssetByGroupController@destroy');
+    Route::get( '/leavetype', 'LeavetypeController@index' );
+    Route::get( '/leavetype/add', 'LeavetypeController@create' );
+    Route::post( '/leavetype/save', 'LeavetypeController@store' );
+    Route::get( '/leavetype/{id}/edit', 'LeavetypeController@edit' );
+    Route::post( '/leavetype/{id}/update', 'LeavetypeController@update' );
+    Route::get( '/leavetype/{id}/delete', 'LeavetypeController@destroy' );
 
-    Route::get('/maintenance/{group}/{assetId}/add', 'MaintenanceController@create');
-    Route::post('/maintenance/{group}/{assetId}/save', 'MaintenanceController@store');
-    Route::get('/maintenance/{group}/{assetId}/{id}/edit', 'MaintenanceController@edit');
-    Route::post('/maintenance/{group}/{assetId}/{id}/update', 'MaintenanceController@update');
-    Route::get('/maintenance/{group}/{assetId}/{id}/detail', 'MaintenanceController@detail');
-    Route::get('/maintenance/{group}/{assetId}/{id}/delete', 'MaintenanceController@destroy');
+    Route::get( '/education', 'EducationGradeController@index' );
+    Route::get( '/education/add', 'EducationGradeController@create' );
+    Route::post( '/education/save', 'EducationGradeController@store' );
+    Route::get( '/education/{id}/edit', 'EducationGradeController@edit' );
+    Route::post( '/education/{id}/update', 'EducationGradeController@update' );
+    Route::get( '/education/{id}/delete', 'EducationGradeController@destroy' );
 
-    Route::get('/bill/{group}/{assetId}/add', 'BillController@create');
-    Route::post('/bill/{group}/{assetId}/save', 'BillController@store');
-    Route::get('/bill/{group}/{assetId}/{id}/edit', 'BillController@edit');
-    Route::post('/bill/{group}/{assetId}/{id}/update', 'BillController@update');
-    Route::get('/bill/{group}/{assetId}/{id}/detail', 'BillController@detail');
-    Route::get('/bill/{group}/{assetId}/{id}/delete', 'BillController@destroy');
+    Route::get( '/leaveperiod', 'LeavePeriodController@index' );
+    Route::get( '/leaveperiod/add', 'LeavePeriodController@create' );
+    Route::post( '/leaveperiod/save', 'LeavePeriodController@store' );
+    Route::get( '/leaveperiod/{id}/edit', 'LeavePeriodController@edit' );
+    Route::post( '/leaveperiod/{id}/update', 'LeavePeriodController@update' );
+    Route::get( '/leaveperiod/{id}/delete', 'LeavePeriodController@destroy' );
 
+    Route::get( '/leaveentitlement', 'LeaveEntitlementController@index' );
+    Route::get( '/leaveentitlement/add', 'LeaveEntitlementController@create' );
+    Route::post( '/leaveentitlement/save', 'LeaveEntitlementController@store' );
+    Route::get( '/leaveentitlement/{id}/edit', 'LeaveEntitlementController@edit' );
+    Route::post( '/leaveentitlement/{id}/update', 'LeaveEntitlementController@update' );
+    Route::get( '/leaveentitlement/{id}/delete', 'LeaveEntitlementController@destroy' );
+
+    Route::get( '/holiday', 'HolidayController@index' )->name('holiday.index');
+    Route::post( '/holiday', 'HolidayController@store' )->name('holiday.store');
+
+    Route::get( '/empstatus', 'EmploymentStatusController@index' );
+    Route::get( '/empstatus/add', 'EmploymentStatusController@create' );
+    Route::post( '/empstatus/save', 'EmploymentStatusController@store' );
+    Route::get( '/empstatus/{id}/edit', 'EmploymentStatusController@edit' );
+    Route::post( '/empstatus/{id}/update', 'EmploymentStatusController@update' );
+    Route::get( '/empstatus/{id}/delete', 'EmploymentStatusController@destroy' );
+
+    Route::get( '/workschedule', 'WorkScheduleController@index' );
+    Route::get( '/workschedule/add', 'WorkScheduleController@create' );
+    Route::post( '/workschedule/save', 'WorkScheduleController@store' );
+    Route::get( '/workschedule/{id}/edit', 'WorkScheduleController@edit' );
+    Route::post( '/workschedule/{id}/update', 'WorkScheduleController@update' );
+    Route::get( '/workschedule/{id}/delete', 'WorkScheduleController@destroy' );
+
+    Route::get( '/hr/recruitment', 'EmployeeController@recruitment' );
+    Route::post( '/hr/recruitment/save', 'EmployeeController@storeRecruitment' );
+
+    Route::get( '/hr/employee', 'EmployeeController@index' );
+    Route::get( '/hr/employee/add', 'EmployeeController@recruitment' );
+    //Route::post( '/hr/employee/save', 'EmployeeController@store' );
+    Route::get( '/hr/employee/{id}/edit', 'EmployeeController@edit' );
+    Route::post( '/hr/employee/{id}/update', 'EmployeeController@update' );
+    Route::get( '/hr/employee/{id}/delete', 'EmployeeController@destroy' );
+    Route::get('hr/employee/{id}/detail', 'EmployeeController@detail');
+    //Route::get('hr/employee/{id}/detail', 'EmployeeController@detail']);
+
+    Route::get( '/hr/leave/apply', 'LeaveController@apply' );
+    
+    Route::get( '/hr/employee/workhistory/add/{id}', 'EmployeeWorkHistoryController@create' );
+    Route::post( '/hr/employee/workhistory/save', 'EmployeeWorkHistoryController@store' );
+    Route::get( '/hr/employee/workhistory/{id}/edit', 'EmployeeWorkHistoryController@edit' );
+    Route::post( '/hr/employee/workhistory/{id}/update', 'EmployeeWorkHistoryController@update' );
+    Route::get( '/hr/employee/workhistory/{id}/delete', 'EmployeeWorkHistoryController@destroy' );
+
+    Route::get( '/hr/employee/educationhistory/add/{id}', 'EmployeeEducationHistoryController@create' );
+    Route::post( '/hr/employee/educationhistory/save', 'EmployeeEducationHistoryController@store' );
+    Route::get( '/hr/employee/educationhistory/{id}/edit', 'EmployeeEducationHistoryController@edit' );
+    Route::post( '/hr/employee/educationhistory/{id}/update', 'EmployeeEducationHistoryController@update' );
+    Route::get( '/hr/employee/educationhistory/{id}/delete', 'EmployeeEducationHistoryController@destroy' );
+
+    Route::get( '/hr/employee/traininghistory/add/{id}', 'EmployeeTrainingHistoryController@create' );
+    Route::post( '/hr/employee/traininghistory/save', 'EmployeeTrainingHistoryController@store' );
+    Route::get( '/hr/employee/traininghistory/{id}/edit', 'EmployeeTrainingHistoryController@edit' );
+    Route::post( '/hr/employee/traininghistory/{id}/update', 'EmployeeTrainingHistoryController@update' );
+    Route::get( '/hr/employee/traininghistory/{id}/delete', 'EmployeeTrainingHistoryController@destroy' );
 });
 
 
 Route::group(['middleware' => ['auth', 'site']], function () {
     Route::get( '/user-data', 'UserController@anyData')->name('user.data' );
     Route::get( '/permission-data', 'PermissionController@anyData')->name('permission.data' );
-    Route::get( '/role-data', 'RoleController@anyData')->name('role.data' );
-    Route::get( '/asset-data', 'AssetController@anyData')->name('asset.data' );
-    Route::get( '/grouped-asset-data', 'AssetByGroupController@anyData')->name('grouped-asset.data' );
-    Route::get( '/maintenance-data', 'MaintenanceController@anyData')->name('maintenance.data' );
-    Route::get( '/bill-data', 'BillController@anyData')->name('bill.data' );
-    Route::get( '/asset-location-data', 'AssetLocationController@anyData')->name('asset-location.data' );
-    Route::get( '/asset-performance-data', 'AssetPerformanceController@anyData')->name('asset-performance.data' );
-    Route::get( '/asset-type-data', 'AssetTypeController@anyData')->name('asset-type.data' );
-    Route::get( '/asset-condition-data', 'AssetConditionController@anyData')->name('asset-condition.data' );
+    Route::get( '/role-data', 'RoleController@anyData')->name('role.data' );    
     Route::get( '/site-data', 'SiteController@anyData')->name('site.data' );
-    Route::get( '/menu-data', 'MenuController@anyData')->name('menu.data' );
-    Route::get('/asset/asset-type-form/{formId}', 'AssetByGroupController@assetTypeForm');
-    Route::get('/asset/asset-type-edit-form/{assetId}/{formId}', 'AssetByGroupController@assetTypeEditForm');
+    Route::get( '/menu-data', 'MenuController@anyData')->name('menu.data' );    
+    Route::get( '/gender-data', 'GenderController@anyData')->name('gender.data' );
+    Route::get( '/division-data', 'DivisionController@anyData')->name('division.data' );
+    Route::get( '/religion-data', 'ReligionController@anyData')->name('religion.data' );
+    Route::get( '/marital-data', 'MaritalStatusController@anyData')->name('marital.data' );
+    Route::get( '/position-data', 'PositionController@anyData')->name('position.data' );
+    Route::get( '/leavetype-data', 'LeavetypeController@anyData')->name('leavetype.data' );
+    Route::get( '/leaveperiod-data', 'LeavePeriodController@anyData')->name('leaveperiod.data' );
+    Route::get( '/leaveentitlement-data', 'LeaveEntitlementController@anyData')->name('leaveentitlement.data' );
+    Route::get( '/empstatus-data', 'EmploymentStatusController@anyData')->name('empstatus.data' );
+    Route::get( '/workschedule-data', 'WorkScheduleController@anyData')->name('workschedule.data' );
+    Route::get( '/employee-data', 'EmployeeController@anyData')->name('employee.data' );
+    Route::get( '/workhistory-data', 'EmployeeWorkHistoryController@anyData')->name('workhistory.data' );
+    Route::get( '/education-data', 'EducationGradeController@anyData')->name('education.data' );
+    Route::get( '/educationhistory-data', 'EmployeeEducationHistoryController@anyData')->name('educationhistory.data' );
+    Route::get( '/traininghistory-data', 'EmployeeTrainingHistoryController@anyData')->name('traininghistory.data' );
+
     Route::post('/ajax/upload', 'AssetController@uploadImage');
+    Route::post('ajax/get-leave-quota', 'LeavetypeController@getLeaveQuota');
+    Route::post( '/ajax/get-employee', 'EmployeeController@getEmployee');
+    Route::post( '/ajax/save-recruitment', 'EmployeeController@storeRecruitment');
 });
 
 

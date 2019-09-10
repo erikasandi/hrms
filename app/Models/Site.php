@@ -32,4 +32,5 @@ class Site extends Model
     {
         return $this->hasOne(Asset::class);
     }
+
 }

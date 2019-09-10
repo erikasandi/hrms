@@ -30,7 +30,8 @@ trait DatatableParameters
     {
         $detail = [
             'title'     => 'Detail',
-            'link'      => url($this->baseUrl . '/%s' . '/detail'),
+            //'link'      => url($this->baseUrl . '/%s' . '/detail'),
+            'link'      => url($this->baseUrl .'/%s' . '/detail'),
             'class'     => 'btn btn-xs btn-default',
             'icon'      => 'fa fa-location-arrow'
         ];
@@ -46,5 +47,16 @@ trait DatatableParameters
             'icon'      => 'fa fa-times',
         ];
         return $delete;
+    }
+
+    protected function detailTabsParameter()
+    {
+        $details = [
+            'title'     => 'Details',
+            'link'      => url($this->baseUrl . '/0/'.'/%s' . '/details'),
+            'class'     => 'btn btn-xs btn-default',
+            'icon'      => 'fa fa-location-arrow'
+        ];
+        return $details;
     }
 }

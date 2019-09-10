@@ -20,7 +20,7 @@
     <link href="{!! asset('metronic/assets/global/plugins/bootstrap/css/bootstrap.min.css') !!}" rel="stylesheet" type="text/css" />
     <link href="{!! asset('metronic/assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css') !!}" rel="stylesheet" type="text/css" />
     <!-- END GLOBAL MANDATORY STYLES -->
-    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    <!-- BEGIN PAGE LEVEL PLUGINS -->    
     @section('page-level-style-plugins')
     @show
     <!-- END PAGE LEVEL PLUGINS -->
@@ -31,10 +31,12 @@
     <!-- BEGIN PAGE LEVEL STYLES -->
     @section('page-level-styles')
     @show
+    
     <!-- END PAGE LEVEL STYLES -->
     <!-- BEGIN THEME LAYOUT STYLES -->
     <link href="{!! asset('metronic/assets/layouts/layout/css/layout.css') !!}" rel="stylesheet" type="text/css" />
-    <link href="{!! asset('metronic/assets/layouts/layout/css/themes/darkblue.min.css') !!}" rel="stylesheet" type="text/css" id="style_color" />
+    <!-- <link href="{!! asset('metronic/assets/layouts/layout/css/themes/darkblue.min.css') !!}" rel="stylesheet" type="text/css" id="style_color" /> -->
+    <link href="{!! asset('metronic/assets/layouts/layout/css/themes/grey.min.css') !!}" rel="stylesheet" type="text/css" id="style_color" />
     <link href="{!! asset('metronic/assets/layouts/layout/css/custom.css') !!}" rel="stylesheet" type="text/css" />
     <!-- END THEME LAYOUT STYLES -->
     <link rel="shortcut icon" href="favicon.ico" /> </head>
@@ -89,6 +91,7 @@
 <script src="{!! asset('metronic/assets/layouts/global/scripts/quick-sidebar.min.js') !!}" type="text/javascript"></script>
 <script src="{!! asset('metronic/assets/layouts/global/scripts/quick-nav.min.js') !!}" type="text/javascript"></script>
 <!-- END THEME LAYOUT SCRIPTS -->
+
 </body>
 
 </html>
